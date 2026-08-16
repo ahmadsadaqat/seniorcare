@@ -1,0 +1,127 @@
+{
+ "actions": [],
+ "creation": "2026-08-16 17:00:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "family_member_name",
+  "relationship",
+  "cnic_id",
+  "column_break_1",
+  "phone",
+  "whatsapp",
+  "email",
+  "section_break_2",
+  "address",
+  "column_break_3",
+  "is_primary_contact",
+  "is_payer",
+  "can_receive_updates",
+  "can_approve_expenses",
+  "section_break_4",
+  "notes"
+ ],
+ "fields": [
+  {
+   "fieldname": "family_member_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Family Member Name",
+   "reqd": 1
+  },
+  {
+   "fieldname": "relationship",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Relationship",
+   "options": "Son\nDaughter\nSpouse\nSibling\nParent\nLegal Guardian\nOther",
+   "reqd": 1
+  },
+  {
+   "fieldname": "cnic_id",
+   "fieldtype": "Data",
+   "label": "CNIC / ID"
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "phone",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Phone",
+   "reqd": 1
+  },
+  {
+   "fieldname": "whatsapp",
+   "fieldtype": "Data",
+   "label": "WhatsApp"
+  },
+  {
+   "fieldname": "email",
+   "fieldtype": "Data",
+   "label": "Email"
+  },
+  {
+   "fieldname": "section_break_2",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "address",
+   "fieldtype": "Small Text",
+   "label": "Address"
+  },
+  {
+   "fieldname": "column_break_3",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_primary_contact",
+   "fieldtype": "Check",
+   "in_list_view": 1,
+   "label": "Is Primary Contact"
+  },
+  {
+   "default": "0",
+   "fieldname": "is_payer",
+   "fieldtype": "Check",
+   "in_list_view": 1,
+   "label": "Is Payer"
+  },
+  {
+   "default": "1",
+   "fieldname": "can_receive_updates",
+   "fieldtype": "Check",
+   "label": "Can Receive Updates"
+  },
+  {
+   "default": "0",
+   "fieldname": "can_approve_expenses",
+   "fieldtype": "Check",
+   "label": "Can Approve Expenses"
+  },
+  {
+   "fieldname": "section_break_4",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "notes",
+   "fieldtype": "Small Text",
+   "label": "Notes"
+  }
+ ],
+ "istable": 1,
+ "links": [],
+ "modified": "2026-08-16 17:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Seniorcare",
+ "name": "Senior Care Family Member",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

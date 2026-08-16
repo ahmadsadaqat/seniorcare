@@ -1,0 +1,227 @@
+{
+ "actions": [],
+ "autoname": "naming_series:",
+ "creation": "2026-08-16 17:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "naming_series",
+  "contract_no",
+  "resident_file",
+  "customer",
+  "contract_type",
+  "status",
+  "column_break_1",
+  "start_date",
+  "end_date",
+  "rate_effective_from",
+  "billing_frequency",
+  "billing_date",
+  "section_break_commercials",
+  "occupancy_fee",
+  "attendant_fee",
+  "other_fixed_charges",
+  "column_break_commercials",
+  "total_monthly_fee",
+  "refundable_deposit",
+  "section_break_terms",
+  "deposit_terms",
+  "contract_attachment"
+ ],
+ "fields": [
+  {
+   "default": "CON-.YYYY.-.####",
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Naming Series",
+   "options": "CON-.YYYY.-.####",
+   "reqd": 1
+  },
+  {
+   "fieldname": "contract_no",
+   "fieldtype": "Data",
+   "label": "External Contract / Reference No."
+  },
+  {
+   "fieldname": "resident_file",
+   "fieldtype": "Link",
+   "in_global_search": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Resident File",
+   "options": "Resident File",
+   "reqd": 1
+  },
+  {
+   "fieldname": "customer",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Customer (Billing Party)",
+   "options": "Customer",
+   "read_only": 1
+  },
+  {
+   "default": "Standard Care",
+   "fieldname": "contract_type",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Contract Type",
+   "options": "Standard Care\nPremium Care\nMemory Care\nAssisted Living\nShort Stay",
+   "reqd": 1
+  },
+  {
+   "default": "Draft",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Status",
+   "options": "Draft\nApproved\nActive\nExpired\nTerminated",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "Today",
+   "fieldname": "start_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Start Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "end_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "End Date"
+  },
+  {
+   "fieldname": "rate_effective_from",
+   "fieldtype": "Date",
+   "label": "Rate Effective From"
+  },
+  {
+   "default": "Monthly",
+   "fieldname": "billing_frequency",
+   "fieldtype": "Select",
+   "label": "Billing Frequency",
+   "options": "Monthly\nQuarterly\nAnnually"
+  },
+  {
+   "default": "1",
+   "fieldname": "billing_date",
+   "fieldtype": "Int",
+   "label": "Billing Day of Month (1-31)"
+  },
+  {
+   "fieldname": "section_break_commercials",
+   "fieldtype": "Section Break",
+   "label": "Commercial Terms & Rates"
+  },
+  {
+   "fieldname": "occupancy_fee",
+   "fieldtype": "Currency",
+   "label": "Occupancy Fee (Monthly)"
+  },
+  {
+   "fieldname": "attendant_fee",
+   "fieldtype": "Currency",
+   "label": "Attendant Fee (Monthly)"
+  },
+  {
+   "fieldname": "other_fixed_charges",
+   "fieldtype": "Currency",
+   "label": "Other Fixed Charges (Monthly)"
+  },
+  {
+   "fieldname": "column_break_commercials",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "total_monthly_fee",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Total Monthly Fee",
+   "read_only": 1
+  },
+  {
+   "fieldname": "refundable_deposit",
+   "fieldtype": "Currency",
+   "label": "Refundable Security Deposit"
+  },
+  {
+   "fieldname": "section_break_terms",
+   "fieldtype": "Section Break",
+   "label": "Terms & Attachments"
+  },
+  {
+   "fieldname": "deposit_terms",
+   "fieldtype": "Text",
+   "label": "Deposit & Cancellation Terms"
+  },
+  {
+   "fieldname": "contract_attachment",
+   "fieldtype": "Attach",
+   "label": "Signed Contract Attachment"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2026-08-16 17:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Seniorcare",
+ "name": "Resident Contract",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "cancel": 1,
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "cancel": 1,
+   "create": 1,
+   "delete": 0,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Senior Care Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "cancel": 1,
+   "create": 1,
+   "delete": 0,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Senior Care Finance",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  }
+ ],
+ "search_fields": "resident_file, contract_type, status",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "resident_file"
+}

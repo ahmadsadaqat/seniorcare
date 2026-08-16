@@ -1,0 +1,268 @@
+{
+ "actions": [],
+ "autoname": "naming_series:",
+ "creation": "2026-08-16 17:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "naming_series",
+  "resident_file",
+  "doctor",
+  "appointment_date",
+  "appointment_time",
+  "column_break_1",
+  "appointment_type",
+  "status",
+  "completed_on",
+  "doctor_confirmation",
+  "section_break_consultation",
+  "chief_complaint",
+  "symptoms_observations",
+  "vitals",
+  "column_break_consultation",
+  "diagnosis",
+  "treatment_advice",
+  "medication_changes",
+  "prescription_attachment",
+  "section_break_followup",
+  "follow_up_required",
+  "next_appointment_date",
+  "next_appointment_time",
+  "column_break_followup",
+  "next_appointment_type",
+  "follow_up_instructions"
+ ],
+ "fields": [
+  {
+   "default": "APT-.YYYY.-.####",
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Naming Series",
+   "options": "APT-.YYYY.-.####",
+   "reqd": 1
+  },
+  {
+   "fieldname": "resident_file",
+   "fieldtype": "Link",
+   "in_global_search": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Resident File",
+   "options": "Resident File",
+   "reqd": 1
+  },
+  {
+   "fieldname": "doctor",
+   "fieldtype": "Link",
+   "in_global_search": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Doctor / Provider",
+   "options": "Doctor Provider",
+   "reqd": 1
+  },
+  {
+   "default": "Today",
+   "fieldname": "appointment_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Appointment Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "appointment_time",
+   "fieldtype": "Time",
+   "in_list_view": 1,
+   "label": "Appointment Time"
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "Routine Checkup",
+   "fieldname": "appointment_type",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Appointment Type",
+   "options": "Routine Checkup\nSpecialist Consultation\nEmergency\nFollow-up\nLab Test",
+   "reqd": 1
+  },
+  {
+   "default": "Scheduled",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Status",
+   "options": "Scheduled\nCompleted\nCancelled\nNo Show",
+   "reqd": 1
+  },
+  {
+   "fieldname": "completed_on",
+   "fieldtype": "Datetime",
+   "label": "Completed On"
+  },
+  {
+   "default": "0",
+   "fieldname": "doctor_confirmation",
+   "fieldtype": "Check",
+   "label": "Doctor Confirmation / Approval"
+  },
+  {
+   "fieldname": "section_break_consultation",
+   "fieldtype": "Section Break",
+   "label": "Consultation Details"
+  },
+  {
+   "fieldname": "chief_complaint",
+   "fieldtype": "Small Text",
+   "label": "Chief Complaint / Reason"
+  },
+  {
+   "fieldname": "symptoms_observations",
+   "fieldtype": "Text",
+   "label": "Symptoms / Observations"
+  },
+  {
+   "fieldname": "vitals",
+   "fieldtype": "Small Text",
+   "label": "Vitals (BP, Pulse, Temp, SpO2, Sugar)"
+  },
+  {
+   "fieldname": "column_break_consultation",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "diagnosis",
+   "fieldtype": "Text",
+   "label": "Diagnosis"
+  },
+  {
+   "fieldname": "treatment_advice",
+   "fieldtype": "Text",
+   "label": "Treatment / Advice"
+  },
+  {
+   "fieldname": "medication_changes",
+   "fieldtype": "Text",
+   "label": "Medication Changes"
+  },
+  {
+   "fieldname": "prescription_attachment",
+   "fieldtype": "Attach",
+   "label": "Prescription Attachment"
+  },
+  {
+   "fieldname": "section_break_followup",
+   "fieldtype": "Section Break",
+   "label": "Follow-up Details"
+  },
+  {
+   "default": "0",
+   "fieldname": "follow_up_required",
+   "fieldtype": "Check",
+   "label": "Follow-up Required"
+  },
+  {
+   "depends_on": "eval:doc.follow_up_required == 1",
+   "fieldname": "next_appointment_date",
+   "fieldtype": "Date",
+   "label": "Next Appointment Date"
+  },
+  {
+   "depends_on": "eval:doc.follow_up_required == 1",
+   "fieldname": "next_appointment_time",
+   "fieldtype": "Time",
+   "label": "Next Appointment Time"
+  },
+  {
+   "fieldname": "column_break_followup",
+   "fieldtype": "Column Break"
+  },
+  {
+   "depends_on": "eval:doc.follow_up_required == 1",
+   "fieldname": "next_appointment_type",
+   "fieldtype": "Select",
+   "label": "Next Appointment Type",
+   "options": "Routine Checkup\nSpecialist Consultation\nEmergency\nFollow-up\nLab Test"
+  },
+  {
+   "depends_on": "eval:doc.follow_up_required == 1",
+   "fieldname": "follow_up_instructions",
+   "fieldtype": "Small Text",
+   "label": "Follow-up Instructions"
+  }
+ ],
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2026-08-16 17:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Seniorcare",
+ "name": "Doctor Appointment",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "cancel": 1,
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "cancel": 0,
+   "create": 1,
+   "delete": 0,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Senior Care Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "cancel": 0,
+   "create": 1,
+   "delete": 0,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Senior Care Doctor",
+   "share": 0,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "cancel": 0,
+   "create": 1,
+   "delete": 0,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Senior Care Nurse",
+   "share": 0,
+   "submit": 0,
+   "write": 1
+  }
+ ],
+ "search_fields": "resident_file, doctor, appointment_date, status",
+ "sort_field": "appointment_date",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "resident_file"
+}

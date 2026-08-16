@@ -1,0 +1,579 @@
+{
+ "actions": [],
+ "autoname": "naming_series:",
+ "creation": "2026-08-16 17:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "naming_series",
+  "first_name",
+  "last_name",
+  "full_name",
+  "preferred_name",
+  "status",
+  "customer",
+  "column_break_identity",
+  "resident_photo",
+  "gender",
+  "date_of_birth",
+  "cnic_national_id",
+  "nationality",
+  "marital_status",
+  "section_break_accommodation",
+  "room_unit",
+  "admission_date",
+  "column_break_accommodation",
+  "exit_date",
+  "exit_reason",
+  "section_break_family",
+  "primary_family_contact",
+  "emergency_contact_phone",
+  "payer_billing_contact",
+  "column_break_family",
+  "communication_preferences",
+  "section_break_family_tables",
+  "family_members",
+  "emergency_contacts",
+  "section_break_contract",
+  "current_contract",
+  "contract_start_date",
+  "column_break_contract",
+  "contract_end_date",
+  "section_break_medical",
+  "primary_doctor",
+  "next_appointment_date",
+  "next_appointment_time",
+  "column_break_medical",
+  "allergies_summary",
+  "current_medication_summary",
+  "medical_history_summary",
+  "section_break_medical_notes",
+  "medical_notes",
+  "medical_documents",
+  "section_break_lifestyle",
+  "food_preferences",
+  "lifestyle_information",
+  "column_break_lifestyle",
+  "daily_schedule",
+  "special_care_instructions",
+  "section_break_operations",
+  "assigned_attendant",
+  "column_break_operations",
+  "incident_summary",
+  "section_break_financial",
+  "occupancy_fee",
+  "attendant_fee",
+  "other_fixed_charges",
+  "total_monthly_fee",
+  "column_break_financial",
+  "refundable_deposit",
+  "medical_advance_balance",
+  "personal_advance_balance",
+  "outstanding_receivable",
+  "section_break_documents",
+  "resident_documents"
+ ],
+ "fields": [
+  {
+   "default": "RES-.YYYY.-.####",
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Naming Series",
+   "options": "RES-.YYYY.-.####",
+   "reqd": 1
+  },
+  {
+   "fieldname": "first_name",
+   "fieldtype": "Data",
+   "in_global_search": 1,
+   "in_list_view": 1,
+   "label": "First Name",
+   "reqd": 1
+  },
+  {
+   "fieldname": "last_name",
+   "fieldtype": "Data",
+   "in_global_search": 1,
+   "in_list_view": 1,
+   "label": "Last Name"
+  },
+  {
+   "fieldname": "full_name",
+   "fieldtype": "Data",
+   "in_global_search": 1,
+   "in_list_view": 1,
+   "label": "Full Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "preferred_name",
+   "fieldtype": "Data",
+   "label": "Preferred Name"
+  },
+  {
+   "default": "Active",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Status",
+   "options": "Draft\nActive\nTemporary Leave\nDischarged\nDeceased",
+   "reqd": 1
+  },
+  {
+   "fieldname": "customer",
+   "fieldtype": "Link",
+   "in_standard_filter": 1,
+   "label": "Accounting Customer",
+   "options": "Customer"
+  },
+  {
+   "fieldname": "column_break_identity",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "resident_photo",
+   "fieldtype": "Attach Image",
+   "label": "Resident Photo"
+  },
+  {
+   "fieldname": "gender",
+   "fieldtype": "Select",
+   "in_standard_filter": 1,
+   "label": "Gender",
+   "options": "Male\nFemale\nOther"
+  },
+  {
+   "fieldname": "date_of_birth",
+   "fieldtype": "Date",
+   "label": "Date of Birth"
+  },
+  {
+   "fieldname": "cnic_national_id",
+   "fieldtype": "Data",
+   "label": "CNIC / National ID"
+  },
+  {
+   "default": "Pakistani",
+   "fieldname": "nationality",
+   "fieldtype": "Data",
+   "label": "Nationality"
+  },
+  {
+   "fieldname": "marital_status",
+   "fieldtype": "Select",
+   "label": "Marital Status",
+   "options": "Single\nMarried\nWidowed\nDivorced"
+  },
+  {
+   "fieldname": "section_break_accommodation",
+   "fieldtype": "Section Break",
+   "label": "Accommodation"
+  },
+  {
+   "fieldname": "room_unit",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Room / Unit No."
+  },
+  {
+   "fieldname": "admission_date",
+   "fieldtype": "Date",
+   "label": "Admission Date"
+  },
+  {
+   "fieldname": "column_break_accommodation",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "exit_date",
+   "fieldtype": "Date",
+   "label": "Exit Date"
+  },
+  {
+   "fieldname": "exit_reason",
+   "fieldtype": "Small Text",
+   "label": "Exit Reason"
+  },
+  {
+   "fieldname": "section_break_family",
+   "fieldtype": "Section Break",
+   "label": "Family & Contacts Summary"
+  },
+  {
+   "fieldname": "primary_family_contact",
+   "fieldtype": "Data",
+   "label": "Primary Family Contact"
+  },
+  {
+   "fieldname": "emergency_contact_phone",
+   "fieldtype": "Data",
+   "label": "Emergency Contact Phone"
+  },
+  {
+   "fieldname": "payer_billing_contact",
+   "fieldtype": "Data",
+   "label": "Payer / Billing Contact"
+  },
+  {
+   "fieldname": "column_break_family",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "communication_preferences",
+   "fieldtype": "Small Text",
+   "label": "Communication Preferences"
+  },
+  {
+   "fieldname": "section_break_family_tables",
+   "fieldtype": "Section Break",
+   "label": "Family Members & Emergency Contacts"
+  },
+  {
+   "fieldname": "family_members",
+   "fieldtype": "Table",
+   "label": "Family Members",
+   "options": "Senior Care Family Member"
+  },
+  {
+   "fieldname": "emergency_contacts",
+   "fieldtype": "Table",
+   "label": "Emergency Contacts",
+   "options": "Senior Care Emergency Contact"
+  },
+  {
+   "fieldname": "section_break_contract",
+   "fieldtype": "Section Break",
+   "label": "Current Contract Summary"
+  },
+  {
+   "fieldname": "current_contract",
+   "fieldtype": "Link",
+   "label": "Current Contract",
+   "options": "Resident Contract",
+   "read_only": 1
+  },
+  {
+   "fieldname": "contract_start_date",
+   "fieldtype": "Date",
+   "label": "Contract Start Date",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_contract",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "contract_end_date",
+   "fieldtype": "Date",
+   "label": "Contract End Date",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_medical",
+   "fieldtype": "Section Break",
+   "label": "Medical & Clinical Summary"
+  },
+  {
+   "fieldname": "primary_doctor",
+   "fieldtype": "Link",
+   "label": "Primary Doctor",
+   "options": "Doctor Provider"
+  },
+  {
+   "fieldname": "next_appointment_date",
+   "fieldtype": "Date",
+   "label": "Next Appointment Date",
+   "read_only": 1
+  },
+  {
+   "fieldname": "next_appointment_time",
+   "fieldtype": "Time",
+   "label": "Next Appointment Time",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_medical",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "allergies_summary",
+   "fieldtype": "Small Text",
+   "label": "Allergies Summary",
+   "read_only": 1
+  },
+  {
+   "fieldname": "current_medication_summary",
+   "fieldtype": "Small Text",
+   "label": "Current Medication Summary",
+   "read_only": 1
+  },
+  {
+   "fieldname": "medical_history_summary",
+   "fieldtype": "Small Text",
+   "label": "Medical History Summary",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_medical_notes",
+   "fieldtype": "Section Break",
+   "label": "Medical Notes & Attachments"
+  },
+  {
+   "fieldname": "medical_notes",
+   "fieldtype": "Text",
+   "label": "Medical Notes"
+  },
+  {
+   "fieldname": "medical_documents",
+   "fieldtype": "Attach",
+   "label": "Medical Documents Attachment"
+  },
+  {
+   "fieldname": "section_break_lifestyle",
+   "fieldtype": "Section Break",
+   "label": "Lifestyle & Care Instructions"
+  },
+  {
+   "fieldname": "food_preferences",
+   "fieldtype": "Small Text",
+   "label": "Food / Dietary Preferences"
+  },
+  {
+   "fieldname": "lifestyle_information",
+   "fieldtype": "Text",
+   "label": "Lifestyle Information"
+  },
+  {
+   "fieldname": "column_break_lifestyle",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "daily_schedule",
+   "fieldtype": "Text",
+   "label": "Daily Schedule"
+  },
+  {
+   "fieldname": "special_care_instructions",
+   "fieldtype": "Text",
+   "label": "Special Care Instructions"
+  },
+  {
+   "fieldname": "section_break_operations",
+   "fieldtype": "Section Break",
+   "label": "Operations & Caregivers"
+  },
+  {
+   "fieldname": "assigned_attendant",
+   "fieldtype": "Link",
+   "label": "Assigned Attendant / Caregiver",
+   "options": "Employee"
+  },
+  {
+   "fieldname": "column_break_operations",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "incident_summary",
+   "fieldtype": "Small Text",
+   "label": "Incident Summary",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_financial",
+   "fieldtype": "Section Break",
+   "label": "Financial Summary (Derived)"
+  },
+  {
+   "fieldname": "occupancy_fee",
+   "fieldtype": "Currency",
+   "label": "Occupancy Fee",
+   "read_only": 1
+  },
+  {
+   "fieldname": "attendant_fee",
+   "fieldtype": "Currency",
+   "label": "Attendant Fee",
+   "read_only": 1
+  },
+  {
+   "fieldname": "other_fixed_charges",
+   "fieldtype": "Currency",
+   "label": "Other Fixed Charges",
+   "read_only": 1
+  },
+  {
+   "fieldname": "total_monthly_fee",
+   "fieldtype": "Currency",
+   "label": "Total Monthly Fee",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_financial",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "refundable_deposit",
+   "fieldtype": "Currency",
+   "label": "Refundable Deposit",
+   "read_only": 1
+  },
+  {
+   "fieldname": "medical_advance_balance",
+   "fieldtype": "Currency",
+   "label": "Medical Advance Balance",
+   "read_only": 1
+  },
+  {
+   "fieldname": "personal_advance_balance",
+   "fieldtype": "Currency",
+   "label": "Personal Advance Balance",
+   "read_only": 1
+  },
+  {
+   "fieldname": "outstanding_receivable",
+   "fieldtype": "Currency",
+   "label": "Outstanding Accounting Receivable",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_documents",
+   "fieldtype": "Section Break",
+   "label": "Resident Documents Register"
+  },
+  {
+   "fieldname": "resident_documents",
+   "fieldtype": "Table",
+   "label": "Resident Documents",
+   "options": "Senior Care Resident Document"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [
+  {
+   "link_doctype": "Doctor Appointment",
+   "link_fieldname": "resident_file"
+  },
+  {
+   "link_doctype": "Resident Medical History",
+   "link_fieldname": "resident_file"
+  },
+  {
+   "link_doctype": "Resident Allergy",
+   "link_fieldname": "resident_file"
+  },
+  {
+   "link_doctype": "Resident Medication",
+   "link_fieldname": "resident_file"
+  },
+  {
+   "link_doctype": "Resident Contract",
+   "link_fieldname": "resident_file"
+  },
+  {
+   "link_doctype": "Incident Report",
+   "link_fieldname": "resident_file"
+  },
+  {
+   "link_doctype": "Resident Advance",
+   "link_fieldname": "resident_file"
+  }
+ ],
+ "modified": "2026-08-16 17:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Seniorcare",
+ "name": "Resident File",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 0,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Senior Care Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 0,
+   "delete": 0,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Senior Care Doctor",
+   "share": 0,
+   "write": 1
+  },
+  {
+   "create": 0,
+   "delete": 0,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Senior Care Nurse",
+   "share": 0,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 0,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Senior Care Operations",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 0,
+   "delete": 0,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Senior Care Finance",
+   "share": 0,
+   "write": 0
+  },
+  {
+   "create": 0,
+   "delete": 0,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Senior Care Receptionist",
+   "share": 0,
+   "write": 0
+  }
+ ],
+ "search_fields": "full_name, cnic_national_id, room_unit, status",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "full_name"
+}

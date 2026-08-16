@@ -1,0 +1,239 @@
+{
+ "category": "Modules",
+ "charts": [],
+ "content": "[{\"type\":\"header\",\"data\":{\"text\":\"Senior Circle Facility Management\",\"level\":2}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Resident File\"}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Doctor Appointment\"}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Resident Contract\"}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Incident Report\"}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Resident Advance\"}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Petty Cash Request\"}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Senior Care SOP\"}},{\"type\":\"header\",\"data\":{\"text\":\"Reports & Analytics\",\"level\":3}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Resident Medical Summary Report\"}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Active Resident Contracts & Billing Report\"}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Incident Analysis Report\"}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Resident Advance Ledger Report\"}}]",
+ "creation": "2026-08-16 17:00:00.000000",
+ "custom_blocks": [],
+ "disabled": 0,
+ "docstatus": 0,
+ "doctype": "Workspace",
+ "for_user": "",
+ "icon": "heart-pulse",
+ "indicator_color": "green",
+ "is_hidden": 0,
+ "label": "Senior Care",
+ "links": [
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Resident Management",
+   "link_count": 0,
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Resident Profiles",
+   "link_count": 0,
+   "link_to": "Resident File",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Doctor / Provider Register",
+   "link_count": 0,
+   "link_to": "Doctor Provider",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Medical & Clinical Care",
+   "link_count": 0,
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Doctor Appointments",
+   "link_count": 0,
+   "link_to": "Doctor Appointment",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Medical History Logs",
+   "link_count": 0,
+   "link_to": "Resident Medical History",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Resident Allergies",
+   "link_count": 0,
+   "link_to": "Resident Allergy",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Resident Medications",
+   "link_count": 0,
+   "link_to": "Resident Medication",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Commercial & Operations",
+   "link_count": 0,
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Card Break"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Resident Contracts",
+   "link_count": 0,
+   "link_to": "Resident Contract",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Resident Advances",
+   "link_count": 0,
+   "link_to": "Resident Advance",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Incident Reports",
+   "link_count": 0,
+   "link_to": "Incident Report",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Petty Cash Requests",
+   "link_count": 0,
+   "link_to": "Petty Cash Request",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Facility SOPs",
+   "link_count": 0,
+   "link_to": "Senior Care SOP",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  }
+ ],
+ "modified": "2026-08-16 17:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Seniorcare",
+ "name": "Senior Care",
+ "owner": "Administrator",
+ "parent_page": "",
+ "public": 1,
+ "roles": [],
+ "sequence_id": 1.0,
+ "shortcuts": [
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Resident File",
+   "link_to": "Resident File",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Doctor Appointment",
+   "link_to": "Doctor Appointment",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Resident Contract",
+   "link_to": "Resident Contract",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Incident Report",
+   "link_to": "Incident Report",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Resident Advance",
+   "link_to": "Resident Advance",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Petty Cash Request",
+   "link_to": "Petty Cash Request",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Senior Care SOP",
+   "link_to": "Senior Care SOP",
+   "type": "DocType"
+  },
+  {
+   "color": "Blue",
+   "label": "Resident Medical Summary Report",
+   "link_to": "Resident Medical Summary Report",
+   "type": "Report"
+  },
+  {
+   "color": "Green",
+   "label": "Active Resident Contracts & Billing Report",
+   "link_to": "Active Resident Contracts & Billing Report",
+   "type": "Report"
+  },
+  {
+   "color": "Red",
+   "label": "Incident Analysis Report",
+   "link_to": "Incident Analysis Report",
+   "type": "Report"
+  },
+  {
+   "color": "Orange",
+   "label": "Resident Advance Ledger Report",
+   "link_to": "Resident Advance Ledger Report",
+   "type": "Report"
+  }
+ ],
+ "title": "Senior Care"
+}

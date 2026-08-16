@@ -1,0 +1,228 @@
+{
+ "actions": [],
+ "autoname": "naming_series:",
+ "creation": "2026-08-16 17:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "naming_series",
+  "resident_file",
+  "incident_datetime",
+  "incident_type",
+  "location",
+  "column_break_1",
+  "status",
+  "medical_attention_required",
+  "reported_by",
+  "attachments",
+  "section_break_details",
+  "description",
+  "people_involved",
+  "column_break_details",
+  "immediate_action",
+  "section_break_followup",
+  "follow_up_required",
+  "follow_up_date"
+ ],
+ "fields": [
+  {
+   "default": "INC-.YYYY.-.####",
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Naming Series",
+   "options": "INC-.YYYY.-.####",
+   "reqd": 1
+  },
+  {
+   "fieldname": "resident_file",
+   "fieldtype": "Link",
+   "in_global_search": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Resident File",
+   "options": "Resident File",
+   "reqd": 1
+  },
+  {
+   "fieldname": "incident_datetime",
+   "fieldtype": "Datetime",
+   "in_list_view": 1,
+   "label": "Incident Date & Time",
+   "reqd": 1
+  },
+  {
+   "default": "Fall",
+   "fieldname": "incident_type",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Incident Type",
+   "options": "Fall\nMedication Error\nBehavioral\nMedical Emergency\nInjury\nProperty Damage\nOther",
+   "reqd": 1
+  },
+  {
+   "fieldname": "location",
+   "fieldtype": "Data",
+   "label": "Location / Room"
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "Open",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Status",
+   "options": "Open\nUnder Review\nAction Required\nClosed",
+   "reqd": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "medical_attention_required",
+   "fieldtype": "Check",
+   "in_list_view": 1,
+   "label": "Medical Attention Required"
+  },
+  {
+   "fieldname": "reported_by",
+   "fieldtype": "Link",
+   "label": "Reported By User",
+   "options": "User"
+  },
+  {
+   "fieldname": "attachments",
+   "fieldtype": "Attach",
+   "label": "Attachments / Incident Photo"
+  },
+  {
+   "fieldname": "section_break_details",
+   "fieldtype": "Section Break",
+   "label": "Incident Description & Actions"
+  },
+  {
+   "fieldname": "description",
+   "fieldtype": "Text",
+   "label": "Detailed Description",
+   "reqd": 1
+  },
+  {
+   "fieldname": "people_involved",
+   "fieldtype": "Text",
+   "label": "People Involved / Witnesses"
+  },
+  {
+   "fieldname": "column_break_details",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "immediate_action",
+   "fieldtype": "Text",
+   "label": "Immediate Action Taken"
+  },
+  {
+   "fieldname": "section_break_followup",
+   "fieldtype": "Section Break",
+   "label": "Follow-up"
+  },
+  {
+   "default": "0",
+   "fieldname": "follow_up_required",
+   "fieldtype": "Check",
+   "label": "Follow-up Required"
+  },
+  {
+   "depends_on": "eval:doc.follow_up_required == 1",
+   "fieldname": "follow_up_date",
+   "fieldtype": "Date",
+   "label": "Follow-up Date"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2026-08-16 17:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Seniorcare",
+ "name": "Incident Report",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "cancel": 1,
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "cancel": 0,
+   "create": 1,
+   "delete": 0,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Senior Care Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "cancel": 0,
+   "create": 1,
+   "delete": 0,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Senior Care Doctor",
+   "share": 0,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "cancel": 0,
+   "create": 1,
+   "delete": 0,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Senior Care Nurse",
+   "share": 0,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "cancel": 0,
+   "create": 1,
+   "delete": 0,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Senior Care Operations",
+   "share": 0,
+   "submit": 1,
+   "write": 1
+  }
+ ],
+ "search_fields": "resident_file, incident_type, status, incident_datetime",
+ "sort_field": "incident_datetime",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "resident_file"
+}

@@ -1,0 +1,203 @@
+{
+ "actions": [],
+ "autoname": "naming_series:",
+ "creation": "2026-08-16 17:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "naming_series",
+  "requester",
+  "resident_file",
+  "purpose",
+  "column_break_1",
+  "advance_date",
+  "amount",
+  "unspent_amount",
+  "approval_status",
+  "reconciled",
+  "section_break_details",
+  "expense_details",
+  "receipts",
+  "column_break_details",
+  "approver",
+  "journal_entry"
+ ],
+ "fields": [
+  {
+   "default": "PCR-.YYYY.-.####",
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Naming Series",
+   "options": "PCR-.YYYY.-.####",
+   "reqd": 1
+  },
+  {
+   "fieldname": "requester",
+   "fieldtype": "Link",
+   "in_global_search": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Requester User",
+   "options": "User",
+   "reqd": 1
+  },
+  {
+   "fieldname": "resident_file",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Related Resident File (Optional)",
+   "options": "Resident File"
+  },
+  {
+   "fieldname": "purpose",
+   "fieldtype": "Small Text",
+   "label": "Purpose / Description",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "Today",
+   "fieldname": "advance_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Advance / Request Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "amount",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Requested Amount",
+   "reqd": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "unspent_amount",
+   "fieldtype": "Currency",
+   "label": "Unspent Amount Returned"
+  },
+  {
+   "default": "Draft",
+   "fieldname": "approval_status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Approval Status",
+   "options": "Draft\nSubmitted\nApproved\nRejected\nPaid\nReconciled",
+   "reqd": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "reconciled",
+   "fieldtype": "Check",
+   "in_list_view": 1,
+   "label": "Reconciled"
+  },
+  {
+   "fieldname": "section_break_details",
+   "fieldtype": "Section Break",
+   "label": "Expense & Receipt Details"
+  },
+  {
+   "fieldname": "expense_details",
+   "fieldtype": "Text",
+   "label": "Expense Details / Breakup"
+  },
+  {
+   "fieldname": "receipts",
+   "fieldtype": "Attach",
+   "label": "Receipts / Bill Attachment"
+  },
+  {
+   "fieldname": "column_break_details",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "approver",
+   "fieldtype": "Link",
+   "label": "Approver User",
+   "options": "User"
+  },
+  {
+   "fieldname": "journal_entry",
+   "fieldtype": "Link",
+   "label": "Linked Journal Entry / Expense Claim",
+   "options": "Journal Entry"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2026-08-16 17:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Seniorcare",
+ "name": "Petty Cash Request",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "cancel": 1,
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "cancel": 1,
+   "create": 1,
+   "delete": 0,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Senior Care Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "cancel": 1,
+   "create": 1,
+   "delete": 0,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Senior Care Finance",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "cancel": 0,
+   "create": 1,
+   "delete": 0,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Senior Care Operations",
+   "share": 0,
+   "submit": 1,
+   "write": 1
+  }
+ ],
+ "search_fields": "requester, resident_file, purpose, amount, approval_status",
+ "sort_field": "advance_date",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "purpose"
+}

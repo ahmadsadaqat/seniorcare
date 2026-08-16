@@ -1,0 +1,179 @@
+{
+ "actions": [],
+ "autoname": "naming_series:",
+ "creation": "2026-08-16 17:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "naming_series",
+  "doctor_name",
+  "specialization",
+  "qualification",
+  "is_active",
+  "column_break_1",
+  "phone",
+  "email",
+  "organization_hospital",
+  "address",
+  "section_break_erpnext",
+  "linked_supplier",
+  "column_break_erpnext",
+  "linked_employee",
+  "section_break_2",
+  "notes"
+ ],
+ "fields": [
+  {
+   "default": "DOC-.####",
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Naming Series",
+   "options": "DOC-.####",
+   "reqd": 1
+  },
+  {
+   "fieldname": "doctor_name",
+   "fieldtype": "Data",
+   "in_global_search": 1,
+   "in_list_view": 1,
+   "label": "Doctor Name",
+   "reqd": 1
+  },
+  {
+   "fieldname": "specialization",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Specialization"
+  },
+  {
+   "fieldname": "qualification",
+   "fieldtype": "Data",
+   "label": "Qualification"
+  },
+  {
+   "default": "1",
+   "fieldname": "is_active",
+   "fieldtype": "Check",
+   "in_list_view": 1,
+   "label": "Is Active"
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "phone",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Phone"
+  },
+  {
+   "fieldname": "email",
+   "fieldtype": "Data",
+   "label": "Email"
+  },
+  {
+   "fieldname": "organization_hospital",
+   "fieldtype": "Data",
+   "label": "Organization / Hospital"
+  },
+  {
+   "fieldname": "address",
+   "fieldtype": "Small Text",
+   "label": "Address"
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "section_break_erpnext",
+   "fieldtype": "Section Break",
+   "label": "ERPNext Integrations"
+  },
+  {
+   "fieldname": "linked_supplier",
+   "fieldtype": "Link",
+   "label": "Linked Supplier (Vendor)",
+   "options": "Supplier"
+  },
+  {
+   "fieldname": "column_break_erpnext",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "linked_employee",
+   "fieldtype": "Link",
+   "label": "Linked Employee (Staff Doctor)",
+   "options": "Employee"
+  },
+  {
+   "fieldname": "section_break_2",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "notes",
+   "fieldtype": "Small Text",
+   "label": "Notes"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-08-16 17:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Seniorcare",
+ "name": "Doctor Provider",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 0,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Senior Care Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 0,
+   "delete": 0,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Senior Care Doctor",
+   "share": 0,
+   "write": 0
+  },
+  {
+   "create": 0,
+   "delete": 0,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Senior Care Nurse",
+   "share": 0,
+   "write": 0
+  }
+ ],
+ "search_fields": "doctor_name, specialization, phone",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "doctor_name"
+}
