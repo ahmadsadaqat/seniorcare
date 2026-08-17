@@ -1,7 +1,7 @@
 // Copyright (c) 2026, Senior Circle and contributors
 // For license information, please see license.txt
 
-frappe.query_reports["Active Resident Contracts & Billing Report"] = {
+frappe.query_reports["Active Resident Contracts and Billing Report"] = {
 	filters: [
 		{
 			fieldname: "resident_file",

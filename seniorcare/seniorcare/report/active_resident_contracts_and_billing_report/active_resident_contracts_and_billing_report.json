@@ -8,10 +8,10 @@
  "modified": "2026-08-16 17:00:00.000000",
  "modified_by": "Administrator",
  "module": "Seniorcare",
- "name": "Active Resident Contracts & Billing Report",
+ "name": "Active Resident Contracts and Billing Report",
  "owner": "Administrator",
  "prepared_report": 0,
  "ref_doctype": "Resident Contract",
- "report_name": "Active Resident Contracts & Billing Report",
+ "report_name": "Active Resident Contracts and Billing Report",
  "report_type": "Script Report"
 }

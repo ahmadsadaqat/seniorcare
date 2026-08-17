@@ -1,7 +1,7 @@
 {
  "category": "Modules",
  "charts": [],
- "content": "[{\"type\":\"header\",\"data\":{\"text\":\"Senior Circle Facility Management\",\"level\":2}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Resident File\"}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Doctor Appointment\"}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Resident Contract\"}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Incident Report\"}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Resident Advance\"}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Petty Cash Request\"}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Senior Care SOP\"}},{\"type\":\"header\",\"data\":{\"text\":\"Reports & Analytics\",\"level\":3}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Resident Medical Summary Report\"}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Active Resident Contracts & Billing Report\"}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Incident Analysis Report\"}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Resident Advance Ledger Report\"}}]",
+ "content": "[{\"type\":\"header\",\"data\":{\"text\":\"Senior Circle Facility Management\",\"level\":2}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Resident File\"}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Doctor Appointment\"}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Resident Contract\"}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Incident Report\"}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Resident Advance\"}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Petty Cash Request\"}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Senior Care SOP\"}},{\"type\":\"header\",\"data\":{\"text\":\"Reports & Analytics\",\"level\":3}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Resident Medical Summary Report\"}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Active Resident Contracts and Billing Report\"}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Incident Analysis Report\"}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Resident Advance Ledger Report\"}}]",
  "creation": "2026-08-16 17:00:00.000000",
  "custom_blocks": [],
  "disabled": 0,
@@ -218,8 +218,8 @@
   },
   {
    "color": "Green",
-   "label": "Active Resident Contracts & Billing Report",
-   "link_to": "Active Resident Contracts & Billing Report",
+   "label": "Active Resident Contracts and Billing Report",
+   "link_to": "Active Resident Contracts and Billing Report",
    "type": "Report"
   },
   {
