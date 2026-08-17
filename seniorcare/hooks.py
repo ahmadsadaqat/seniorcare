@@ -10,21 +10,31 @@ app_license = "mit"
 after_migrate = ["seniorcare.setup.setup_senior_care"]
 after_install = "seniorcare.setup.setup_senior_care"
 
-# Includes in <head>
-# ------------------
-
-# include js, css files in header of desk.html
-# app_include_css = "/assets/seniorcare/css/seniorcare.css"
-# app_include_js = "/assets/seniorcare/js/seniorcare.js"
-
 # DocType Class Overrides
 # -----------------------
-# override_doctype_class = {}
+override_doctype_class = {
+	"Payroll Entry": "seniorcare.payroll.CustomPayrollEntry"
+}
 
 # Document Events
 # ---------------
-# doc_events = {}
+doc_events = {
+	"Employee": {
+		"validate": "seniorcare.employee.validate_employee"
+	},
+	"Salary Slip": {
+		"before_insert": "seniorcare.salary_slip.before_insert_salary_slip",
+		"validate": "seniorcare.salary_slip.validate_salary_slip"
+	},
+	"Purchase Invoice": {
+		"validate": "seniorcare.purchase_invoice.validate_purchase_invoice",
+		"on_submit": "seniorcare.purchase_invoice.on_submit_purchase_invoice",
+		"on_cancel": "seniorcare.purchase_invoice.on_cancel_purchase_invoice"
+	}
+}
 
-# Scheduled Tasks
-# ---------------
-# scheduler_events = {}
+# Doctype JS
+# ----------
+doctype_js = {
+	"Payroll Entry": "public/js/payroll_entry.js"
+}

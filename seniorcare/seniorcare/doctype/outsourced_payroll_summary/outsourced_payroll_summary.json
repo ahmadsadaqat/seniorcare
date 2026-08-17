@@ -1,0 +1,246 @@
+{
+ "actions": [],
+ "autoname": "naming_series:",
+ "creation": "2026-08-17 23:55:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "naming_series",
+  "company",
+  "supplier",
+  "payroll_entry",
+  "status",
+  "column_break_1",
+  "payroll_period_from",
+  "payroll_period_to",
+  "posting_date",
+  "purchase_invoice",
+  "section_break_amounts",
+  "total_employees",
+  "payroll_amount",
+  "vendor_service_charge",
+  "other_charges",
+  "column_break_amounts",
+  "tax_amount",
+  "vendor_invoice_amount",
+  "variance",
+  "section_break_vendor_invoice",
+  "supplier_invoice_no",
+  "supplier_invoice_date",
+  "column_break_vendor",
+  "remarks",
+  "section_break_employees",
+  "employees"
+ ],
+ "fields": [
+  {
+   "default": "OPS-.YYYY.-.#####",
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Naming Series",
+   "options": "OPS-.YYYY.-.#####",
+   "reqd": 1
+  },
+  {
+   "fieldname": "company",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Company",
+   "options": "Company",
+   "reqd": 1
+  },
+  {
+   "fieldname": "supplier",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Supplier",
+   "options": "Supplier",
+   "reqd": 1
+  },
+  {
+   "fieldname": "payroll_entry",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Payroll Entry",
+   "options": "Payroll Entry",
+   "reqd": 1
+  },
+  {
+   "default": "Draft",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Status",
+   "options": "Draft\nPending Invoice\nInvoice Received\nReconciliation Required\nReconciled\nCompleted\nCancelled",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "payroll_period_from",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Payroll Period From",
+   "reqd": 1
+  },
+  {
+   "fieldname": "payroll_period_to",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Payroll Period To",
+   "reqd": 1
+  },
+  {
+   "default": "Today",
+   "fieldname": "posting_date",
+   "fieldtype": "Date",
+   "label": "Posting Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "purchase_invoice",
+   "fieldtype": "Link",
+   "label": "Purchase Invoice",
+   "options": "Purchase Invoice",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_amounts",
+   "fieldtype": "Section Break",
+   "label": "Payroll & Invoice Amounts"
+  },
+  {
+   "fieldname": "total_employees",
+   "fieldtype": "Int",
+   "label": "Total Employees",
+   "read_only": 1
+  },
+  {
+   "fieldname": "payroll_amount",
+   "fieldtype": "Currency",
+   "label": "Payroll Amount",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "vendor_service_charge",
+   "fieldtype": "Currency",
+   "label": "Vendor Service Charge"
+  },
+  {
+   "default": "0",
+   "fieldname": "other_charges",
+   "fieldtype": "Currency",
+   "label": "Other Charges"
+  },
+  {
+   "fieldname": "column_break_amounts",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "fieldname": "tax_amount",
+   "fieldtype": "Currency",
+   "label": "Tax Amount"
+  },
+  {
+   "fieldname": "vendor_invoice_amount",
+   "fieldtype": "Currency",
+   "label": "Vendor Invoice Amount",
+   "read_only": 1
+  },
+  {
+   "fieldname": "variance",
+   "fieldtype": "Currency",
+   "label": "Variance",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_vendor_invoice",
+   "fieldtype": "Section Break",
+   "label": "Supplier Invoice Reference"
+  },
+  {
+   "fieldname": "supplier_invoice_no",
+   "fieldtype": "Data",
+   "label": "Supplier Invoice No."
+  },
+  {
+   "fieldname": "supplier_invoice_date",
+   "fieldtype": "Date",
+   "label": "Supplier Invoice Date"
+  },
+  {
+   "fieldname": "column_break_vendor",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "remarks",
+   "fieldtype": "Small Text",
+   "label": "Remarks"
+  },
+  {
+   "fieldname": "section_break_employees",
+   "fieldtype": "Section Break",
+   "label": "Employee Payroll Details"
+  },
+  {
+   "fieldname": "employees",
+   "fieldtype": "Table",
+   "label": "Employees",
+   "options": "Outsourced Payroll Employee"
+  }
+ ],
+ "links": [],
+ "modified": "2026-08-17 23:55:00.000000",
+ "modified_by": "Administrator",
+ "module": "Seniorcare",
+ "name": "Outsourced Payroll Summary",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Senior Care HR",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Senior Care Finance",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

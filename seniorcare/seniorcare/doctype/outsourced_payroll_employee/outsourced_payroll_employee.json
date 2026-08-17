@@ -1,0 +1,142 @@
+{
+ "actions": [],
+ "creation": "2026-08-17 23:55:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "employee",
+  "employee_name",
+  "vendor_employee_id",
+  "supplier",
+  "salary_slip",
+  "column_break_1",
+  "basic_salary",
+  "gross_earnings",
+  "total_deductions",
+  "net_payroll",
+  "column_break_2",
+  "vendor_rate",
+  "service_charge",
+  "other_amount",
+  "total_vendor_amount",
+  "attendance_days",
+  "working_days",
+  "remarks"
+ ],
+ "fields": [
+  {
+   "fieldname": "employee",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Employee",
+   "options": "Employee",
+   "reqd": 1
+  },
+  {
+   "fieldname": "employee_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Employee Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "vendor_employee_id",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Vendor Employee ID",
+   "read_only": 1
+  },
+  {
+   "fieldname": "supplier",
+   "fieldtype": "Link",
+   "label": "Supplier",
+   "options": "Supplier",
+   "read_only": 1
+  },
+  {
+   "fieldname": "salary_slip",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Salary Slip",
+   "options": "Salary Slip",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "basic_salary",
+   "fieldtype": "Currency",
+   "label": "Basic Salary"
+  },
+  {
+   "fieldname": "gross_earnings",
+   "fieldtype": "Currency",
+   "label": "Gross Earnings"
+  },
+  {
+   "fieldname": "total_deductions",
+   "fieldtype": "Currency",
+   "label": "Total Deductions"
+  },
+  {
+   "fieldname": "net_payroll",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Net Payroll"
+  },
+  {
+   "fieldname": "column_break_2",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "vendor_rate",
+   "fieldtype": "Currency",
+   "label": "Vendor Rate"
+  },
+  {
+   "fieldname": "service_charge",
+   "fieldtype": "Currency",
+   "label": "Service Charge"
+  },
+  {
+   "fieldname": "other_amount",
+   "fieldtype": "Currency",
+   "label": "Other Amount"
+  },
+  {
+   "fieldname": "total_vendor_amount",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Total Vendor Amount"
+  },
+  {
+   "fieldname": "attendance_days",
+   "fieldtype": "Float",
+   "label": "Attendance Days"
+  },
+  {
+   "fieldname": "working_days",
+   "fieldtype": "Float",
+   "label": "Working Days"
+  },
+  {
+   "fieldname": "remarks",
+   "fieldtype": "Small Text",
+   "label": "Remarks"
+  }
+ ],
+ "istable": 1,
+ "links": [],
+ "modified": "2026-08-17 23:55:00.000000",
+ "modified_by": "Administrator",
+ "module": "Seniorcare",
+ "name": "Outsourced Payroll Employee",
+ "naming_rule": "Random",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
