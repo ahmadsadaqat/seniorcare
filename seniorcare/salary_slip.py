@@ -12,6 +12,14 @@ def validate_salary_slip(doc, method=None):
 	sync_employee_snapshot(doc)
 
 
+def on_submit_salary_slip(doc, method=None):
+	sync_employee_snapshot(doc)
+	if doc.payroll_entry and doc.get("is_outsourced_employee"):
+		pe = frappe.get_doc("Payroll Entry", doc.payroll_entry)
+		if pe.payroll_type == "Outsourced Employees":
+			pe.auto_process_outsourced_payroll()
+
+
 def sync_employee_snapshot(doc):
 	if doc.employee:
 		emp_data = frappe.db.get_value(
@@ -21,7 +29,7 @@ def sync_employee_snapshot(doc):
 			as_dict=True,
 		)
 		if emp_data:
-			doc.is_outsourced_employee = emp_data.is_outsourced_employee or 0
+			doc.is_outsourced_employee = 1 if emp_data.is_outsourced_employee else 0
 			doc.manpower_supplier = emp_data.manpower_supplier
 			doc.vendor_employee_id = emp_data.vendor_employee_id
 

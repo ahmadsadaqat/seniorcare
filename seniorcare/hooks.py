@@ -24,7 +24,8 @@ doc_events = {
 	},
 	"Salary Slip": {
 		"before_insert": "seniorcare.salary_slip.before_insert_salary_slip",
-		"validate": "seniorcare.salary_slip.validate_salary_slip"
+		"validate": "seniorcare.salary_slip.validate_salary_slip",
+		"on_submit": "seniorcare.salary_slip.on_submit_salary_slip"
 	},
 	"Purchase Invoice": {
 		"validate": "seniorcare.purchase_invoice.validate_purchase_invoice",

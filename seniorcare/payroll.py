@@ -67,6 +67,49 @@ class CustomPayrollEntry(PayrollEntry):
 		self.set_payroll_payable_account_by_type()
 		super().before_submit()
 
+	def on_submit(self):
+		super().on_submit()
+		if self.payroll_type == "Outsourced Employees":
+			self.auto_process_outsourced_payroll()
+
+	@frappe.whitelist()
+	def auto_process_outsourced_payroll(self):
+		"""
+		Auto-submits draft salary slips, creates Accrual Journal Entry in Outsourced Payroll Clearing account,
+		and generates Outsourced Payroll Summary documents.
+		"""
+		if self.payroll_type != "Outsourced Employees":
+			return
+
+		# 1. Submit draft salary slips
+		draft_slips = frappe.get_all(
+			"Salary Slip",
+			filters={"payroll_entry": self.name, "docstatus": 0},
+			pluck="name",
+		)
+		for ss_name in draft_slips:
+			ss_doc = frappe.get_doc("Salary Slip", ss_name)
+			if ss_doc.net_pay >= 0:
+				ss_doc.submit()
+
+		# 2. Check if Accrual Entry already exists for this payroll entry
+		existing_jv = frappe.db.get_value(
+			"Journal Entry Account",
+			{"reference_type": "Payroll Entry", "reference_name": self.name, "docstatus": 1},
+			"parent",
+		)
+		if not existing_jv:
+			submitted_slips = frappe.get_all(
+				"Salary Slip",
+				filters={"payroll_entry": self.name, "docstatus": 1},
+				fields=["name", "employee", "net_pay", "gross_pay"],
+			)
+			if submitted_slips:
+				self.make_accrual_jv_entry(submitted_salary_slips=submitted_slips)
+
+		# 3. Generate Outsourced Payroll Summaries
+		create_outsourced_payroll_summaries_for_payroll_entry(self.name)
+
 	@frappe.whitelist()
 	def make_accrual_jv_entry(self, submitted_salary_slips=None):
 		if not submitted_salary_slips:
