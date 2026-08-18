@@ -8,8 +8,26 @@ from seniorcare.setup import get_outsourced_payroll_clearing_account
 
 
 class CustomPayrollEntry(PayrollEntry):
+	def validate(self):
+		self.set_payroll_payable_account_by_type()
+		super().validate()
+
+	def set_payroll_payable_account_by_type(self):
+		if not self.company:
+			return
+		if self.payroll_type == "Outsourced Employees":
+			clearing_acc = get_outsourced_payroll_clearing_account(self.company)
+			if clearing_acc:
+				self.payroll_payable_account = clearing_acc
+		elif self.payroll_type == "Internal Employees":
+			internal_acc = frappe.get_cached_value("Company", self.company, "default_payroll_payable_account")
+			clearing_acc = get_outsourced_payroll_clearing_account(self.company)
+			if internal_acc and (not self.payroll_payable_account or self.payroll_payable_account == clearing_acc):
+				self.payroll_payable_account = internal_acc
+
 	@frappe.whitelist()
 	def fill_employee_details(self):
+		self.set_payroll_payable_account_by_type()
 		res = super().fill_employee_details()
 
 		if not self.employees:
@@ -33,7 +51,7 @@ class CustomPayrollEntry(PayrollEntry):
 		else:
 			filtered = self.employees
 
-		if not filtered and self.payroll_type != "All Employees":
+		if not filtered:
 			frappe.throw(
 				_("No employees found matching Payroll Type '{0}' for the specified filters.").format(
 					self.payroll_type
@@ -46,12 +64,31 @@ class CustomPayrollEntry(PayrollEntry):
 		return res
 
 	def before_submit(self):
-		if self.payroll_type == "Outsourced Employees":
-			clearing_acc = get_outsourced_payroll_clearing_account(self.company)
-			if clearing_acc and self.payroll_payable_account != clearing_acc:
-				self.payroll_payable_account = clearing_acc
-
+		self.set_payroll_payable_account_by_type()
 		super().before_submit()
+
+	@frappe.whitelist()
+	def make_accrual_jv_entry(self, submitted_salary_slips=None):
+		if not submitted_salary_slips:
+			submitted_salary_slips = frappe.get_all(
+				"Salary Slip",
+				filters={"payroll_entry": self.name, "docstatus": 1},
+				fields=["name", "employee", "net_pay", "gross_pay"],
+			)
+		if not submitted_salary_slips:
+			frappe.throw(_("No submitted salary slips found for this Payroll Entry."), title=_("No Salary Slips"))
+
+		return super().make_accrual_jv_entry(submitted_salary_slips=submitted_salary_slips)
+
+
+@frappe.whitelist()
+def get_payroll_payable_account_for_company(company, payroll_type):
+	if not company:
+		return ""
+	if payroll_type == "Outsourced Employees":
+		return get_outsourced_payroll_clearing_account(company)
+	else:
+		return frappe.get_cached_value("Company", company, "default_payroll_payable_account") or ""
 
 
 @frappe.whitelist()

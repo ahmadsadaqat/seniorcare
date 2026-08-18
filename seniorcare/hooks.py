@@ -36,5 +36,6 @@ doc_events = {
 # Doctype JS
 # ----------
 doctype_js = {
-	"Payroll Entry": "public/js/payroll_entry.js"
+	"Payroll Entry": "public/js/payroll_entry.js",
+	"Salary Slip": "public/js/salary_slip.js"
 }

@@ -167,8 +167,8 @@ CUSTOM_FIELDS = {
 			"fieldname": "payroll_type",
 			"fieldtype": "Select",
 			"label": "Payroll Type",
-			"options": "All Employees\nInternal Employees\nOutsourced Employees",
-			"default": "All Employees",
+			"options": "Internal Employees\nOutsourced Employees",
+			"default": "Internal Employees",
 			"insert_after": "payroll_frequency",
 			"reqd": 1,
 			"in_list_view": 1
