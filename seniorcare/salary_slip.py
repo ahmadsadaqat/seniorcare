@@ -15,9 +15,14 @@ def validate_salary_slip(doc, method=None):
 def on_submit_salary_slip(doc, method=None):
 	sync_employee_snapshot(doc)
 	if doc.payroll_entry and doc.get("is_outsourced_employee"):
-		pe = frappe.get_doc("Payroll Entry", doc.payroll_entry)
-		if pe.payroll_type == "Outsourced Employees":
-			pe.auto_process_outsourced_payroll()
+		# Avoid recursive batch calls when already running auto_process or via payroll submission
+		if not getattr(frappe.flags, "in_auto_process_outsourced_payroll", False) and not getattr(frappe.flags, "via_payroll_entry", False):
+			pe = frappe.get_doc("Payroll Entry", doc.payroll_entry)
+			if pe.payroll_type == "Outsourced Employees":
+				# Trigger auto-processing if all slips for this payroll entry are submitted
+				remaining_drafts = frappe.db.count("Salary Slip", {"payroll_entry": doc.payroll_entry, "docstatus": 0})
+				if remaining_drafts == 0:
+					pe.auto_process_outsourced_payroll()
 
 
 def sync_employee_snapshot(doc):
