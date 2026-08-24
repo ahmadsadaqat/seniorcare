@@ -1,0 +1,236 @@
+{
+ "actions": [],
+ "autoname": "naming_series:",
+ "creation": "2026-08-25 03:30:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "naming_series",
+  "resident_file",
+  "log_date",
+  "shift",
+  "general_condition",
+  "meals_taken",
+  "sleep_quality",
+  "column_break_1",
+  "recorded_by",
+  "pain_present",
+  "pain_scale",
+  "pain_pattern",
+  "pain_location",
+  "section_break_flags",
+  "flags_concerns",
+  "flags_description",
+  "column_break_flags",
+  "mood_behavior",
+  "section_break_notes",
+  "notes"
+ ],
+ "fields": [
+  {
+   "default": "DHL-.YYYY.-.####",
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Naming Series",
+   "options": "DHL-.YYYY.-.####",
+   "reqd": 1
+  },
+  {
+   "fieldname": "resident_file",
+   "fieldtype": "Link",
+   "in_global_search": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Resident File",
+   "options": "Resident File",
+   "reqd": 1
+  },
+  {
+   "default": "Today",
+   "fieldname": "log_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Log Date",
+   "reqd": 1
+  },
+  {
+   "default": "Morning",
+   "fieldname": "shift",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Shift",
+   "options": "Morning\nEvening\nNight",
+   "reqd": 1
+  },
+  {
+   "default": "Good",
+   "fieldname": "general_condition",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "General Condition",
+   "options": "Good\nFair\nPoor",
+   "reqd": 1
+  },
+  {
+   "default": "Yes",
+   "fieldname": "meals_taken",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Meals Taken",
+   "options": "Yes\nPartial\nNo"
+  },
+  {
+   "default": "Good",
+   "fieldname": "sleep_quality",
+   "fieldtype": "Select",
+   "label": "Sleep Quality",
+   "options": "Good\nDisturbed\nPoor"
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "recorded_by",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Recorded By",
+   "options": "Employee"
+  },
+  {
+   "default": "No",
+   "fieldname": "pain_present",
+   "fieldtype": "Select",
+   "label": "Pain Present?",
+   "options": "No\nYes"
+  },
+  {
+   "depends_on": "eval:doc.pain_present == 'Yes'",
+   "fieldname": "pain_scale",
+   "fieldtype": "Int",
+   "label": "Pain Scale (0 to 10)"
+  },
+  {
+   "depends_on": "eval:doc.pain_present == 'Yes'",
+   "fieldname": "pain_pattern",
+   "fieldtype": "Select",
+   "label": "Pain Pattern",
+   "options": "Constant\nIntermittent"
+  },
+  {
+   "depends_on": "eval:doc.pain_present == 'Yes'",
+   "fieldname": "pain_location",
+   "fieldtype": "Data",
+   "label": "Pain Location"
+  },
+  {
+   "fieldname": "section_break_flags",
+   "fieldtype": "Section Break",
+   "label": "Observations & Flags"
+  },
+  {
+   "default": "No",
+   "fieldname": "flags_concerns",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Flags / Concerns Raised?",
+   "options": "No\nYes"
+  },
+  {
+   "depends_on": "eval:doc.flags_concerns == 'Yes'",
+   "fieldname": "flags_description",
+   "fieldtype": "Small Text",
+   "label": "Flags Description"
+  },
+  {
+   "fieldname": "column_break_flags",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "mood_behavior",
+   "fieldtype": "Small Text",
+   "label": "Mood / Behavior Observations"
+  },
+  {
+   "fieldname": "section_break_notes",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "notes",
+   "fieldtype": "Small Text",
+   "label": "Notes"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2026-08-25 03:30:00.000000",
+ "modified_by": "Administrator",
+ "module": "Seniorcare",
+ "name": "Daily Health Log",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "cancel": 1,
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "cancel": 0,
+   "create": 1,
+   "delete": 0,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Senior Care Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "cancel": 0,
+   "create": 1,
+   "delete": 0,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Senior Care Doctor",
+   "share": 0,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "cancel": 0,
+   "create": 1,
+   "delete": 0,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Senior Care Nurse",
+   "share": 0,
+   "submit": 1,
+   "write": 1
+  }
+ ],
+ "search_fields": "resident_file, log_date, shift, general_condition",
+ "sort_field": "log_date",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "resident_file"
+}

@@ -19,7 +19,7 @@ class ResidentContract(Document):
 				frappe.throw(frappe._("Contract End Date cannot precede Start Date."))
 
 	def validate_amounts(self):
-		for field in ["occupancy_fee", "attendant_fee", "other_fixed_charges", "refundable_deposit"]:
+		for field in ["occupancy_fee", "attendant_fee", "other_fixed_charges", "refundable_deposit", "initial_medical_advance", "initial_personal_advance"]:
 			if flt(self.get(field)) < 0:
 				frappe.throw(frappe._("Negative financial values are not allowed for {0}.").format(field.replace("_", " ").title()))
 
@@ -46,8 +46,13 @@ class ResidentContract(Document):
 				"attendant_fee": self.attendant_fee,
 				"other_fixed_charges": self.other_fixed_charges,
 				"total_monthly_fee": self.total_monthly_fee,
-				"refundable_deposit": self.refundable_deposit
+				"refundable_deposit": self.refundable_deposit,
+				"security_deposit_required": self.refundable_deposit,
+				"initial_medical_advance": self.initial_medical_advance,
+				"initial_personal_advance": self.initial_personal_advance
 			})
+			res_doc.update_financial_summaries()
 
 	def on_cancel(self):
 		self.db_set("status", "Terminated")
+

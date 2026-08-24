@@ -317,6 +317,94 @@ CUSTOM_FIELDS = {
 			"insert_after": "employee_count",
 			"depends_on": "eval:doc.is_outsourced_payroll_invoice==1 && doc.payroll_variance != 0"
 		}
+	],
+	"Payment Entry": [
+		{
+			"fieldname": "senior_care_section",
+			"fieldtype": "Section Break",
+			"label": "Senior Care",
+			"insert_after": "remarks",
+			"collapsible": 1
+		},
+		{
+			"fieldname": "custom_payment_purpose",
+			"fieldtype": "Select",
+			"label": "Payment Purpose",
+			"options": "\nNormal Payment\nSecurity Deposit\nMedical Advance\nPersonal Advance\nResident Medical Expense\nResident Personal Expense\nSecurity Deposit Refund\nMedical Advance Refund\nPersonal Advance Refund",
+			"insert_after": "senior_care_section",
+			"default": ""
+		},
+		{
+			"fieldname": "custom_resident",
+			"fieldtype": "Link",
+			"label": "Resident (Customer)",
+			"options": "Customer",
+			"insert_after": "custom_payment_purpose",
+			"depends_on": "eval:doc.custom_payment_purpose && doc.custom_payment_purpose != 'Normal Payment'",
+			"mandatory_depends_on": "eval:doc.custom_payment_purpose && doc.custom_payment_purpose != 'Normal Payment' && doc.custom_payment_purpose != ''"
+		},
+		{
+			"fieldname": "custom_funding_source",
+			"fieldtype": "Select",
+			"label": "Funding Source",
+			"options": "\nResident Medical Advance\nResident Personal Advance\nNGO Expense",
+			"insert_after": "custom_resident",
+			"depends_on": "eval:['Resident Medical Expense', 'Resident Personal Expense'].includes(doc.custom_payment_purpose)",
+			"mandatory_depends_on": "eval:['Resident Medical Expense', 'Resident Personal Expense'].includes(doc.custom_payment_purpose)"
+		},
+		{
+			"fieldname": "column_break_senior_care",
+			"fieldtype": "Column Break",
+			"insert_after": "custom_funding_source"
+		},
+		{
+			"fieldname": "custom_security_deposit_liability_account",
+			"fieldtype": "Link",
+			"label": "Security Deposit Liability Account",
+			"options": "Account",
+			"insert_after": "column_break_senior_care",
+			"depends_on": "eval:['Security Deposit', 'Security Deposit Refund'].includes(doc.custom_payment_purpose)"
+		},
+		{
+			"fieldname": "custom_medical_advance_liability_account",
+			"fieldtype": "Link",
+			"label": "Medical Advance Liability Account",
+			"options": "Account",
+			"insert_after": "custom_security_deposit_liability_account",
+			"depends_on": "eval:['Medical Advance', 'Medical Advance Refund'].includes(doc.custom_payment_purpose) || (doc.custom_payment_purpose == 'Resident Medical Expense' && doc.custom_funding_source == 'Resident Medical Advance')"
+		},
+		{
+			"fieldname": "custom_personal_advance_liability_account",
+			"fieldtype": "Link",
+			"label": "Personal Advance Liability Account",
+			"options": "Account",
+			"insert_after": "custom_medical_advance_liability_account",
+			"depends_on": "eval:['Personal Advance', 'Personal Advance Refund'].includes(doc.custom_payment_purpose) || (doc.custom_payment_purpose == 'Resident Personal Expense' && doc.custom_funding_source == 'Resident Personal Advance')"
+		},
+		{
+			"fieldname": "custom_medical_expense_account",
+			"fieldtype": "Link",
+			"label": "Resident Medical Expense Account",
+			"options": "Account",
+			"insert_after": "custom_personal_advance_liability_account",
+			"depends_on": "eval:doc.custom_payment_purpose == 'Resident Medical Expense'"
+		},
+		{
+			"fieldname": "custom_personal_expense_account",
+			"fieldtype": "Link",
+			"label": "Resident Personal Expense Account",
+			"options": "Account",
+			"insert_after": "custom_medical_expense_account",
+			"depends_on": "eval:doc.custom_payment_purpose == 'Resident Personal Expense'"
+		},
+		{
+			"fieldname": "custom_linked_journal_entry",
+			"fieldtype": "Link",
+			"label": "Linked Adjustment Journal Entry",
+			"options": "Journal Entry",
+			"insert_after": "custom_personal_expense_account",
+			"read_only": 1
+		}
 	]
 }
 
@@ -336,11 +424,18 @@ def setup_senior_care():
 
 
 def setup_default_accounts():
-	"""Ensures default outsourced payroll accounts exist for all companies."""
+	"""Ensures default outsourced payroll accounts and Senior Care resident accounts exist for all companies."""
 	for company in frappe.get_all("Company", pluck="name"):
 		get_outsourced_payroll_clearing_account(company)
 		get_outsourced_manpower_expense_account(company)
 		get_manpower_service_charge_account(company)
+		get_security_deposit_liability_account(company)
+		get_medical_advance_liability_account(company)
+		get_personal_advance_liability_account(company)
+		get_medical_expense_account(company)
+		get_personal_expense_account(company)
+		get_resident_income_account(company)
+		setup_senior_care_settings(company)
 
 
 def get_outsourced_payroll_clearing_account(company):
@@ -398,3 +493,130 @@ def get_manpower_service_charge_account(company):
 		doc.insert(ignore_permissions=True)
 		account = doc.name
 	return account
+
+
+def get_security_deposit_liability_account(company):
+	account = frappe.db.get_value("Account", {"account_name": "Resident Security Deposit Liability", "company": company})
+	if not account:
+		parent = frappe.db.get_value("Account", {"account_type": "Payable", "company": company, "is_group": 1})
+		if not parent:
+			parent = frappe.db.get_value("Account", {"root_type": "Liability", "company": company, "is_group": 1})
+		doc = frappe.get_doc({
+			"doctype": "Account",
+			"account_name": "Resident Security Deposit Liability",
+			"company": company,
+			"parent_account": parent,
+			"root_type": "Liability"
+		})
+		doc.insert(ignore_permissions=True)
+		account = doc.name
+	return account
+
+
+def get_medical_advance_liability_account(company):
+	account = frappe.db.get_value("Account", {"account_name": "Resident Medical Advance Liability", "company": company})
+	if not account:
+		parent = frappe.db.get_value("Account", {"account_type": "Payable", "company": company, "is_group": 1})
+		if not parent:
+			parent = frappe.db.get_value("Account", {"root_type": "Liability", "company": company, "is_group": 1})
+		doc = frappe.get_doc({
+			"doctype": "Account",
+			"account_name": "Resident Medical Advance Liability",
+			"company": company,
+			"parent_account": parent,
+			"root_type": "Liability"
+		})
+		doc.insert(ignore_permissions=True)
+		account = doc.name
+	return account
+
+
+def get_personal_advance_liability_account(company):
+	account = frappe.db.get_value("Account", {"account_name": "Resident Personal Advance Liability", "company": company})
+	if not account:
+		parent = frappe.db.get_value("Account", {"account_type": "Payable", "company": company, "is_group": 1})
+		if not parent:
+			parent = frappe.db.get_value("Account", {"root_type": "Liability", "company": company, "is_group": 1})
+		doc = frappe.get_doc({
+			"doctype": "Account",
+			"account_name": "Resident Personal Advance Liability",
+			"company": company,
+			"parent_account": parent,
+			"root_type": "Liability"
+		})
+		doc.insert(ignore_permissions=True)
+		account = doc.name
+	return account
+
+
+def get_medical_expense_account(company):
+	account = frappe.db.get_value("Account", {"account_name": "Resident Medical Expense", "company": company})
+	if not account:
+		parent = frappe.db.get_value("Account", {"root_type": "Expense", "company": company, "is_group": 1})
+		doc = frappe.get_doc({
+			"doctype": "Account",
+			"account_name": "Resident Medical Expense",
+			"company": company,
+			"parent_account": parent,
+			"account_type": "Direct Expense",
+			"root_type": "Expense"
+		})
+		doc.insert(ignore_permissions=True)
+		account = doc.name
+	return account
+
+
+def get_personal_expense_account(company):
+	account = frappe.db.get_value("Account", {"account_name": "Resident Personal Expense", "company": company})
+	if not account:
+		parent = frappe.db.get_value("Account", {"root_type": "Expense", "company": company, "is_group": 1})
+		doc = frappe.get_doc({
+			"doctype": "Account",
+			"account_name": "Resident Personal Expense",
+			"company": company,
+			"parent_account": parent,
+			"account_type": "Direct Expense",
+			"root_type": "Expense"
+		})
+		doc.insert(ignore_permissions=True)
+		account = doc.name
+	return account
+
+
+def get_resident_income_account(company):
+	account = frappe.db.get_value("Account", {"account_name": "Resident Care Income", "company": company})
+	if not account:
+		parent = frappe.db.get_value("Account", {"root_type": "Income", "company": company, "is_group": 1})
+		doc = frappe.get_doc({
+			"doctype": "Account",
+			"account_name": "Resident Care Income",
+			"company": company,
+			"parent_account": parent,
+			"account_type": "Direct Income",
+			"root_type": "Income"
+		})
+		doc.insert(ignore_permissions=True)
+		account = doc.name
+	return account
+
+
+def setup_senior_care_settings(company):
+	if not frappe.db.exists("DocType", "Senior Care Settings"):
+		return
+	settings = frappe.get_single("Senior Care Settings")
+	if not settings.company:
+		settings.company = company
+	if not settings.security_deposit_liability_account:
+		settings.security_deposit_liability_account = get_security_deposit_liability_account(company)
+	if not settings.medical_advance_liability_account:
+		settings.medical_advance_liability_account = get_medical_advance_liability_account(company)
+	if not settings.personal_advance_liability_account:
+		settings.personal_advance_liability_account = get_personal_advance_liability_account(company)
+	if not settings.medical_expense_account:
+		settings.medical_expense_account = get_medical_expense_account(company)
+	if not settings.personal_expense_account:
+		settings.personal_expense_account = get_personal_expense_account(company)
+	if not settings.resident_income_account:
+		settings.resident_income_account = get_resident_income_account(company)
+	settings.save(ignore_permissions=True)
+

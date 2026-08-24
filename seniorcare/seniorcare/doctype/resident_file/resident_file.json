@@ -1,79 +1,145 @@
 {
  "actions": [],
  "autoname": "naming_series:",
- "creation": "2026-08-16 17:00:00.000000",
+ "creation": "2026-08-25 03:54:47.744168",
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
+  "tab_resident_info",
   "naming_series",
   "first_name",
   "last_name",
   "full_name",
   "preferred_name",
-  "status",
+  "resident_status",
   "customer",
   "column_break_identity",
   "resident_photo",
   "gender",
   "date_of_birth",
+  "age",
   "cnic_national_id",
   "nationality",
   "marital_status",
+  "blood_group",
+  "religion",
+  "preferred_language",
   "section_break_accommodation",
   "room_unit",
   "admission_date",
+  "admission_type",
   "column_break_accommodation",
   "exit_date",
   "exit_reason",
   "section_break_family",
   "primary_family_contact",
-  "emergency_contact_phone",
+  "emergency_contact",
   "payer_billing_contact",
   "column_break_family",
   "communication_preferences",
-  "section_break_family_tables",
+  "power_of_attorney",
+  "section_break_family_table",
   "family_members",
-  "emergency_contacts",
   "section_break_contract",
   "current_contract",
   "contract_start_date",
   "column_break_contract",
   "contract_end_date",
+  "tab_lifestyle_medical",
   "section_break_medical",
   "primary_doctor",
-  "next_appointment_date",
-  "next_appointment_time",
-  "column_break_medical",
-  "allergies_summary",
-  "current_medication_summary",
-  "medical_history_summary",
-  "section_break_medical_notes",
+  "next_appointment",
+  "preferred_hospital",
+  "preferred_pharmacy",
+  "care_acuity_level",
+  "column_break_medical_general",
+  "mobility_status",
+  "cognitive_status",
+  "fall_risk_level",
+  "dnr_directive",
+  "dnr_document",
+  "section_break_qbzd",
+  "allergies",
+  "medical_history",
+  "medical_conditions",
+  "current_medications",
+  "section_break_clinical_logs",
+  "last_vaccinations",
+  "last_vitals",
+  "todays_health_logs",
+  "last_fall_risk_assessment",
+  "section_break_clinical_baseline",
+  "height_baseline",
+  "weight_baseline",
+  "dietary_restrictions_medical",
+  "column_break_clinical_baseline",
+  "isolation_infection_precautions",
+  "primary_admitting_diagnosis",
+  "assistive_devices",
+  "section_break_insurance",
+  "medical_insurance_provider",
+  "medical_insurance_policy_no",
+  "column_break_insurance",
   "medical_notes",
   "medical_documents",
   "section_break_lifestyle",
   "food_preferences",
   "lifestyle_information",
-  "column_break_lifestyle",
   "daily_schedule",
+  "column_break_lifestyle",
   "special_care_instructions",
+  "special_occasions",
+  "section_break_sensory",
+  "hearing_impairment",
+  "hearing_impairment_level",
+  "hearing_aid",
+  "speech_communication_difficulty",
+  "column_break_sensory",
+  "vision_impairment",
+  "vision_impairment_level",
+  "vision_aid",
+  "preferred_communication_method",
   "section_break_operations",
-  "assigned_attendant",
-  "column_break_operations",
   "incident_summary",
-  "section_break_financial",
+  "column_break_operations",
+  "assigned_attendant",
+  "case_manager",
+  "tab_financial",
+  "section_break_monthly",
+  "auto_create_monthly_invoice",
   "occupancy_fee",
   "attendant_fee",
   "other_fixed_charges",
   "total_monthly_fee",
-  "column_break_financial",
-  "refundable_deposit",
-  "medical_advance_balance",
-  "personal_advance_balance",
+  "column_break_financial_monthly",
   "outstanding_receivable",
-  "section_break_documents",
-  "resident_documents"
+  "section_break_deposit",
+  "security_deposit_required",
+  "security_deposit_received",
+  "security_deposit_used",
+  "security_deposit_refunded",
+  "security_deposit_balance",
+  "section_break_medical_advance",
+  "initial_medical_advance",
+  "medical_advance_received",
+  "medical_advance_used",
+  "column_break_med_adv",
+  "medical_advance_refunded",
+  "medical_advance_balance",
+  "section_break_personal_advance",
+  "initial_personal_advance",
+  "personal_advance_received",
+  "personal_advance_used",
+  "column_break_pers_adv",
+  "personal_advance_refunded",
+  "personal_advance_balance"
  ],
  "fields": [
+  {
+   "fieldname": "tab_resident_info",
+   "fieldtype": "Tab Break",
+   "label": "Resident Info"
+  },
   {
    "default": "RES-.YYYY.-.####",
    "fieldname": "naming_series",
@@ -112,12 +178,12 @@
   },
   {
    "default": "Active",
-   "fieldname": "status",
+   "fieldname": "resident_status",
    "fieldtype": "Select",
    "in_list_view": 1,
    "in_standard_filter": 1,
-   "label": "Status",
-   "options": "Draft\nActive\nTemporary Leave\nDischarged\nDeceased",
+   "label": "Resident Status",
+   "options": "Active\nInactive\nTrial\nTemporary Leave\nDischarged\nDeceased",
    "reqd": 1
   },
   {
@@ -149,9 +215,15 @@
    "label": "Date of Birth"
   },
   {
+   "fieldname": "age",
+   "fieldtype": "Int",
+   "label": "Age",
+   "read_only": 1
+  },
+  {
    "fieldname": "cnic_national_id",
    "fieldtype": "Data",
-   "label": "CNIC / National ID"
+   "label": "National ID / CNIC"
   },
   {
    "default": "Pakistani",
@@ -163,7 +235,24 @@
    "fieldname": "marital_status",
    "fieldtype": "Select",
    "label": "Marital Status",
-   "options": "Single\nMarried\nWidowed\nDivorced"
+   "options": "Single\nMarried\nWidowed\nDivorced\nOther"
+  },
+  {
+   "default": "Unknown",
+   "fieldname": "blood_group",
+   "fieldtype": "Select",
+   "label": "Blood Group",
+   "options": "A+\nA-\nB+\nB-\nO+\nO-\nAB+\nAB-\nUnknown"
+  },
+  {
+   "fieldname": "religion",
+   "fieldtype": "Data",
+   "label": "Religion"
+  },
+  {
+   "fieldname": "preferred_language",
+   "fieldtype": "Data",
+   "label": "Preferred Language"
   },
   {
    "fieldname": "section_break_accommodation",
@@ -172,15 +261,23 @@
   },
   {
    "fieldname": "room_unit",
-   "fieldtype": "Data",
+   "fieldtype": "Link",
    "in_list_view": 1,
    "in_standard_filter": 1,
-   "label": "Room / Unit No."
+   "label": "Room / Unit",
+   "options": "Room"
   },
   {
    "fieldname": "admission_date",
    "fieldtype": "Date",
    "label": "Admission Date"
+  },
+  {
+   "default": "Permanent",
+   "fieldname": "admission_type",
+   "fieldtype": "Select",
+   "label": "Admission Type",
+   "options": "Trial\nRespite\nPermanent"
   },
   {
    "fieldname": "column_break_accommodation",
@@ -194,12 +291,12 @@
   {
    "fieldname": "exit_reason",
    "fieldtype": "Small Text",
-   "label": "Exit Reason"
+   "label": "Reason for Exit"
   },
   {
    "fieldname": "section_break_family",
    "fieldtype": "Section Break",
-   "label": "Family & Contacts Summary"
+   "label": "Family & Contacts"
   },
   {
    "fieldname": "primary_family_contact",
@@ -207,9 +304,10 @@
    "label": "Primary Family Contact"
   },
   {
-   "fieldname": "emergency_contact_phone",
-   "fieldtype": "Data",
-   "label": "Emergency Contact Phone"
+   "fieldname": "emergency_contact",
+   "fieldtype": "Small Text",
+   "label": "Emergency Contact",
+   "read_only": 1
   },
   {
    "fieldname": "payer_billing_contact",
@@ -223,12 +321,17 @@
   {
    "fieldname": "communication_preferences",
    "fieldtype": "Small Text",
-   "label": "Communication Preferences"
+   "label": "Family Communication Preferences"
   },
   {
-   "fieldname": "section_break_family_tables",
+   "fieldname": "power_of_attorney",
+   "fieldtype": "Data",
+   "label": "Power of Attorney / Legal Guardian"
+  },
+  {
+   "fieldname": "section_break_family_table",
    "fieldtype": "Section Break",
-   "label": "Family Members & Emergency Contacts"
+   "label": "Family Members"
   },
   {
    "fieldname": "family_members",
@@ -237,20 +340,14 @@
    "options": "Senior Care Family Member"
   },
   {
-   "fieldname": "emergency_contacts",
-   "fieldtype": "Table",
-   "label": "Emergency Contacts",
-   "options": "Senior Care Emergency Contact"
-  },
-  {
    "fieldname": "section_break_contract",
    "fieldtype": "Section Break",
-   "label": "Current Contract Summary"
+   "label": "Contract / Legal"
   },
   {
    "fieldname": "current_contract",
    "fieldtype": "Link",
-   "label": "Current Contract",
+   "label": "Contract Reference",
    "options": "Resident Contract",
    "read_only": 1
   },
@@ -271,9 +368,39 @@
    "read_only": 1
   },
   {
+   "fieldname": "tab_lifestyle_medical",
+   "fieldtype": "Tab Break",
+   "label": "Lifestyle & Medical"
+  },
+  {
    "fieldname": "section_break_medical",
    "fieldtype": "Section Break",
-   "label": "Medical & Clinical Summary"
+   "label": "Medical Profile & Clinical History"
+  },
+  {
+   "fieldname": "allergies",
+   "fieldtype": "Table",
+   "label": "Allergies",
+   "options": "Resident Allergy Item"
+  },
+  {
+   "fieldname": "medical_history",
+   "fieldtype": "Table",
+   "label": "Medical History",
+   "options": "Resident Medical History Item"
+  },
+  {
+   "fieldname": "medical_conditions",
+   "fieldtype": "Table",
+   "label": "Medical Conditions",
+   "options": "Resident Medical Condition Item"
+  },
+  {
+   "fieldname": "current_medications",
+   "fieldtype": "Table",
+   "label": "Current Medications (Managed via Doctor Appointments)",
+   "options": "Resident Current Medication Item",
+   "read_only": 1
   },
   {
    "fieldname": "primary_doctor",
@@ -282,43 +409,155 @@
    "options": "Doctor Provider"
   },
   {
-   "fieldname": "next_appointment_date",
-   "fieldtype": "Date",
-   "label": "Next Appointment Date",
+   "fieldname": "next_appointment",
+   "fieldtype": "Data",
+   "label": "Next Appointment",
    "read_only": 1
   },
   {
-   "fieldname": "next_appointment_time",
-   "fieldtype": "Time",
-   "label": "Next Appointment Time",
-   "read_only": 1
-  },
-  {
-   "fieldname": "column_break_medical",
+   "fieldname": "column_break_medical_general",
    "fieldtype": "Column Break"
   },
   {
-   "fieldname": "allergies_summary",
-   "fieldtype": "Small Text",
-   "label": "Allergies Summary",
-   "read_only": 1
+   "fieldname": "preferred_hospital",
+   "fieldtype": "Data",
+   "label": "Preferred Hospital"
   },
   {
-   "fieldname": "current_medication_summary",
-   "fieldtype": "Small Text",
-   "label": "Current Medication Summary",
-   "read_only": 1
+   "fieldname": "preferred_pharmacy",
+   "fieldtype": "Data",
+   "label": "Preferred Pharmacy"
   },
   {
-   "fieldname": "medical_history_summary",
-   "fieldtype": "Small Text",
-   "label": "Medical History Summary",
-   "read_only": 1
+   "default": "Independent",
+   "fieldname": "care_acuity_level",
+   "fieldtype": "Select",
+   "label": "Care / Acuity Level",
+   "options": "Independent\nAssisted\nSkilled Nursing\nMemory Care\nOther"
   },
   {
-   "fieldname": "section_break_medical_notes",
+   "default": "Independent",
+   "fieldname": "mobility_status",
+   "fieldtype": "Select",
+   "label": "Mobility / Ambulation Status",
+   "options": "Independent\nUses Cane or Walker\nWheelchair-bound\nBedridden"
+  },
+  {
+   "default": "Normal",
+   "fieldname": "cognitive_status",
+   "fieldtype": "Select",
+   "label": "Cognitive Status",
+   "options": "Normal\nMild Impairment\nModerate\nSevere"
+  },
+  {
+   "default": "Low",
+   "fieldname": "fall_risk_level",
+   "fieldtype": "Select",
+   "label": "Fall Risk Level",
+   "options": "Low\nMedium\nHigh"
+  },
+  {
+   "default": "Full Code",
+   "fieldname": "dnr_directive",
+   "fieldtype": "Select",
+   "label": "Do Not Resuscitate (DNR) / Advance Directive",
+   "options": "Full Code\nDNR\nOther"
+  },
+  {
+   "fieldname": "dnr_document",
+   "fieldtype": "Attach",
+   "label": "DNR / Advance Directive Document"
+  },
+  {
+   "fieldname": "section_break_clinical_logs",
    "fieldtype": "Section Break",
-   "label": "Medical Notes & Attachments"
+   "label": "Clinical Logs Summary"
+  },
+  {
+   "fieldname": "last_vaccinations",
+   "fieldtype": "Table",
+   "label": "Last Vaccinations",
+   "options": "Resident Vaccination Item",
+   "read_only": 1
+  },
+  {
+   "fieldname": "last_vitals",
+   "fieldtype": "Table",
+   "label": "Last Vitals",
+   "options": "Resident Vital Item",
+   "read_only": 1
+  },
+  {
+   "fieldname": "todays_health_logs",
+   "fieldtype": "Table",
+   "label": "Today's Health Logs",
+   "options": "Resident Daily Health Log Item",
+   "read_only": 1
+  },
+  {
+   "fieldname": "last_fall_risk_assessment",
+   "fieldtype": "Table",
+   "label": "Last Fall Risk Assessment",
+   "options": "Resident Fall Risk Item",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_clinical_baseline",
+   "fieldtype": "Section Break",
+   "label": "Clinical Baseline & Precautions"
+  },
+  {
+   "fieldname": "height_baseline",
+   "fieldtype": "Float",
+   "label": "Height Baseline (cm)"
+  },
+  {
+   "fieldname": "weight_baseline",
+   "fieldtype": "Float",
+   "label": "Weight Baseline (kg)"
+  },
+  {
+   "fieldname": "dietary_restrictions_medical",
+   "fieldtype": "Small Text",
+   "label": "Dietary Restrictions (Medical)"
+  },
+  {
+   "fieldname": "column_break_clinical_baseline",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "isolation_infection_precautions",
+   "fieldtype": "Small Text",
+   "label": "Isolation / Infection Precautions"
+  },
+  {
+   "fieldname": "primary_admitting_diagnosis",
+   "fieldtype": "Data",
+   "label": "Primary / Admitting Diagnosis"
+  },
+  {
+   "fieldname": "assistive_devices",
+   "fieldtype": "Small Text",
+   "label": "Assistive Devices (Hearing aid, glasses, dentures, wheelchair, walker etc.)"
+  },
+  {
+   "fieldname": "section_break_insurance",
+   "fieldtype": "Section Break",
+   "label": "Medical Insurance & Documents"
+  },
+  {
+   "fieldname": "medical_insurance_provider",
+   "fieldtype": "Data",
+   "label": "Medical Insurance Provider"
+  },
+  {
+   "fieldname": "medical_insurance_policy_no",
+   "fieldtype": "Data",
+   "label": "Medical Insurance Policy No."
+  },
+  {
+   "fieldname": "column_break_insurance",
+   "fieldtype": "Column Break"
   },
   {
    "fieldname": "medical_notes",
@@ -328,17 +567,17 @@
   {
    "fieldname": "medical_documents",
    "fieldtype": "Attach",
-   "label": "Medical Documents Attachment"
+   "label": "Medical Documents"
   },
   {
    "fieldname": "section_break_lifestyle",
    "fieldtype": "Section Break",
-   "label": "Lifestyle & Care Instructions"
+   "label": "Lifestyle & Daily Routine"
   },
   {
    "fieldname": "food_preferences",
    "fieldtype": "Small Text",
-   "label": "Food / Dietary Preferences"
+   "label": "Food Preferences"
   },
   {
    "fieldname": "lifestyle_information",
@@ -346,13 +585,14 @@
    "label": "Lifestyle Information"
   },
   {
-   "fieldname": "column_break_lifestyle",
-   "fieldtype": "Column Break"
+   "fieldname": "daily_schedule",
+   "fieldtype": "Table",
+   "label": "Daily Schedule",
+   "options": "Resident Daily Schedule Item"
   },
   {
-   "fieldname": "daily_schedule",
-   "fieldtype": "Text",
-   "label": "Daily Schedule"
+   "fieldname": "column_break_lifestyle",
+   "fieldtype": "Column Break"
   },
   {
    "fieldname": "special_care_instructions",
@@ -360,19 +600,79 @@
    "label": "Special Care Instructions"
   },
   {
+   "fieldname": "special_occasions",
+   "fieldtype": "Table",
+   "label": "Special Occasions / Important Dates",
+   "options": "Resident Special Occasion Item"
+  },
+  {
+   "fieldname": "section_break_sensory",
+   "fieldtype": "Section Break",
+   "label": "Sensory & Communication"
+  },
+  {
+   "default": "0",
+   "fieldname": "hearing_impairment",
+   "fieldtype": "Check",
+   "label": "Hearing Impairment"
+  },
+  {
+   "default": "None",
+   "depends_on": "eval:doc.hearing_impairment == 1",
+   "fieldname": "hearing_impairment_level",
+   "fieldtype": "Select",
+   "label": "Hearing Impairment Level",
+   "options": "None\nMild\nSevere"
+  },
+  {
+   "default": "No",
+   "depends_on": "eval:doc.hearing_impairment == 1",
+   "fieldname": "hearing_aid",
+   "fieldtype": "Select",
+   "label": "Hearing Aid Required?",
+   "options": "No\nYes"
+  },
+  {
+   "default": "0",
+   "fieldname": "speech_communication_difficulty",
+   "fieldtype": "Check",
+   "label": "Speech / Communication Difficulty"
+  },
+  {
+   "fieldname": "column_break_sensory",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "fieldname": "vision_impairment",
+   "fieldtype": "Check",
+   "label": "Vision Impairment"
+  },
+  {
+   "default": "None",
+   "depends_on": "eval:doc.vision_impairment == 1",
+   "fieldname": "vision_impairment_level",
+   "fieldtype": "Select",
+   "label": "Vision Impairment Level",
+   "options": "None\nMild\nSevere"
+  },
+  {
+   "default": "No",
+   "depends_on": "eval:doc.vision_impairment == 1",
+   "fieldname": "vision_aid",
+   "fieldtype": "Select",
+   "label": "Vision Aid Required (Glasses/Lens)?",
+   "options": "No\nYes"
+  },
+  {
+   "fieldname": "preferred_communication_method",
+   "fieldtype": "Data",
+   "label": "Preferred Communication Method"
+  },
+  {
    "fieldname": "section_break_operations",
    "fieldtype": "Section Break",
-   "label": "Operations & Caregivers"
-  },
-  {
-   "fieldname": "assigned_attendant",
-   "fieldtype": "Link",
-   "label": "Assigned Attendant / Caregiver",
-   "options": "Employee"
-  },
-  {
-   "fieldname": "column_break_operations",
-   "fieldtype": "Column Break"
+   "label": "Operations & Coordination"
   },
   {
    "fieldname": "incident_summary",
@@ -381,26 +681,53 @@
    "read_only": 1
   },
   {
-   "fieldname": "section_break_financial",
+   "fieldname": "column_break_operations",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "assigned_attendant",
+   "fieldtype": "Link",
+   "label": "Assigned Attendant / Caregiver",
+   "options": "Employee"
+  },
+  {
+   "fieldname": "case_manager",
+   "fieldtype": "Link",
+   "label": "Case Manager / Care Coordinator",
+   "options": "Employee"
+  },
+  {
+   "fieldname": "tab_financial",
+   "fieldtype": "Tab Break",
+   "label": "Financial"
+  },
+  {
+   "fieldname": "section_break_monthly",
    "fieldtype": "Section Break",
-   "label": "Financial Summary (Derived)"
+   "label": "Monthly Charges & Automation"
+  },
+  {
+   "default": "1",
+   "fieldname": "auto_create_monthly_invoice",
+   "fieldtype": "Check",
+   "label": "Auto create sales invoice for this every month on 1st in draft"
   },
   {
    "fieldname": "occupancy_fee",
    "fieldtype": "Currency",
-   "label": "Occupancy Fee",
+   "label": "1. Monthly Occupancy Fee",
    "read_only": 1
   },
   {
    "fieldname": "attendant_fee",
    "fieldtype": "Currency",
-   "label": "Attendant Fee",
+   "label": "2. Monthly Attendant Fee",
    "read_only": 1
   },
   {
    "fieldname": "other_fixed_charges",
    "fieldtype": "Currency",
-   "label": "Other Fixed Charges",
+   "label": "3. Other Fixed Monthly Charges",
    "read_only": 1
   },
   {
@@ -410,26 +737,8 @@
    "read_only": 1
   },
   {
-   "fieldname": "column_break_financial",
+   "fieldname": "column_break_financial_monthly",
    "fieldtype": "Column Break"
-  },
-  {
-   "fieldname": "refundable_deposit",
-   "fieldtype": "Currency",
-   "label": "Refundable Deposit",
-   "read_only": 1
-  },
-  {
-   "fieldname": "medical_advance_balance",
-   "fieldtype": "Currency",
-   "label": "Medical Advance Balance",
-   "read_only": 1
-  },
-  {
-   "fieldname": "personal_advance_balance",
-   "fieldtype": "Currency",
-   "label": "Personal Advance Balance",
-   "read_only": 1
   },
   {
    "fieldname": "outstanding_receivable",
@@ -438,33 +747,128 @@
    "read_only": 1
   },
   {
-   "fieldname": "section_break_documents",
+   "fieldname": "section_break_deposit",
    "fieldtype": "Section Break",
-   "label": "Resident Documents Register"
+   "label": "Security Deposit (One Time)"
   },
   {
-   "fieldname": "resident_documents",
-   "fieldtype": "Table",
-   "label": "Resident Documents",
-   "options": "Senior Care Resident Document"
+   "fieldname": "security_deposit_required",
+   "fieldtype": "Currency",
+   "label": "1. Refundable Security Deposit Required (Contract)",
+   "read_only": 1
+  },
+  {
+   "fieldname": "security_deposit_received",
+   "fieldtype": "Currency",
+   "label": "Security Deposit Received",
+   "read_only": 1
+  },
+  {
+   "fieldname": "security_deposit_used",
+   "fieldtype": "Currency",
+   "label": "Security Deposit Used / Adjusted",
+   "read_only": 1
+  },
+  {
+   "fieldname": "security_deposit_refunded",
+   "fieldtype": "Currency",
+   "label": "Security Deposit Refunded",
+   "read_only": 1
+  },
+  {
+   "fieldname": "security_deposit_balance",
+   "fieldtype": "Currency",
+   "label": "Remaining Security Deposit Balance",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_medical_advance",
+   "fieldtype": "Section Break",
+   "label": "Medical Advance"
+  },
+  {
+   "fieldname": "initial_medical_advance",
+   "fieldtype": "Currency",
+   "label": "Initial Medical Advance (Contract)",
+   "read_only": 1
+  },
+  {
+   "fieldname": "medical_advance_received",
+   "fieldtype": "Currency",
+   "label": "2. Medical Advance Received",
+   "read_only": 1
+  },
+  {
+   "fieldname": "medical_advance_used",
+   "fieldtype": "Currency",
+   "label": "Medical Expense \u2013 Resident Advance Used",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_med_adv",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "medical_advance_refunded",
+   "fieldtype": "Currency",
+   "label": "Medical Advance Refunded",
+   "read_only": 1
+  },
+  {
+   "fieldname": "medical_advance_balance",
+   "fieldtype": "Currency",
+   "label": "3. Remaining Medical Advance Balance",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_personal_advance",
+   "fieldtype": "Section Break",
+   "label": "Personal Advance"
+  },
+  {
+   "fieldname": "initial_personal_advance",
+   "fieldtype": "Currency",
+   "label": "Initial Personal Advance (Contract)",
+   "read_only": 1
+  },
+  {
+   "fieldname": "personal_advance_received",
+   "fieldtype": "Currency",
+   "label": "4. Personal Advance Received",
+   "read_only": 1
+  },
+  {
+   "fieldname": "personal_advance_used",
+   "fieldtype": "Currency",
+   "label": "Personal Expense \u2013 Resident Advance Used",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_pers_adv",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "personal_advance_refunded",
+   "fieldtype": "Currency",
+   "label": "Personal Advance Refunded",
+   "read_only": 1
+  },
+  {
+   "fieldname": "personal_advance_balance",
+   "fieldtype": "Currency",
+   "label": "Remaining Personal Advance Balance",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_qbzd",
+   "fieldtype": "Section Break"
   }
  ],
+ "image_field": "resident_photo",
  "index_web_pages_for_search": 1,
  "links": [
   {
    "link_doctype": "Doctor Appointment",
-   "link_fieldname": "resident_file"
-  },
-  {
-   "link_doctype": "Resident Medical History",
-   "link_fieldname": "resident_file"
-  },
-  {
-   "link_doctype": "Resident Allergy",
-   "link_fieldname": "resident_file"
-  },
-  {
-   "link_doctype": "Resident Medication",
    "link_fieldname": "resident_file"
   },
   {
@@ -476,14 +880,27 @@
    "link_fieldname": "resident_file"
   },
   {
-   "link_doctype": "Resident Advance",
+   "link_doctype": "Vital Signs Log",
+   "link_fieldname": "resident_file"
+  },
+  {
+   "link_doctype": "Vaccination Log",
+   "link_fieldname": "resident_file"
+  },
+  {
+   "link_doctype": "Daily Health Log",
+   "link_fieldname": "resident_file"
+  },
+  {
+   "link_doctype": "Fall Risk Assessment",
    "link_fieldname": "resident_file"
   }
  ],
- "modified": "2026-08-16 17:00:00.000000",
+ "modified": "2026-08-25 04:13:31.605408",
  "modified_by": "Administrator",
  "module": "Seniorcare",
  "name": "Resident File",
+ "naming_rule": "By \"Naming Series\" field",
  "owner": "Administrator",
  "permissions": [
   {
@@ -500,7 +917,6 @@
   },
   {
    "create": 1,
-   "delete": 0,
    "email": 1,
    "export": 1,
    "print": 1,
@@ -511,32 +927,25 @@
    "write": 1
   },
   {
-   "create": 0,
-   "delete": 0,
    "email": 1,
    "export": 1,
    "print": 1,
    "read": 1,
    "report": 1,
    "role": "Senior Care Doctor",
-   "share": 0,
    "write": 1
   },
   {
-   "create": 0,
-   "delete": 0,
    "email": 1,
    "export": 1,
    "print": 1,
    "read": 1,
    "report": 1,
    "role": "Senior Care Nurse",
-   "share": 0,
    "write": 1
   },
   {
    "create": 1,
-   "delete": 0,
    "email": 1,
    "export": 1,
    "print": 1,
@@ -547,31 +956,25 @@
    "write": 1
   },
   {
-   "create": 0,
-   "delete": 0,
    "email": 1,
    "export": 1,
    "print": 1,
    "read": 1,
    "report": 1,
    "role": "Senior Care Finance",
-   "share": 0,
-   "write": 0
+   "write": 1
   },
   {
-   "create": 0,
-   "delete": 0,
    "email": 1,
    "export": 1,
    "print": 1,
    "read": 1,
    "report": 1,
-   "role": "Senior Care Receptionist",
-   "share": 0,
-   "write": 0
+   "role": "Senior Care Receptionist"
   }
  ],
- "search_fields": "full_name, cnic_national_id, room_unit, status",
+ "row_format": "Dynamic",
+ "search_fields": "full_name, cnic_national_id, room_unit, resident_status",
  "sort_field": "modified",
  "sort_order": "DESC",
  "states": [],

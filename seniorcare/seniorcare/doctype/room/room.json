@@ -1,0 +1,220 @@
+{
+ "actions": [],
+ "autoname": "field:room_number",
+ "creation": "2026-08-25 03:30:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "room_number",
+  "room_name",
+  "room_type",
+  "occupancy_status",
+  "column_break_1",
+  "floor",
+  "building_wing",
+  "bed_count",
+  "area_sqft",
+  "section_break_occupancy",
+  "current_resident",
+  "monthly_rate",
+  "column_break_amenities",
+  "amenities",
+  "section_break_notes",
+  "notes"
+ ],
+ "fields": [
+  {
+   "fieldname": "room_number",
+   "fieldtype": "Data",
+   "in_global_search": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Room / Unit Number",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "room_name",
+   "fieldtype": "Data",
+   "in_global_search": 1,
+   "in_list_view": 1,
+   "label": "Room Name"
+  },
+  {
+   "default": "Single",
+   "fieldname": "room_type",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Room Type",
+   "options": "Single\nShared\nSuite\nICU\nOther",
+   "reqd": 1
+  },
+  {
+   "default": "Available",
+   "fieldname": "occupancy_status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Occupancy Status",
+   "options": "Available\nOccupied\nUnder Maintenance\nReserved",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "floor",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Floor"
+  },
+  {
+   "fieldname": "building_wing",
+   "fieldtype": "Data",
+   "label": "Building / Wing"
+  },
+  {
+   "default": "1",
+   "fieldname": "bed_count",
+   "fieldtype": "Int",
+   "label": "Bed Count"
+  },
+  {
+   "fieldname": "area_sqft",
+   "fieldtype": "Float",
+   "label": "Area (Sq. Ft.)"
+  },
+  {
+   "fieldname": "section_break_occupancy",
+   "fieldtype": "Section Break",
+   "label": "Occupancy & Commercials"
+  },
+  {
+   "fieldname": "current_resident",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Current Resident",
+   "options": "Resident File",
+   "read_only": 1
+  },
+  {
+   "fieldname": "monthly_rate",
+   "fieldtype": "Currency",
+   "label": "Standard Monthly Rate"
+  },
+  {
+   "fieldname": "column_break_amenities",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "amenities",
+   "fieldtype": "Small Text",
+   "label": "Amenities (e.g. Attached Bath, TV, AC, Oxygen Supply)"
+  },
+  {
+   "fieldname": "section_break_notes",
+   "fieldtype": "Section Break",
+   "label": "Additional Notes"
+  },
+  {
+   "fieldname": "notes",
+   "fieldtype": "Small Text",
+   "label": "Notes"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [
+  {
+   "link_doctype": "Resident File",
+   "link_fieldname": "room_unit"
+  }
+ ],
+ "modified": "2026-08-25 03:30:00.000000",
+ "modified_by": "Administrator",
+ "module": "Seniorcare",
+ "name": "Room",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 0,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Senior Care Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 0,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Senior Care Operations",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 0,
+   "delete": 0,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Senior Care Receptionist",
+   "share": 0,
+   "write": 0
+  },
+  {
+   "create": 0,
+   "delete": 0,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Senior Care Doctor",
+   "share": 0,
+   "write": 0
+  },
+  {
+   "create": 0,
+   "delete": 0,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Senior Care Nurse",
+   "share": 0,
+   "write": 0
+  }
+ ],
+ "search_fields": "room_number, room_name, floor, room_type, occupancy_status",
+ "sort_field": "room_number",
+ "sort_order": "ASC",
+ "states": [],
+ "title_field": "room_number"
+}

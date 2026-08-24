@@ -1,0 +1,85 @@
+{
+ "actions": [],
+ "creation": "2026-08-25 03:30:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "allergy_substance",
+  "allergy_type",
+  "severity",
+  "is_active",
+  "column_break_1",
+  "date_identified",
+  "reaction",
+  "section_break_notes",
+  "notes"
+ ],
+ "fields": [
+  {
+   "fieldname": "allergy_substance",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Allergy / Substance (Allergen)",
+   "reqd": 1
+  },
+  {
+   "default": "Food",
+   "fieldname": "allergy_type",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Allergy Type",
+   "options": "Drug\nFood\nEnvironmental\nOther"
+  },
+  {
+   "default": "Moderate",
+   "fieldname": "severity",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Severity",
+   "options": "Mild\nModerate\nSevere\nUnknown",
+   "reqd": 1
+  },
+  {
+   "default": "1",
+   "fieldname": "is_active",
+   "fieldtype": "Check",
+   "in_list_view": 1,
+   "label": "Active?"
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "date_identified",
+   "fieldtype": "Date",
+   "label": "Date Identified"
+  },
+  {
+   "fieldname": "reaction",
+   "fieldtype": "Small Text",
+   "label": "Reaction (Reaction type)"
+  },
+  {
+   "fieldname": "section_break_notes",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "notes",
+   "fieldtype": "Small Text",
+   "label": "Notes"
+  }
+ ],
+ "istable": 1,
+ "links": [],
+ "modified": "2026-08-25 03:30:00.000000",
+ "modified_by": "Administrator",
+ "module": "Seniorcare",
+ "name": "Resident Allergy Item",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

@@ -1,7 +1,7 @@
 {
  "category": "Modules",
  "charts": [],
- "content": "[{\"type\":\"header\",\"data\":{\"text\":\"Senior Circle Facility Management\",\"level\":2}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Resident File\"}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Doctor Appointment\"}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Resident Contract\"}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Incident Report\"}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Resident Advance\"}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Petty Cash Request\"}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Senior Care SOP\"}},{\"type\":\"header\",\"data\":{\"text\":\"Reports & Analytics\",\"level\":3}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Resident Medical Summary Report\"}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Active Resident Contracts and Billing Report\"}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Incident Analysis Report\"}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Resident Advance Ledger Report\"}}]",
+ "content": "[{\"type\":\"header\",\"data\":{\"text\":\"Senior Circle Facility Management\",\"level\":2}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Resident File\"}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Room\"}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Resident Contract\"}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Doctor Appointment\"}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Vital Signs Log\"}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Vaccination Log\"}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Daily Health Log\"}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Fall Risk Assessment\"}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Incident Report\"}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Senior Care Settings\"}},{\"type\":\"header\",\"data\":{\"text\":\"Reports & Analytics\",\"level\":3}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Vital Signs History Report\"}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Daily Health Logs Report\"}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Vaccination Tracker Report\"}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Fall Risk Assessment History Report\"}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Medication History Report\"}}]",
  "creation": "2026-08-16 17:00:00.000000",
  "custom_blocks": [],
  "disabled": 0,
@@ -16,7 +16,7 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Resident Management",
+   "label": "Resident Management & Facility",
    "link_count": 0,
    "link_type": "DocType",
    "onboard": 0,
@@ -28,6 +28,26 @@
    "label": "Resident Profiles",
    "link_count": 0,
    "link_to": "Resident File",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Rooms / Accommodation",
+   "link_count": 0,
+   "link_to": "Room",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Resident Contracts",
+   "link_count": 0,
+   "link_to": "Resident Contract",
    "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
@@ -64,9 +84,9 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Medical History Logs",
+   "label": "Vital Signs Logs",
    "link_count": 0,
-   "link_to": "Resident Medical History",
+   "link_to": "Vital Signs Log",
    "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
@@ -74,9 +94,9 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Resident Allergies",
+   "label": "Vaccination Logs",
    "link_count": 0,
-   "link_to": "Resident Allergy",
+   "link_to": "Vaccination Log",
    "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
@@ -84,9 +104,9 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Resident Medications",
+   "label": "Daily Health Logs",
    "link_count": 0,
-   "link_to": "Resident Medication",
+   "link_to": "Daily Health Log",
    "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
@@ -94,31 +114,21 @@
   {
    "hidden": 0,
    "is_query_report": 0,
-   "label": "Commercial & Operations",
+   "label": "Fall Risk Assessments",
+   "link_count": 0,
+   "link_to": "Fall Risk Assessment",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Operations & Settings",
    "link_count": 0,
    "link_type": "DocType",
    "onboard": 0,
    "type": "Card Break"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Resident Contracts",
-   "link_count": 0,
-   "link_to": "Resident Contract",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
-  },
-  {
-   "hidden": 0,
-   "is_query_report": 0,
-   "label": "Resident Advances",
-   "link_count": 0,
-   "link_to": "Resident Advance",
-   "link_type": "DocType",
-   "onboard": 0,
-   "type": "Link"
   },
   {
    "hidden": 0,
@@ -143,6 +153,16 @@
   {
    "hidden": 0,
    "is_query_report": 0,
+   "label": "Senior Care Settings",
+   "link_count": 0,
+   "link_to": "Senior Care Settings",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
    "label": "Facility SOPs",
    "link_count": 0,
    "link_to": "Senior Care SOP",
@@ -151,7 +171,7 @@
    "type": "Link"
   }
  ],
- "modified": "2026-08-16 17:00:00.000000",
+ "modified": "2026-08-25 03:30:00.000000",
  "modified_by": "Administrator",
  "module": "Seniorcare",
  "name": "Senior Care",
@@ -171,8 +191,8 @@
   {
    "color": "Grey",
    "doc_view": "List",
-   "label": "Doctor Appointment",
-   "link_to": "Doctor Appointment",
+   "label": "Room",
+   "link_to": "Room",
    "type": "DocType"
   },
   {
@@ -185,6 +205,41 @@
   {
    "color": "Grey",
    "doc_view": "List",
+   "label": "Doctor Appointment",
+   "link_to": "Doctor Appointment",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Vital Signs Log",
+   "link_to": "Vital Signs Log",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Vaccination Log",
+   "link_to": "Vaccination Log",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Daily Health Log",
+   "link_to": "Daily Health Log",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Fall Risk Assessment",
+   "link_to": "Fall Risk Assessment",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
    "label": "Incident Report",
    "link_to": "Incident Report",
    "type": "DocType"
@@ -192,46 +247,38 @@
   {
    "color": "Grey",
    "doc_view": "List",
-   "label": "Resident Advance",
-   "link_to": "Resident Advance",
-   "type": "DocType"
-  },
-  {
-   "color": "Grey",
-   "doc_view": "List",
-   "label": "Petty Cash Request",
-   "link_to": "Petty Cash Request",
-   "type": "DocType"
-  },
-  {
-   "color": "Grey",
-   "doc_view": "List",
-   "label": "Senior Care SOP",
-   "link_to": "Senior Care SOP",
+   "label": "Senior Care Settings",
+   "link_to": "Senior Care Settings",
    "type": "DocType"
   },
   {
    "color": "Blue",
-   "label": "Resident Medical Summary Report",
-   "link_to": "Resident Medical Summary Report",
+   "label": "Vital Signs History Report",
+   "link_to": "Vital Signs History Report",
    "type": "Report"
   },
   {
    "color": "Green",
-   "label": "Active Resident Contracts and Billing Report",
-   "link_to": "Active Resident Contracts and Billing Report",
-   "type": "Report"
-  },
-  {
-   "color": "Red",
-   "label": "Incident Analysis Report",
-   "link_to": "Incident Analysis Report",
+   "label": "Daily Health Logs Report",
+   "link_to": "Daily Health Logs Report",
    "type": "Report"
   },
   {
    "color": "Orange",
-   "label": "Resident Advance Ledger Report",
-   "link_to": "Resident Advance Ledger Report",
+   "label": "Vaccination Tracker Report",
+   "link_to": "Vaccination Tracker Report",
+   "type": "Report"
+  },
+  {
+   "color": "Red",
+   "label": "Fall Risk Assessment History Report",
+   "link_to": "Fall Risk Assessment History Report",
+   "type": "Report"
+  },
+  {
+   "color": "Purple",
+   "label": "Medication History Report",
+   "link_to": "Medication History Report",
    "type": "Report"
   }
  ],

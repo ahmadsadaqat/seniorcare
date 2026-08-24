@@ -1,0 +1,175 @@
+{
+ "actions": [],
+ "autoname": "naming_series:",
+ "creation": "2026-08-25 03:30:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "naming_series",
+  "resident_file",
+  "vaccine_name",
+  "vaccine_name_other",
+  "status",
+  "dose_booster_number",
+  "column_break_1",
+  "date_administered",
+  "administered_by",
+  "next_due_date",
+  "section_break_notes",
+  "notes"
+ ],
+ "fields": [
+  {
+   "default": "VAC-.YYYY.-.####",
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Naming Series",
+   "options": "VAC-.YYYY.-.####",
+   "reqd": 1
+  },
+  {
+   "fieldname": "resident_file",
+   "fieldtype": "Link",
+   "in_global_search": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Resident File",
+   "options": "Resident File",
+   "reqd": 1
+  },
+  {
+   "default": "COVID-19",
+   "fieldname": "vaccine_name",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Vaccine Name",
+   "options": "COVID-19\nInfluenza (Flu)\nPneumococcal\nHepatitis B\nTetanus\nShingles\nOther",
+   "reqd": 1
+  },
+  {
+   "depends_on": "eval:doc.vaccine_name == 'Other'",
+   "fieldname": "vaccine_name_other",
+   "fieldtype": "Data",
+   "label": "Vaccine Name (Manual / Other)"
+  },
+  {
+   "default": "Completed",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Status",
+   "options": "Completed\nPending\nOngoing",
+   "reqd": 1
+  },
+  {
+   "fieldname": "dose_booster_number",
+   "fieldtype": "Data",
+   "label": "Dose / Booster Number"
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "Today",
+   "fieldname": "date_administered",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Date Administered",
+   "reqd": 1
+  },
+  {
+   "fieldname": "administered_by",
+   "fieldtype": "Data",
+   "label": "Administered By (Staff / External)"
+  },
+  {
+   "fieldname": "next_due_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Next Due Date"
+  },
+  {
+   "fieldname": "section_break_notes",
+   "fieldtype": "Section Break",
+   "label": "Notes"
+  },
+  {
+   "fieldname": "notes",
+   "fieldtype": "Small Text",
+   "label": "Notes"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2026-08-25 03:30:00.000000",
+ "modified_by": "Administrator",
+ "module": "Seniorcare",
+ "name": "Vaccination Log",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "cancel": 1,
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "cancel": 0,
+   "create": 1,
+   "delete": 0,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Senior Care Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "cancel": 0,
+   "create": 1,
+   "delete": 0,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Senior Care Doctor",
+   "share": 0,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "cancel": 0,
+   "create": 1,
+   "delete": 0,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Senior Care Nurse",
+   "share": 0,
+   "submit": 1,
+   "write": 1
+  }
+ ],
+ "search_fields": "resident_file, vaccine_name, date_administered, status",
+ "sort_field": "date_administered",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "resident_file"
+}

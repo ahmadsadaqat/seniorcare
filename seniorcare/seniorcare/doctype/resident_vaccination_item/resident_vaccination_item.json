@@ -1,0 +1,95 @@
+{
+ "actions": [],
+ "creation": "2026-08-25 03:30:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "vaccine_name",
+  "vaccine_name_other",
+  "status",
+  "dose_booster_number",
+  "column_break_1",
+  "date_administered",
+  "administered_by",
+  "next_due_date",
+  "section_break_notes",
+  "notes"
+ ],
+ "fields": [
+  {
+   "default": "COVID-19",
+   "fieldname": "vaccine_name",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Vaccine Name",
+   "options": "COVID-19\nInfluenza (Flu)\nPneumococcal\nHepatitis B\nTetanus\nShingles\nOther",
+   "reqd": 1
+  },
+  {
+   "depends_on": "eval:doc.vaccine_name == 'Other'",
+   "fieldname": "vaccine_name_other",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Vaccine Name (Manual / Other)"
+  },
+  {
+   "default": "Completed",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Status",
+   "options": "Completed\nPending\nOngoing",
+   "reqd": 1
+  },
+  {
+   "fieldname": "dose_booster_number",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Dose / Booster Number"
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "date_administered",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Date Administered",
+   "reqd": 1
+  },
+  {
+   "fieldname": "administered_by",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Administered By (Staff / External)"
+  },
+  {
+   "fieldname": "next_due_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Next Due Date"
+  },
+  {
+   "fieldname": "section_break_notes",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "notes",
+   "fieldtype": "Small Text",
+   "label": "Notes"
+  }
+ ],
+ "istable": 1,
+ "links": [],
+ "modified": "2026-08-25 03:30:00.000000",
+ "modified_by": "Administrator",
+ "module": "Seniorcare",
+ "name": "Resident Vaccination Item",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

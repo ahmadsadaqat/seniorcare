@@ -1,0 +1,63 @@
+{
+ "actions": [],
+ "creation": "2026-08-25 03:30:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "history_type",
+  "date_approximate_year",
+  "column_break_1",
+  "description",
+  "section_break_notes",
+  "notes"
+ ],
+ "fields": [
+  {
+   "default": "Past Medical",
+   "fieldname": "history_type",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "History Type",
+   "options": "Past Medical\nSurgical\nObstetric\nFamily History\nOther",
+   "reqd": 1
+  },
+  {
+   "fieldname": "date_approximate_year",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Date / Approximate Year"
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "description",
+   "fieldtype": "Small Text",
+   "in_list_view": 1,
+   "label": "Description",
+   "reqd": 1
+  },
+  {
+   "fieldname": "section_break_notes",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "notes",
+   "fieldtype": "Small Text",
+   "label": "Notes"
+  }
+ ],
+ "istable": 1,
+ "links": [],
+ "modified": "2026-08-25 03:30:00.000000",
+ "modified_by": "Administrator",
+ "module": "Seniorcare",
+ "name": "Resident Medical History Item",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

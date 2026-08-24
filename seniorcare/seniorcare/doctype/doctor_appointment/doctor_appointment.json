@@ -24,6 +24,8 @@
   "treatment_advice",
   "medication_changes",
   "prescription_attachment",
+  "section_break_medications",
+  "medication_orders",
   "section_break_followup",
   "follow_up_required",
   "next_appointment_date",
@@ -147,12 +149,23 @@
   {
    "fieldname": "medication_changes",
    "fieldtype": "Text",
-   "label": "Medication Changes"
+   "label": "Medication Changes (Notes)"
   },
   {
    "fieldname": "prescription_attachment",
    "fieldtype": "Attach",
    "label": "Prescription Attachment"
+  },
+  {
+   "fieldname": "section_break_medications",
+   "fieldtype": "Section Break",
+   "label": "Prescriptions & Medication Orders"
+  },
+  {
+   "fieldname": "medication_orders",
+   "fieldtype": "Table",
+   "label": "Medication Orders",
+   "options": "Appointment Medication Order Item"
   },
   {
    "fieldname": "section_break_followup",

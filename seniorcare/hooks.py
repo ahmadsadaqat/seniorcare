@@ -31,6 +31,11 @@ doc_events = {
 		"validate": "seniorcare.purchase_invoice.validate_purchase_invoice",
 		"on_submit": "seniorcare.purchase_invoice.on_submit_purchase_invoice",
 		"on_cancel": "seniorcare.purchase_invoice.on_cancel_purchase_invoice"
+	},
+	"Payment Entry": {
+		"validate": "seniorcare.payment_entry.validate_payment_entry",
+		"on_submit": "seniorcare.payment_entry.on_submit_payment_entry",
+		"on_cancel": "seniorcare.payment_entry.on_cancel_payment_entry"
 	}
 }
 
@@ -38,5 +43,16 @@ doc_events = {
 # ----------
 doctype_js = {
 	"Payroll Entry": "public/js/payroll_entry.js",
-	"Salary Slip": "public/js/salary_slip.js"
+	"Salary Slip": "public/js/salary_slip.js",
+	"Payment Entry": "public/js/payment_entry.js"
 }
+
+# Scheduler Events
+# ----------------
+scheduler_events = {
+	"daily": [
+		"seniorcare.billing.create_monthly_invoices",
+		"seniorcare.alerts.check_daily_alerts"
+	]
+}
+

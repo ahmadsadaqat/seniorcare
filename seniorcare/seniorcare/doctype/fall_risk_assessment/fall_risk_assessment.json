@@ -1,0 +1,217 @@
+{
+ "actions": [],
+ "autoname": "naming_series:",
+ "creation": "2026-08-25 03:30:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "naming_series",
+  "resident_file",
+  "assessment_date",
+  "assessed_by",
+  "column_break_1",
+  "calculated_score",
+  "risk_level",
+  "section_break_factors",
+  "history_of_falls",
+  "fall_count_3months",
+  "secondary_diagnosis",
+  "mobility_aid",
+  "column_break_factors",
+  "gait_transfer",
+  "awareness_of_limitations",
+  "iv_therapy_medical_lines",
+  "section_break_notes",
+  "notes"
+ ],
+ "fields": [
+  {
+   "default": "FRA-.YYYY.-.####",
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Naming Series",
+   "options": "FRA-.YYYY.-.####",
+   "reqd": 1
+  },
+  {
+   "fieldname": "resident_file",
+   "fieldtype": "Link",
+   "in_global_search": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Resident File",
+   "options": "Resident File",
+   "reqd": 1
+  },
+  {
+   "default": "Today",
+   "fieldname": "assessment_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Assessment Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "assessed_by",
+   "fieldtype": "Link",
+   "label": "Assessed By",
+   "options": "Employee"
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "calculated_score",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "Calculated Score",
+   "read_only": 1
+  },
+  {
+   "fieldname": "risk_level",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Risk Level",
+   "options": "Low\nModerate\nHigh",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_factors",
+   "fieldtype": "Section Break",
+   "label": "Assessment Criteria & Factors"
+  },
+  {
+   "default": "0",
+   "fieldname": "history_of_falls",
+   "fieldtype": "Check",
+   "label": "History of Falls (past 3 months)?"
+  },
+  {
+   "depends_on": "eval:doc.history_of_falls == 1",
+   "fieldname": "fall_count_3months",
+   "fieldtype": "Int",
+   "label": "Fall Count (past 3 months)"
+  },
+  {
+   "default": "0",
+   "fieldname": "secondary_diagnosis",
+   "fieldtype": "Check",
+   "label": "Secondary Diagnosis Present"
+  },
+  {
+   "default": "None",
+   "fieldname": "mobility_aid",
+   "fieldtype": "Select",
+   "label": "Mobility Aid",
+   "options": "None\nCane\nWalker\nWheelchair\nBedridden"
+  },
+  {
+   "fieldname": "column_break_factors",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "Normal",
+   "fieldname": "gait_transfer",
+   "fieldtype": "Select",
+   "label": "Gait / Transfer Ability",
+   "options": "Normal\nWeak\nImpaired"
+  },
+  {
+   "default": "Aware",
+   "fieldname": "awareness_of_limitations",
+   "fieldtype": "Select",
+   "label": "Awareness of Own Limitations",
+   "options": "Aware\nOverestimates ability\nForgets limitations"
+  },
+  {
+   "default": "0",
+   "fieldname": "iv_therapy_medical_lines",
+   "fieldtype": "Check",
+   "label": "IV Therapy / Medical Lines"
+  },
+  {
+   "fieldname": "section_break_notes",
+   "fieldtype": "Section Break",
+   "label": "Notes"
+  },
+  {
+   "fieldname": "notes",
+   "fieldtype": "Small Text",
+   "label": "Notes"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2026-08-25 03:30:00.000000",
+ "modified_by": "Administrator",
+ "module": "Seniorcare",
+ "name": "Fall Risk Assessment",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "cancel": 1,
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "cancel": 0,
+   "create": 1,
+   "delete": 0,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Senior Care Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "cancel": 0,
+   "create": 1,
+   "delete": 0,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Senior Care Doctor",
+   "share": 0,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "cancel": 0,
+   "create": 1,
+   "delete": 0,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Senior Care Nurse",
+   "share": 0,
+   "submit": 1,
+   "write": 1
+  }
+ ],
+ "search_fields": "resident_file, assessment_date, risk_level",
+ "sort_field": "assessment_date",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "resident_file"
+}

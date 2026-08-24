@@ -1,0 +1,115 @@
+{
+ "actions": [],
+ "creation": "2026-08-25 03:30:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "assessment_date",
+  "calculated_score",
+  "risk_level",
+  "column_break_1",
+  "history_of_falls",
+  "fall_count_3months",
+  "secondary_diagnosis",
+  "section_break_factors",
+  "mobility_aid",
+  "gait_transfer",
+  "column_break_factors",
+  "awareness_of_limitations",
+  "iv_therapy_medical_lines"
+ ],
+ "fields": [
+  {
+   "fieldname": "assessment_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Assessment Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "calculated_score",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "Calculated Score",
+   "read_only": 1
+  },
+  {
+   "fieldname": "risk_level",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Risk Level",
+   "options": "Low\nModerate\nHigh",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "fieldname": "history_of_falls",
+   "fieldtype": "Check",
+   "label": "History of Falls (past 3 months)?"
+  },
+  {
+   "depends_on": "eval:doc.history_of_falls == 1",
+   "fieldname": "fall_count_3months",
+   "fieldtype": "Int",
+   "label": "Fall Count (past 3 months)"
+  },
+  {
+   "default": "0",
+   "fieldname": "secondary_diagnosis",
+   "fieldtype": "Check",
+   "label": "Secondary Diagnosis Present"
+  },
+  {
+   "fieldname": "section_break_factors",
+   "fieldtype": "Section Break",
+   "label": "Assessment Factors"
+  },
+  {
+   "default": "None",
+   "fieldname": "mobility_aid",
+   "fieldtype": "Select",
+   "label": "Mobility Aid",
+   "options": "None\nCane\nWalker\nWheelchair\nBedridden"
+  },
+  {
+   "default": "Normal",
+   "fieldname": "gait_transfer",
+   "fieldtype": "Select",
+   "label": "Gait / Transfer Ability",
+   "options": "Normal\nWeak\nImpaired"
+  },
+  {
+   "fieldname": "column_break_factors",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "Aware",
+   "fieldname": "awareness_of_limitations",
+   "fieldtype": "Select",
+   "label": "Awareness of Own Limitations",
+   "options": "Aware\nOverestimates ability\nForgets limitations"
+  },
+  {
+   "default": "0",
+   "fieldname": "iv_therapy_medical_lines",
+   "fieldtype": "Check",
+   "label": "IV Therapy / Medical Lines"
+  }
+ ],
+ "istable": 1,
+ "links": [],
+ "modified": "2026-08-25 03:30:00.000000",
+ "modified_by": "Administrator",
+ "module": "Seniorcare",
+ "name": "Resident Fall Risk Item",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

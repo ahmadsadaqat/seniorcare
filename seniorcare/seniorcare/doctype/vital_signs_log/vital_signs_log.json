@@ -1,0 +1,223 @@
+{
+ "actions": [],
+ "autoname": "naming_series:",
+ "creation": "2026-08-25 03:30:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "naming_series",
+  "resident_file",
+  "log_date",
+  "log_time",
+  "blood_pressure_systolic",
+  "blood_pressure_diastolic",
+  "pulse_heart_rate",
+  "column_break_1",
+  "temperature",
+  "oxygen_saturation_spo2",
+  "blood_sugar_type",
+  "blood_sugar_value",
+  "section_break_2",
+  "respiratory_rate",
+  "weight",
+  "column_break_2",
+  "abnormal_reading",
+  "recorded_by",
+  "section_break_notes",
+  "notes"
+ ],
+ "fields": [
+  {
+   "default": "VIT-.YYYY.-.####",
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Naming Series",
+   "options": "VIT-.YYYY.-.####",
+   "reqd": 1
+  },
+  {
+   "fieldname": "resident_file",
+   "fieldtype": "Link",
+   "in_global_search": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Resident File",
+   "options": "Resident File",
+   "reqd": 1
+  },
+  {
+   "default": "Today",
+   "fieldname": "log_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Log Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "log_time",
+   "fieldtype": "Time",
+   "in_list_view": 1,
+   "label": "Log Time"
+  },
+  {
+   "fieldname": "blood_pressure_systolic",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "BP Systolic (mmHg)"
+  },
+  {
+   "fieldname": "blood_pressure_diastolic",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "BP Diastolic (mmHg)"
+  },
+  {
+   "fieldname": "pulse_heart_rate",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "Pulse / Heart Rate (bpm)"
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "temperature",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "Temperature (°F)"
+  },
+  {
+   "fieldname": "oxygen_saturation_spo2",
+   "fieldtype": "Float",
+   "in_list_view": 1,
+   "label": "SpO2 (%)"
+  },
+  {
+   "default": "Random",
+   "fieldname": "blood_sugar_type",
+   "fieldtype": "Select",
+   "label": "Blood Sugar Type",
+   "options": "Fasting\nRandom"
+  },
+  {
+   "fieldname": "blood_sugar_value",
+   "fieldtype": "Float",
+   "label": "Blood Sugar Value (mg/dL)"
+  },
+  {
+   "fieldname": "section_break_2",
+   "fieldtype": "Section Break",
+   "label": "Additional Vitals"
+  },
+  {
+   "fieldname": "respiratory_rate",
+   "fieldtype": "Int",
+   "label": "Respiratory Rate (breaths/min)"
+  },
+  {
+   "fieldname": "weight",
+   "fieldtype": "Float",
+   "label": "Weight (kg)"
+  },
+  {
+   "fieldname": "column_break_2",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "No",
+   "fieldname": "abnormal_reading",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Flags / Abnormal Reading?",
+   "options": "No\nYes"
+  },
+  {
+   "fieldname": "recorded_by",
+   "fieldtype": "Link",
+   "label": "Recorded By",
+   "options": "Employee"
+  },
+  {
+   "fieldname": "section_break_notes",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "notes",
+   "fieldtype": "Small Text",
+   "label": "Notes"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2026-08-25 03:30:00.000000",
+ "modified_by": "Administrator",
+ "module": "Seniorcare",
+ "name": "Vital Signs Log",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "cancel": 1,
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "cancel": 0,
+   "create": 1,
+   "delete": 0,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Senior Care Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "cancel": 0,
+   "create": 1,
+   "delete": 0,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Senior Care Doctor",
+   "share": 0,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "cancel": 0,
+   "create": 1,
+   "delete": 0,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Senior Care Nurse",
+   "share": 0,
+   "submit": 1,
+   "write": 1
+  }
+ ],
+ "search_fields": "resident_file, log_date, abnormal_reading",
+ "sort_field": "log_date",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "resident_file"
+}

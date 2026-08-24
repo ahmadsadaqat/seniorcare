@@ -1,0 +1,149 @@
+{
+ "actions": [],
+ "creation": "2026-08-25 03:30:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "log_date",
+  "shift",
+  "general_condition",
+  "meals_taken",
+  "sleep_quality",
+  "column_break_1",
+  "recorded_by",
+  "pain_present",
+  "pain_scale",
+  "pain_pattern",
+  "pain_location",
+  "section_break_flags",
+  "flags_concerns",
+  "flags_description",
+  "column_break_flags",
+  "mood_behavior",
+  "notes"
+ ],
+ "fields": [
+  {
+   "fieldname": "log_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Log Date",
+   "reqd": 1
+  },
+  {
+   "default": "Morning",
+   "fieldname": "shift",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Shift",
+   "options": "Morning\nEvening\nNight",
+   "reqd": 1
+  },
+  {
+   "default": "Good",
+   "fieldname": "general_condition",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "General Condition",
+   "options": "Good\nFair\nPoor",
+   "reqd": 1
+  },
+  {
+   "default": "Yes",
+   "fieldname": "meals_taken",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Meals Taken",
+   "options": "Yes\nPartial\nNo"
+  },
+  {
+   "default": "Good",
+   "fieldname": "sleep_quality",
+   "fieldtype": "Select",
+   "label": "Sleep Quality",
+   "options": "Good\nDisturbed\nPoor"
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "recorded_by",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Recorded By",
+   "options": "Employee"
+  },
+  {
+   "default": "No",
+   "fieldname": "pain_present",
+   "fieldtype": "Select",
+   "label": "Pain Present?",
+   "options": "No\nYes"
+  },
+  {
+   "depends_on": "eval:doc.pain_present == 'Yes'",
+   "fieldname": "pain_scale",
+   "fieldtype": "Int",
+   "label": "Pain Scale (0 to 10)"
+  },
+  {
+   "depends_on": "eval:doc.pain_present == 'Yes'",
+   "fieldname": "pain_pattern",
+   "fieldtype": "Select",
+   "label": "Pain Pattern",
+   "options": "Constant\nIntermittent"
+  },
+  {
+   "depends_on": "eval:doc.pain_present == 'Yes'",
+   "fieldname": "pain_location",
+   "fieldtype": "Data",
+   "label": "Pain Location"
+  },
+  {
+   "fieldname": "section_break_flags",
+   "fieldtype": "Section Break",
+   "label": "Observations & Flags"
+  },
+  {
+   "default": "No",
+   "fieldname": "flags_concerns",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Flags / Concerns Raised?",
+   "options": "No\nYes"
+  },
+  {
+   "depends_on": "eval:doc.flags_concerns == 'Yes'",
+   "fieldname": "flags_description",
+   "fieldtype": "Small Text",
+   "label": "Flags Description"
+  },
+  {
+   "fieldname": "column_break_flags",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "mood_behavior",
+   "fieldtype": "Small Text",
+   "label": "Mood / Behavior Observations"
+  },
+  {
+   "fieldname": "notes",
+   "fieldtype": "Small Text",
+   "label": "Notes"
+  }
+ ],
+ "istable": 1,
+ "links": [],
+ "modified": "2026-08-25 03:30:00.000000",
+ "modified_by": "Administrator",
+ "module": "Seniorcare",
+ "name": "Resident Daily Health Log Item",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

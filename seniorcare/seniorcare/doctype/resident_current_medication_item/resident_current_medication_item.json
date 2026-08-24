@@ -1,0 +1,165 @@
+{
+ "actions": [],
+ "creation": "2026-08-25 03:30:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "status",
+  "medicine",
+  "dose",
+  "unit",
+  "frequency",
+  "route",
+  "column_break_1",
+  "prescribed_by",
+  "administered_by",
+  "medication_type",
+  "prn_as_needed",
+  "pharmacy_source",
+  "section_break_dates",
+  "start_date",
+  "end_date",
+  "column_break_dates",
+  "discontinued_date",
+  "discontinued_reason",
+  "section_break_details",
+  "reason_indication",
+  "special_instructions"
+ ],
+ "fields": [
+  {
+   "default": "Active",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Status",
+   "options": "Active\nOn Hold",
+   "reqd": 1
+  },
+  {
+   "fieldname": "medicine",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Medicine",
+   "reqd": 1
+  },
+  {
+   "fieldname": "dose",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Dose"
+  },
+  {
+   "fieldname": "unit",
+   "fieldtype": "Data",
+   "label": "Unit"
+  },
+  {
+   "default": "Once daily",
+   "fieldname": "frequency",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Frequency",
+   "options": "Once daily\nTwice daily\nThree times daily\nFour times daily\nPRN\nWeekly\nOther",
+   "reqd": 1
+  },
+  {
+   "default": "Oral",
+   "fieldname": "route",
+   "fieldtype": "Select",
+   "label": "Route",
+   "options": "Oral\nTopical\nInjection\nInhaled\nOther"
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "prescribed_by",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Prescribed By",
+   "options": "Doctor Provider"
+  },
+  {
+   "fieldname": "administered_by",
+   "fieldtype": "Link",
+   "label": "Administered By",
+   "options": "Employee"
+  },
+  {
+   "default": "Prescription",
+   "fieldname": "medication_type",
+   "fieldtype": "Select",
+   "label": "Medication Type",
+   "options": "Prescription\nOver-the-Counter\nSupplement"
+  },
+  {
+   "default": "0",
+   "fieldname": "prn_as_needed",
+   "fieldtype": "Check",
+   "label": "PRN (As Needed)?"
+  },
+  {
+   "fieldname": "pharmacy_source",
+   "fieldtype": "Data",
+   "label": "Pharmacy / Source"
+  },
+  {
+   "fieldname": "section_break_dates",
+   "fieldtype": "Section Break",
+   "label": "Dates"
+  },
+  {
+   "fieldname": "start_date",
+   "fieldtype": "Date",
+   "label": "Start Date"
+  },
+  {
+   "fieldname": "end_date",
+   "fieldtype": "Date",
+   "label": "End Date"
+  },
+  {
+   "fieldname": "column_break_dates",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "discontinued_date",
+   "fieldtype": "Date",
+   "label": "Discontinued Date"
+  },
+  {
+   "fieldname": "discontinued_reason",
+   "fieldtype": "Small Text",
+   "label": "Discontinued Reason"
+  },
+  {
+   "fieldname": "section_break_details",
+   "fieldtype": "Section Break",
+   "label": "Instructions & Notes"
+  },
+  {
+   "fieldname": "reason_indication",
+   "fieldtype": "Small Text",
+   "label": "Reason / Indication"
+  },
+  {
+   "fieldname": "special_instructions",
+   "fieldtype": "Small Text",
+   "label": "Special Instructions"
+  }
+ ],
+ "istable": 1,
+ "links": [],
+ "modified": "2026-08-25 03:30:00.000000",
+ "modified_by": "Administrator",
+ "module": "Seniorcare",
+ "name": "Resident Current Medication Item",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

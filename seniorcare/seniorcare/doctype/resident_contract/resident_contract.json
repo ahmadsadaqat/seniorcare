@@ -24,6 +24,8 @@
   "column_break_commercials",
   "total_monthly_fee",
   "refundable_deposit",
+  "initial_medical_advance",
+  "initial_personal_advance",
   "section_break_terms",
   "deposit_terms",
   "contract_attachment"
@@ -150,6 +152,16 @@
    "fieldname": "refundable_deposit",
    "fieldtype": "Currency",
    "label": "Refundable Security Deposit"
+  },
+  {
+   "fieldname": "initial_medical_advance",
+   "fieldtype": "Currency",
+   "label": "Initial Medical Advance"
+  },
+  {
+   "fieldname": "initial_personal_advance",
+   "fieldtype": "Currency",
+   "label": "Initial Personal Advance"
   },
   {
    "fieldname": "section_break_terms",
