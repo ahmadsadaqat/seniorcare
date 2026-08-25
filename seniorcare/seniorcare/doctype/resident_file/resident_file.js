@@ -330,9 +330,9 @@ frappe.ui.form.on("Resident File", {
 							fieldname: "card_html_area"
 						}
 					],
-					primary_action_label: __("Print Card"),
+					primary_action_label: __("Print Emergency Card"),
 					primary_action: () => {
-						frm.trigger("print_emergency_card", card_html);
+						frm.events.print_emergency_card(frm, card_html);
 					}
 				});
 
@@ -343,45 +343,105 @@ frappe.ui.form.on("Resident File", {
 	},
 
 	print_emergency_card(frm, html_content) {
-		const print_window = window.open("", "_blank");
-		print_window.document.write(`
+		// Clean up existing print iframe
+		$("#senior-care-print-frame").remove();
+
+		// Create hidden iframe
+		const iframe = document.createElement("iframe");
+		iframe.id = "senior-care-print-frame";
+		iframe.style.position = "fixed";
+		iframe.style.right = "0";
+		iframe.style.bottom = "0";
+		iframe.style.width = "0";
+		iframe.style.height = "0";
+		iframe.style.border = "0";
+		document.body.appendChild(iframe);
+
+		const print_doc = iframe.contentWindow || iframe.contentDocument;
+		const doc = print_doc.document || print_doc;
+
+		doc.open();
+		doc.write(`
 			<!DOCTYPE html>
 			<html>
 			<head>
-				<title>Emergency Card - ${frm.doc.full_name}</title>
-				<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+				<title>Emergency Medical Card - ${frm.doc.full_name || 'Resident'}</title>
 				<style>
 					@page {
 						size: A4 portrait;
 						margin: 10mm;
 					}
+					* {
+						box-sizing: border-box;
+						-webkit-print-color-adjust: exact !important;
+						print-color-adjust: exact !important;
+						color-adjust: exact !important;
+					}
 					body {
-						font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-						background: white;
-						padding: 10px;
-						color: #000;
+						font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+						background: #ffffff !important;
+						margin: 0;
+						padding: 0;
+						color: #111;
 					}
-					@media print {
-						body {
-							padding: 0;
-						}
-						.no-print {
-							display: none !important;
-						}
+					.row {
+						display: flex;
+						flex-wrap: wrap;
+						margin-right: -8px;
+						margin-left: -8px;
 					}
+					.col-md-6, .col-6 {
+						position: relative;
+						width: 50%;
+						padding-right: 8px;
+						padding-left: 8px;
+					}
+					table {
+						width: 100%;
+						border-collapse: collapse;
+					}
+					th, td {
+						border: 1px solid #dee2e6;
+						padding: 4px 6px;
+						text-align: left;
+					}
+					.badge {
+						display: inline-block;
+						padding: 2px 6px;
+						font-size: 10px;
+						font-weight: 700;
+						border-radius: 3px;
+					}
+					.badge-warning { background-color: #ffc107; color: #212529; }
+					.badge-secondary { background-color: #6c757d; color: #fff; }
+					.badge-success { background-color: #28a745; color: #fff; }
 				</style>
 			</head>
 			<body>
-				${html_content}
-				<script>
-					window.onload = function() {
-						window.print();
-					};
-				</script>
+				<div style="max-width: 800px; margin: 0 auto; padding: 5px;">
+					${html_content}
+				</div>
 			</body>
 			</html>
 		`);
-		print_window.document.close();
+		doc.close();
+
+		setTimeout(() => {
+			try {
+				iframe.contentWindow.focus();
+				iframe.contentWindow.print();
+			} catch (e) {
+				console.error("Iframe print error:", e);
+				// Fallback to window.open
+				const fallback = window.open("", "_blank");
+				if (fallback) {
+					fallback.document.write(doc.documentElement.outerHTML);
+					fallback.document.close();
+					fallback.focus();
+					fallback.print();
+				}
+			}
+		}, 350);
 	},
 
 	filter_room_field(frm) {
