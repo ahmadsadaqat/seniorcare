@@ -3,6 +3,7 @@
  "creation": "2026-08-25 03:30:00.000000",
  "doctype": "DocType",
  "engine": "InnoDB",
+ "issingle": 1,
  "field_order": [
   "section_company",
   "company",

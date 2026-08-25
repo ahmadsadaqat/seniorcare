@@ -181,7 +181,7 @@
    "type": "Link"
   }
  ],
- "modified": "2026-08-26 01:35:00.000000",
+ "modified": "2026-08-26 01:45:00.000000",
  "modified_by": "Administrator",
  "module": "Seniorcare",
  "name": "Senior Care",
@@ -263,7 +263,7 @@
   },
   {
    "color": "Grey",
-   "doc_view": "List",
+   "doc_view": "",
    "label": "Senior Care Settings",
    "link_to": "Senior Care Settings",
    "type": "DocType"
