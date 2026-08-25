@@ -41,6 +41,11 @@ frappe.ui.form.on("Resident File", {
 
 	setup_custom_buttons(frm) {
 		if (!frm.is_new()) {
+			// Standout Emergency Card Button
+			frm.add_custom_button(__("Emergency Card"), () => {
+				frm.trigger("show_emergency_card");
+			}).addClass("btn-danger font-weight-bold");
+
 			// Clinical & Medical Actions
 			frm.add_custom_button(__("Book Appointment"), () => {
 				frappe.new_doc("Doctor Appointment", {
@@ -126,6 +131,257 @@ frappe.ui.form.on("Resident File", {
 				});
 			}, __("Financial Actions"));
 		}
+	},
+
+	show_emergency_card(frm) {
+		frappe.call({
+			method: "seniorcare.seniorcare.doctype.resident_file.resident_file.get_emergency_card_data",
+			args: { resident_file: frm.doc.name },
+			freeze: true,
+			freeze_message: __("Loading Emergency Card..."),
+			callback(r) {
+				if (!r.message) return;
+				const data = r.message;
+
+				const is_dnr = (data.dnr_directive || "").toUpperCase() === "DNR";
+				const dnr_badge = is_dnr
+					? `<span style="background: #dc3545; color: white; padding: 4px 10px; border-radius: 4px; font-weight: bold; font-size: 13px;">DNR (DO NOT RESUSCITATE)</span>`
+					: `<span style="background: #28a745; color: white; padding: 4px 10px; border-radius: 4px; font-weight: bold; font-size: 13px;">FULL CODE</span>`;
+
+				const fall_badge_color = data.fall_risk_level === "High" ? "#dc3545" : (data.fall_risk_level === "Medium" ? "#fd7e14" : "#28a745");
+				const blood_group_html = data.blood_group ? `<span style="background: #8b0000; color: white; padding: 3px 8px; border-radius: 4px; font-weight: bold;">${data.blood_group}</span>` : '<span class="text-muted">Unknown</span>';
+
+				// Allergies HTML
+				let allergies_html = "";
+				if (data.allergies && data.allergies.length > 0) {
+					allergies_html = data.allergies.map(a => {
+						const bg = a.is_severe ? '#ffebee' : '#f5f5f5';
+						const border = a.is_severe ? '#e53935' : '#bdbdbd';
+						const color = a.is_severe ? '#b71c1c' : '#333';
+						const icon = a.is_severe ? '⚠️ ' : '';
+						return `<div style="background: ${bg}; border: 1px solid ${border}; color: ${color}; padding: 6px 10px; border-radius: 4px; margin-bottom: 6px; font-size: 12px;">
+							<strong>${icon}${a.allergen}</strong> (${a.severity}) ${a.reaction ? '— ' + a.reaction : ''}
+						</div>`;
+					}).join("");
+				} else {
+					allergies_html = `<div style="color: #2e7d32; font-size: 12px; padding: 4px 0;">✓ No known allergies recorded (NKDA)</div>`;
+				}
+
+				// Diagnoses HTML
+				let diagnoses_html = "";
+				if (data.conditions && data.conditions.length > 0) {
+					diagnoses_html = `<ul style="margin: 0; padding-left: 18px; font-size: 12px;">` +
+						data.conditions.map(c => `<li><strong>${c.condition}</strong> <span class="text-muted">(${c.status} - ${c.severity})</span></li>`).join("") +
+						`</ul>`;
+				} else {
+					diagnoses_html = `<div class="text-muted" style="font-size: 12px;">No active chronic diagnoses recorded</div>`;
+				}
+
+				// Medications HTML
+				let meds_html = "";
+				if (data.medications && data.medications.length > 0) {
+					meds_html = `<table class="table table-bordered table-sm mb-0" style="font-size: 11px;">
+						<thead>
+							<tr style="background: #f8f9fa;">
+								<th>Medicine</th>
+								<th>Dose</th>
+								<th>Freq</th>
+								<th>Type</th>
+							</tr>
+						</thead>
+						<tbody>` +
+						data.medications.map(m => `<tr>
+							<td><strong>${m.medicine}</strong></td>
+							<td>${m.dose} ${m.unit}</td>
+							<td>${m.frequency}</td>
+							<td>${m.is_prn ? '<span class="badge badge-warning">PRN</span>' : 'Scheduled'}</td>
+						</tr>`).join("") +
+						`</tbody></table>`;
+				} else {
+					meds_html = `<div class="text-muted" style="font-size: 12px;">No active medications recorded</div>`;
+				}
+
+				// Emergency Contacts HTML
+				let contacts_html = "";
+				if (data.emergency_contacts && data.emergency_contacts.length > 0) {
+					contacts_html = data.emergency_contacts.map(c => `
+						<div style="margin-bottom: 6px; font-size: 12px; border-bottom: 1px dashed #eee; padding-bottom: 4px;">
+							<strong>${c.name}</strong> <span class="badge badge-secondary">${c.relationship}</span><br>
+							<span>📞 <strong>${c.phone || '-'}</strong></span> ${c.whatsapp ? ' | WA: ' + c.whatsapp : ''}
+						</div>
+					`).join("");
+				} else {
+					contacts_html = `<div class="text-muted" style="font-size: 12px;">No emergency contacts listed</div>`;
+				}
+
+				// Doctor & Hospital HTML
+				let doctor_html = `<div style="font-size: 12px;">
+					<strong>Doctor:</strong> ${data.doctor ? data.doctor.doctor_name : 'Not Assigned'}<br>
+					<strong>Phone:</strong> ${data.doctor && data.doctor.phone ? '📞 ' + data.doctor.phone : '-'}<br>
+					<strong>Hospital:</strong> ${data.preferred_hospital || (data.doctor ? data.doctor.organization_hospital : 'Standard ER')}
+				</div>`;
+
+				// Special Care Instructions
+				let instructions = [];
+				if (data.mobility_status) instructions.push(`<strong>Mobility:</strong> ${data.mobility_status}`);
+				if (data.cognitive_status) instructions.push(`<strong>Cognition:</strong> ${data.cognitive_status}`);
+				if (data.assistive_devices) instructions.push(`<strong>Assistive Devices:</strong> ${data.assistive_devices}`);
+				if (data.dietary_restrictions) instructions.push(`<strong>Dietary:</strong> ${data.dietary_restrictions}`);
+				if (data.special_care_instructions) instructions.push(`<strong>Special Care:</strong> ${data.special_care_instructions}`);
+				if (data.isolation_precautions) instructions.push(`<strong>Precautions:</strong> ${data.isolation_precautions}`);
+				if (data.medical_notes) instructions.push(`<strong>Medical Notes:</strong> ${data.medical_notes}`);
+				const instructions_html = instructions.length > 0
+					? `<div style="font-size: 11px; line-height: 1.5;">${instructions.join(' | ')}</div>`
+					: `<div class="text-muted" style="font-size: 11px;">No special instructions noted</div>`;
+
+				// Photo HTML
+				const photo_html = data.resident_photo
+					? `<img src="${data.resident_photo}" style="width: 100px; height: 110px; object-fit: cover; border-radius: 6px; border: 2px solid #ddd;">`
+					: `<div style="width: 100px; height: 110px; background: #e0e0e0; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 28px; color: #888; border: 2px solid #ccc;">👤</div>`;
+
+				const card_html = `
+				<div id="senior-care-emergency-card-container" style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; color: #212529;">
+					<!-- Emergency Card Box -->
+					<div style="border: 3px solid #dc3545; border-radius: 8px; overflow: hidden; background: #ffffff; box-shadow: 0 4px 12px rgba(0,0,0,0.1);">
+						<!-- Header Banner -->
+						<div style="background: #dc3545; color: white; padding: 10px 16px; display: flex; justify-content: space-between; align-items: center;">
+							<div>
+								<span style="font-size: 16px; font-weight: 800; letter-spacing: 0.5px;">EMERGENCY MEDICAL PROFILE</span>
+								<div style="font-size: 11px; opacity: 0.9;">SENIOR CIRCLE RESIDENT CARE</div>
+							</div>
+							<div>
+								${dnr_badge}
+							</div>
+						</div>
+
+						<!-- Identity Section -->
+						<div style="padding: 14px 16px; background: #fff8f8; border-bottom: 2px solid #f5c6cb; display: flex; gap: 16px; align-items: center;">
+							<div>${photo_html}</div>
+							<div style="flex: 1;">
+								<div style="font-size: 20px; font-weight: 800; color: #111;">${data.full_name}</div>
+								<div style="font-size: 12px; color: #555; margin-bottom: 6px;">ID: <strong>${data.resident_id}</strong> ${data.cnic_national_id ? '| CNIC: ' + data.cnic_national_id : ''}</div>
+								<div style="display: flex; gap: 10px; flex-wrap: wrap; font-size: 13px;">
+									<span>Age: <strong>${data.age || '-'} yrs</strong> (${data.gender || '-'})</span>
+									<span>Room: <strong style="background: #e3f2fd; color: #0d47a1; padding: 2px 6px; border-radius: 3px;">${data.room_unit}</strong></span>
+									<span>Blood Group: ${blood_group_html}</span>
+								</div>
+								<div style="margin-top: 6px; display: flex; gap: 8px; font-size: 11px;">
+									<span style="background: #eee; padding: 2px 6px; border-radius: 3px;">Acuity: <strong>${data.care_acuity_level}</strong></span>
+									<span style="background: ${fall_badge_color}; color: white; padding: 2px 6px; border-radius: 3px; font-weight: bold;">Fall Risk: ${data.fall_risk_level}</span>
+								</div>
+							</div>
+						</div>
+
+						<!-- Grid Details -->
+						<div style="padding: 14px 16px;">
+							<div class="row">
+								<!-- Left Column: Allergies & Meds -->
+								<div class="col-md-6" style="border-right: 1px solid #eee;">
+									<div style="font-weight: bold; font-size: 13px; color: #dc3545; border-bottom: 1px solid #dc3545; padding-bottom: 3px; margin-bottom: 8px;">
+										🚨 ALLERGIES & ADVERSE REACTIONS
+									</div>
+									${allergies_html}
+
+									<div style="font-weight: bold; font-size: 13px; color: #0d47a1; border-bottom: 1px solid #0d47a1; padding-bottom: 3px; margin-top: 12px; margin-bottom: 8px;">
+										💊 CURRENT MEDICATIONS (ACTIVE/PRN)
+									</div>
+									${meds_html}
+								</div>
+
+								<!-- Right Column: Diagnoses & Emergency Contacts -->
+								<div class="col-md-6">
+									<div style="font-weight: bold; font-size: 13px; color: #333; border-bottom: 1px solid #333; padding-bottom: 3px; margin-bottom: 8px;">
+										🩺 ACTIVE MEDICAL DIAGNOSES
+									</div>
+									${diagnoses_html}
+
+									<div style="font-weight: bold; font-size: 13px; color: #2e7d32; border-bottom: 1px solid #2e7d32; padding-bottom: 3px; margin-top: 12px; margin-bottom: 8px;">
+										📞 EMERGENCY CONTACTS & PHYSICIAN
+									</div>
+									<div class="row">
+										<div class="col-6">
+											<div style="font-size: 11px; font-weight: bold; color: #666; margin-bottom: 4px;">PRIMARY CONTACT</div>
+											${contacts_html}
+										</div>
+										<div class="col-6">
+											<div style="font-size: 11px; font-weight: bold; color: #666; margin-bottom: 4px;">PRIMARY DOCTOR</div>
+											${doctor_html}
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<!-- Bottom Care Instructions -->
+							<div style="margin-top: 14px; padding-top: 10px; border-top: 2px solid #f0f0f0; background: #fafafa; padding: 10px; border-radius: 4px;">
+								<div style="font-weight: bold; font-size: 12px; color: #555; margin-bottom: 4px;">⚠️ SPECIAL CARE INSTRUCTIONS & PRECAUTIONS</div>
+								${instructions_html}
+							</div>
+						</div>
+					</div>
+				</div>
+				`;
+
+				let dialog = new frappe.ui.Dialog({
+					title: __("Resident Emergency Medical Card"),
+					size: "large",
+					fields: [
+						{
+							fieldtype: "HTML",
+							fieldname: "card_html_area"
+						}
+					],
+					primary_action_label: __("Print Card"),
+					primary_action: () => {
+						frm.trigger("print_emergency_card", card_html);
+					}
+				});
+
+				dialog.get_field("card_html_area").$wrapper.html(card_html);
+				dialog.show();
+			}
+		});
+	},
+
+	print_emergency_card(frm, html_content) {
+		const print_window = window.open("", "_blank");
+		print_window.document.write(`
+			<!DOCTYPE html>
+			<html>
+			<head>
+				<title>Emergency Card - ${frm.doc.full_name}</title>
+				<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+				<style>
+					@page {
+						size: A4 portrait;
+						margin: 10mm;
+					}
+					body {
+						font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+						background: white;
+						padding: 10px;
+						color: #000;
+					}
+					@media print {
+						body {
+							padding: 0;
+						}
+						.no-print {
+							display: none !important;
+						}
+					}
+				</style>
+			</head>
+			<body>
+				${html_content}
+				<script>
+					window.onload = function() {
+						window.print();
+					};
+				</script>
+			</body>
+			</html>
+		`);
+		print_window.document.close();
 	},
 
 	filter_room_field(frm) {

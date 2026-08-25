@@ -225,3 +225,91 @@ def refresh_resident_financials(resident_file):
 		"personal_advance_balance": doc.personal_advance_balance,
 		"outstanding_receivable": doc.outstanding_receivable
 	}
+
+
+@frappe.whitelist()
+def get_emergency_card_data(resident_file):
+	"""Returns comprehensive structured data for generating the Emergency Medical Card."""
+	doc = frappe.get_doc("Resident File", resident_file)
+
+	doctor_info = None
+	if doc.primary_doctor:
+		doctor_info = frappe.db.get_value(
+			"Doctor Provider",
+			doc.primary_doctor,
+			["doctor_name", "phone", "specialization", "organization_hospital"],
+			as_dict=True
+		)
+
+	emergency_contacts = []
+	for fm in doc.get("family_members", []):
+		if fm.is_emergency_contact or len(emergency_contacts) == 0:
+			emergency_contacts.append({
+				"name": fm.family_member_name,
+				"relationship": fm.relationship,
+				"phone": fm.phone,
+				"whatsapp": fm.whatsapp,
+				"is_emergency": bool(fm.is_emergency_contact)
+			})
+
+	allergies = []
+	for alg in doc.get("allergies", []):
+		if alg.is_active:
+			severity_str = (alg.severity or "Moderate").strip()
+			allergies.append({
+				"allergen": alg.allergy_substance,
+				"severity": severity_str,
+				"reaction": alg.reaction,
+				"is_severe": severity_str.lower() in ["severe", "critical", "life-threatening", "high"]
+			})
+
+	conditions = []
+	for c in doc.get("medical_conditions", []):
+		if c.status in ["Active", "Chronic"]:
+			conditions.append({
+				"condition": c.condition_diagnosis,
+				"status": c.status,
+				"severity": c.severity or "Moderate"
+			})
+
+	medications = []
+	for m in doc.get("current_medications", []):
+		if m.status == "Active":
+			medications.append({
+				"medicine": m.medicine,
+				"dose": m.dose or "",
+				"unit": m.unit or "",
+				"frequency": m.frequency or "",
+				"route": m.route or "",
+				"is_prn": bool(m.prn_as_needed),
+				"instructions": m.special_instructions or ""
+			})
+
+	return {
+		"resident_id": doc.name,
+		"full_name": doc.full_name,
+		"resident_photo": doc.resident_photo,
+		"age": doc.age,
+		"date_of_birth": str(doc.date_of_birth) if doc.date_of_birth else None,
+		"gender": doc.gender,
+		"blood_group": doc.blood_group or "Unknown",
+		"room_unit": doc.room_unit or "Unassigned",
+		"cnic_national_id": doc.cnic_national_id,
+		"dnr_directive": doc.dnr_directive or "Full Code",
+		"fall_risk_level": doc.fall_risk_level or "Low",
+		"care_acuity_level": doc.care_acuity_level or "Independent",
+		"mobility_status": doc.mobility_status or "Independent",
+		"cognitive_status": doc.cognitive_status or "Normal",
+		"preferred_hospital": doc.preferred_hospital,
+		"doctor": doctor_info,
+		"emergency_contacts": emergency_contacts,
+		"allergies": allergies,
+		"conditions": conditions,
+		"medications": medications,
+		"dietary_restrictions": doc.get("dietary_restrictions_medical"),
+		"assistive_devices": doc.get("assistive_devices"),
+		"isolation_precautions": doc.get("isolation_infection_precautions"),
+		"special_care_instructions": doc.get("special_care_instructions"),
+		"medical_notes": doc.get("medical_notes"),
+		"food_preferences": doc.get("food_preferences")
+	}
