@@ -79,6 +79,19 @@ frappe.ui.form.on("Resident File", {
 				});
 			}, __("Clinical Actions"));
 
+			frm.add_custom_button(__("Assign Attendant"), () => {
+				const new_doc = frappe.model.get_new_doc("Attendant Assignment");
+				frappe.set_route("Form", "Attendant Assignment", new_doc.name).then(() => {
+					cur_frm.add_child("assigned_residents", {
+						resident_file: frm.doc.name,
+						resident_name: frm.doc.full_name,
+						room_unit: frm.doc.room_unit,
+						care_acuity_level: frm.doc.care_acuity_level
+					});
+					cur_frm.refresh_field("assigned_residents");
+				});
+			}, __("Actions"));
+
 			// Financial & Commercial Actions
 			frm.add_custom_button(__("New Contract"), () => {
 				frappe.new_doc("Resident Contract", {

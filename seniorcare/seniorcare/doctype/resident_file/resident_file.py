@@ -16,6 +16,13 @@ class ResidentFile(Document):
 		self.handle_room_assignment()
 		self.update_financial_summaries()
 		self.update_incident_summary()
+		self.sync_assigned_attendant_name()
+
+	def sync_assigned_attendant_name(self):
+		if self.assigned_attendant and not self.assigned_attendant_name:
+			self.assigned_attendant_name = frappe.db.get_value("Employee", self.assigned_attendant, "employee_name")
+		elif not self.assigned_attendant:
+			self.assigned_attendant_name = None
 
 	def set_full_name(self):
 		if self.last_name:

@@ -1,7 +1,7 @@
 {
  "category": "Modules",
  "charts": [],
- "content": "[{\"type\":\"header\",\"data\":{\"text\":\"Senior Circle Facility Management\",\"level\":2}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Resident File\"}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Room\"}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Resident Contract\"}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Doctor Appointment\"}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Vital Signs Log\"}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Vaccination Log\"}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Daily Health Log\"}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Fall Risk Assessment\"}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Incident Report\"}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Senior Care Settings\"}},{\"type\":\"header\",\"data\":{\"text\":\"Reports & Analytics\",\"level\":3}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Vital Signs History Report\"}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Daily Health Logs Report\"}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Vaccination Tracker Report\"}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Fall Risk Assessment History Report\"}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Medication History Report\"}}]",
+ "content": "[{\"type\":\"header\",\"data\":{\"text\":\"Senior Circle Facility Management\",\"level\":2}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Resident File\"}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Room\"}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Attendant Assignment\"}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Resident Contract\"}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Doctor Appointment\"}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Vital Signs Log\"}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Vaccination Log\"}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Daily Health Log\"}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Fall Risk Assessment\"}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Incident Report\"}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Senior Care Settings\"}},{\"type\":\"header\",\"data\":{\"text\":\"Reports & Analytics\",\"level\":3}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Vital Signs History Report\"}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Daily Health Logs Report\"}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Vaccination Tracker Report\"}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Fall Risk Assessment History Report\"}},{\"type\":\"shortcut\",\"data\":{\"shortcut_name\":\"Medication History Report\"}}]",
  "creation": "2026-08-16 17:00:00.000000",
  "custom_blocks": [],
  "disabled": 0,
@@ -28,6 +28,16 @@
    "label": "Resident Profiles",
    "link_count": 0,
    "link_to": "Resident File",
+   "link_type": "DocType",
+   "onboard": 0,
+   "type": "Link"
+  },
+  {
+   "hidden": 0,
+   "is_query_report": 0,
+   "label": "Attendant Assignments",
+   "link_count": 0,
+   "link_to": "Attendant Assignment",
    "link_type": "DocType",
    "onboard": 0,
    "type": "Link"
@@ -171,7 +181,7 @@
    "type": "Link"
   }
  ],
- "modified": "2026-08-25 03:30:00.000000",
+ "modified": "2026-08-26 01:35:00.000000",
  "modified_by": "Administrator",
  "module": "Seniorcare",
  "name": "Senior Care",
@@ -193,6 +203,13 @@
    "doc_view": "List",
    "label": "Room",
    "link_to": "Room",
+   "type": "DocType"
+  },
+  {
+   "color": "Grey",
+   "doc_view": "List",
+   "label": "Attendant Assignment",
+   "link_to": "Attendant Assignment",
    "type": "DocType"
   },
   {

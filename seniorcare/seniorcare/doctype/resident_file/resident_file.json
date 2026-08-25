@@ -101,7 +101,9 @@
   "preferred_communication_method",
   "section_break_operations",
   "incident_summary",
+  "current_attendant_assignment",
   "column_break_operations",
+  "assigned_attendant_name",
   "assigned_attendant",
   "case_manager",
   "tab_financial",
@@ -681,14 +683,30 @@
    "read_only": 1
   },
   {
+   "fieldname": "current_attendant_assignment",
+   "fieldtype": "Link",
+   "label": "Active Attendant Assignment",
+   "options": "Attendant Assignment",
+   "read_only": 1
+  },
+  {
    "fieldname": "column_break_operations",
    "fieldtype": "Column Break"
   },
   {
+   "fieldname": "assigned_attendant_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Assigned Attendant Name",
+   "read_only": 1
+  },
+  {
    "fieldname": "assigned_attendant",
    "fieldtype": "Link",
-   "label": "Assigned Attendant / Caregiver",
-   "options": "Employee"
+   "label": "Assigned Attendant (Employee)",
+   "options": "Employee",
+   "read_only": 1
   },
   {
    "fieldname": "case_manager",
@@ -893,6 +911,10 @@
   },
   {
    "link_doctype": "Fall Risk Assessment",
+   "link_fieldname": "resident_file"
+  },
+  {
+   "link_doctype": "Attendant Assignment Item",
    "link_fieldname": "resident_file"
   }
  ],
