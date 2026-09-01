@@ -1,0 +1,228 @@
+{
+ "actions": [],
+ "autoname": "naming_series:",
+ "creation": "2026-09-01 12:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "naming_series",
+  "resident_file",
+  "resident_name",
+  "assessment_date",
+  "column_break_1",
+  "assessed_by",
+  "assessed_by_name",
+  "section_break_adl",
+  "bathing",
+  "dressing",
+  "toileting",
+  "column_break_adl",
+  "transferring",
+  "continence_adl",
+  "feeding",
+  "section_break_score",
+  "total_adl_score",
+  "column_break_score",
+  "iadl_notes"
+ ],
+ "fields": [
+  {
+   "default": "ADL-.YYYY.-.#####",
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Naming Series",
+   "options": "ADL-.YYYY.-.#####",
+   "reqd": 1
+  },
+  {
+   "fieldname": "resident_file",
+   "fieldtype": "Link",
+   "in_global_search": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Resident File",
+   "options": "Resident File",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "resident_file.full_name",
+   "fieldname": "resident_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Resident Name",
+   "read_only": 1
+  },
+  {
+   "default": "Today",
+   "fieldname": "assessment_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Assessment Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "assessed_by",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Assessed By",
+   "options": "Employee",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "assessed_by.employee_name",
+   "fieldname": "assessed_by_name",
+   "fieldtype": "Data",
+   "label": "Assessor Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_adl",
+   "fieldtype": "Section Break",
+   "label": "ADL Categories"
+  },
+  {
+   "default": "Independent",
+   "fieldname": "bathing",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Bathing",
+   "options": "Independent\nAssisted\nDependent",
+   "reqd": 1
+  },
+  {
+   "default": "Independent",
+   "fieldname": "dressing",
+   "fieldtype": "Select",
+   "label": "Dressing",
+   "options": "Independent\nAssisted\nDependent",
+   "reqd": 1
+  },
+  {
+   "default": "Independent",
+   "fieldname": "toileting",
+   "fieldtype": "Select",
+   "label": "Toileting",
+   "options": "Independent\nAssisted\nDependent",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_adl",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "Independent",
+   "fieldname": "transferring",
+   "fieldtype": "Select",
+   "label": "Transferring",
+   "options": "Independent\nAssisted\nDependent",
+   "reqd": 1
+  },
+  {
+   "default": "Independent",
+   "fieldname": "continence_adl",
+   "fieldtype": "Select",
+   "label": "Continence",
+   "options": "Independent\nAssisted\nDependent",
+   "reqd": 1
+  },
+  {
+   "default": "Independent",
+   "fieldname": "feeding",
+   "fieldtype": "Select",
+   "label": "Feeding",
+   "options": "Independent\nAssisted\nDependent",
+   "reqd": 1
+  },
+  {
+   "fieldname": "section_break_score",
+   "fieldtype": "Section Break",
+   "label": "Score & Notes"
+  },
+  {
+   "default": "0",
+   "fieldname": "total_adl_score",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "Total ADL Score (0-6)",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_score",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "iadl_notes",
+   "fieldtype": "Text",
+   "label": "IADL Notes"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2026-09-01 12:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Seniorcare",
+ "name": "ADL Assessment",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "cancel": 1,
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Senior Care Nurse",
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Senior Care Doctor",
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Senior Care Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  }
+ ],
+ "search_fields": "resident_file, assessment_date, total_adl_score",
+ "sort_field": "assessment_date",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "resident_name"
+}

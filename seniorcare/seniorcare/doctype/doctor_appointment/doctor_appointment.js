@@ -33,6 +33,14 @@ frappe.ui.form.on("Doctor Appointment", {
 						resident_file: frm.doc.resident_file
 					});
 				}, __("Actions"));
+
+				frm.add_custom_button(__("Create Lab Record"), () => {
+					frappe.new_doc("Lab Record", {
+						resident_file: frm.doc.resident_file,
+						ordered_by: frm.doc.doctor,
+						test_date: frm.doc.appointment_date || frappe.datetime.get_today()
+					});
+				}, __("Actions"));
 			}
 		}
 
@@ -43,9 +51,16 @@ frappe.ui.form.on("Doctor Appointment", {
 					doctor: frm.doc.doctor,
 					appointment_date: frm.doc.next_appointment_date,
 					appointment_time: frm.doc.next_appointment_time,
-					appointment_type: frm.doc.next_appointment_type || "Follow-up"
+					appointment_type: frm.doc.next_appointment_type || "Follow-up",
+					referred_by: "Doctor Referral"
 				});
 			});
+		}
+	},
+
+	follow_up_required(frm) {
+		if (frm.doc.follow_up_required && !frm.doc.referred_by) {
+			frm.set_value("referred_by", "Doctor Referral");
 		}
 	}
 });

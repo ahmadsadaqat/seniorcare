@@ -1,0 +1,245 @@
+{
+ "actions": [],
+ "autoname": "naming_series:",
+ "creation": "2026-09-01 12:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "naming_series",
+  "resident_file",
+  "resident_name",
+  "status",
+  "column_break_1",
+  "transfer_datetime",
+  "hospital",
+  "related_incident",
+  "section_break_transfer",
+  "reason",
+  "column_break_transfer",
+  "admitted_via",
+  "admitted_via_other",
+  "section_break_discharge",
+  "discharge_datetime",
+  "diagnosis_on_discharge",
+  "discharge_documents",
+  "column_break_discharge",
+  "hospital_stay_charges",
+  "section_break_followup",
+  "follow_up_required",
+  "follow_up_datetime"
+ ],
+ "fields": [
+  {
+   "default": "HT-.YYYY.-.#####",
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Naming Series",
+   "options": "HT-.YYYY.-.#####",
+   "reqd": 1
+  },
+  {
+   "fieldname": "resident_file",
+   "fieldtype": "Link",
+   "in_global_search": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Resident File",
+   "options": "Resident File",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "resident_file.full_name",
+   "fieldname": "resident_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Resident Name",
+   "read_only": 1
+  },
+  {
+   "default": "Transferred",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Status",
+   "options": "Transferred\nAdmitted\nDischarged\nFollow-up Pending",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "Now",
+   "fieldname": "transfer_datetime",
+   "fieldtype": "Datetime",
+   "in_list_view": 1,
+   "label": "Transfer Date/Time",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "resident_file.preferred_hospital",
+   "fieldname": "hospital",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Hospital"
+  },
+  {
+   "fieldname": "related_incident",
+   "fieldtype": "Link",
+   "label": "Related Incident",
+   "options": "Incident Report"
+  },
+  {
+   "fieldname": "section_break_transfer",
+   "fieldtype": "Section Break",
+   "label": "Transfer Details"
+  },
+  {
+   "fieldname": "reason",
+   "fieldtype": "Text",
+   "label": "Reason for Transfer",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_transfer",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "Ambulance",
+   "fieldname": "admitted_via",
+   "fieldtype": "Select",
+   "label": "Admitted Via",
+   "options": "Ambulance\nFamily Vehicle\nOther",
+   "reqd": 1
+  },
+  {
+   "depends_on": "eval:doc.admitted_via == 'Other'",
+   "fieldname": "admitted_via_other",
+   "fieldtype": "Data",
+   "label": "Explain Other Transport",
+   "mandatory_depends_on": "eval:doc.admitted_via == 'Other'"
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "section_break_discharge",
+   "fieldtype": "Section Break",
+   "label": "Discharge Details"
+  },
+  {
+   "fieldname": "discharge_datetime",
+   "fieldtype": "Datetime",
+   "label": "Discharge Date/Time"
+  },
+  {
+   "fieldname": "diagnosis_on_discharge",
+   "fieldtype": "Text",
+   "label": "Diagnosis on Discharge"
+  },
+  {
+   "fieldname": "discharge_documents",
+   "fieldtype": "Attach",
+   "label": "Discharge Documents"
+  },
+  {
+   "fieldname": "column_break_discharge",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "hospital_stay_charges",
+   "fieldtype": "Currency",
+   "label": "Hospital Stay Charges"
+  },
+  {
+   "fieldname": "section_break_followup",
+   "fieldtype": "Section Break",
+   "label": "Follow-up"
+  },
+  {
+   "default": "0",
+   "fieldname": "follow_up_required",
+   "fieldtype": "Check",
+   "label": "Follow-up Required?"
+  },
+  {
+   "depends_on": "eval:doc.follow_up_required == 1",
+   "fieldname": "follow_up_datetime",
+   "fieldtype": "Datetime",
+   "label": "Follow-up Date/Time",
+   "mandatory_depends_on": "eval:doc.follow_up_required == 1"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2026-09-01 12:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Seniorcare",
+ "name": "Hospital Transfer",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "cancel": 1,
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Senior Care Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Senior Care Doctor",
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Senior Care Nurse",
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Senior Care Operations",
+   "write": 1
+  }
+ ],
+ "search_fields": "resident_file, hospital, status, transfer_datetime",
+ "sort_field": "transfer_datetime",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "resident_name"
+}

@@ -1,0 +1,71 @@
+{
+ "actions": [],
+ "creation": "2026-09-01 12:00:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "care_plan",
+  "care_plan_goal",
+  "column_break_1",
+  "responsible_role",
+  "review_date",
+  "status"
+ ],
+ "fields": [
+  {
+   "fieldname": "care_plan",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Care Plan",
+   "options": "Care Plan",
+   "read_only": 1
+  },
+  {
+   "fieldname": "care_plan_goal",
+   "fieldtype": "Small Text",
+   "in_list_view": 1,
+   "label": "Care Plan Goal",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "responsible_role",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Responsible Role",
+   "options": "\nAttendant\nNurse\nDoctor\nKitchen\nAll Staff",
+   "read_only": 1
+  },
+  {
+   "fieldname": "review_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Review Date",
+   "read_only": 1
+  },
+  {
+   "default": "Active",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Status",
+   "options": "Active\nAchieved\nDiscontinued",
+   "read_only": 1
+  }
+ ],
+ "istable": 1,
+ "links": [],
+ "modified": "2026-09-01 12:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Seniorcare",
+ "name": "Resident Care Plan Item",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

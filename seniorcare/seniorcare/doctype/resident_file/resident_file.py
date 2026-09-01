@@ -12,11 +12,33 @@ class ResidentFile(Document):
 		self.calculate_age()
 		self.validate_dates()
 		self.create_or_link_customer()
+		self.sync_family_members_flags()
 		self.update_emergency_contact_summary()
+		self.update_clinical_risks_status()
 		self.handle_room_assignment()
 		self.update_financial_summaries()
 		self.update_incident_summary()
 		self.sync_assigned_attendant_name()
+
+	def sync_family_members_flags(self):
+		"""Syncs family member flags (POA, Primary Contact, Billing Contact) to Resident File fields."""
+		for fm in self.get("family_members", []):
+			contact_str = f"{fm.family_member_name} ({fm.relationship or 'Family'}) - Ph: {fm.phone or ''}".strip()
+			if fm.get("is_poa"):
+				self.power_of_attorney = contact_str
+			if fm.get("can_receive_updates"):
+				self.primary_family_contact = contact_str
+			if fm.get("can_approve_expenses"):
+				self.payer_billing_contact = contact_str
+
+	def update_clinical_risks_status(self):
+		"""Auto-derives Active vs Expired status for clinical risk precautions based on end_date."""
+		today_date = getdate(today())
+		for prec in self.get("clinical_risk_precautions", []):
+			if prec.end_date and getdate(prec.end_date) < today_date:
+				prec.status = "Expired"
+			else:
+				prec.status = "Active"
 
 	def sync_assigned_attendant_name(self):
 		if self.assigned_attendant and not self.assigned_attendant_name:
@@ -147,18 +169,7 @@ class ResidentFile(Document):
 				  AND custom_payment_purpose = 'Medical Advance'
 				  AND (party = %(cust)s OR custom_resident = %(cust)s)
 			""", {"cust": self.customer})[0][0] or 0.0
-			# Include contract initial medical advance if configured
-			self.medical_advance_received = flt(med_rec) + flt(self.initial_medical_advance)
-
-			med_used = frappe.db.sql("""
-				SELECT SUM(paid_amount)
-				FROM `tabPayment Entry`
-				WHERE docstatus = 1
-				  AND custom_payment_purpose = 'Resident Medical Expense'
-				  AND custom_funding_source = 'Resident Medical Advance'
-				  AND (party = %(cust)s OR custom_resident = %(cust)s)
-			""", {"cust": self.customer})[0][0] or 0.0
-			self.medical_advance_used = flt(med_used)
+			self.medical_advance_received = flt(med_rec)
 
 			med_ref = frappe.db.sql("""
 				SELECT SUM(paid_amount)
@@ -179,17 +190,7 @@ class ResidentFile(Document):
 				  AND custom_payment_purpose = 'Personal Advance'
 				  AND (party = %(cust)s OR custom_resident = %(cust)s)
 			""", {"cust": self.customer})[0][0] or 0.0
-			self.personal_advance_received = flt(pers_rec) + flt(self.initial_personal_advance)
-
-			pers_used = frappe.db.sql("""
-				SELECT SUM(paid_amount)
-				FROM `tabPayment Entry`
-				WHERE docstatus = 1
-				  AND custom_payment_purpose = 'Resident Personal Expense'
-				  AND custom_funding_source = 'Resident Personal Advance'
-				  AND (party = %(cust)s OR custom_resident = %(cust)s)
-			""", {"cust": self.customer})[0][0] or 0.0
-			self.personal_advance_used = flt(pers_used)
+			self.personal_advance_received = flt(pers_rec)
 
 			pers_ref = frappe.db.sql("""
 				SELECT SUM(paid_amount)
@@ -203,25 +204,31 @@ class ResidentFile(Document):
 			self.personal_advance_balance = max(0.0, flt(self.personal_advance_received) - flt(self.personal_advance_used) - flt(self.personal_advance_refunded))
 
 	def update_incident_summary(self):
-		if not self.name or self.is_new():
-			return
-		incidents = frappe.db.count("Incident Report", {"resident_file": self.name, "docstatus": ["<", 2]})
-		open_inc = frappe.db.count("Incident Report", {"resident_file": self.name, "status": "Open", "docstatus": ["<", 2]})
-		self.incident_summary = f"Total Incidents: {incidents} | Open Incidents: {open_inc}"
+		"""Updates high-level incident stats for quick desk review."""
+		if not self.is_new():
+			counts = frappe.db.sql("""
+				SELECT status, COUNT(*) as count
+				FROM `tabIncident Report`
+				WHERE resident_file = %(resident)s
+				GROUP BY status
+			""", {"resident": self.name}, as_dict=True)
+
+			if counts:
+				summary_parts = [f"{c.status}: {c.count}" for c in counts]
+				self.incident_summary = ", ".join(summary_parts)
+			else:
+				self.incident_summary = "No incidents recorded"
 
 
 @frappe.whitelist()
 def refresh_resident_financials(resident_file):
-	"""Manually triggers recalculation of financial balances from Payment Entries."""
+	"""Explicit whitelist action for desk button to recalculate ledger and payment balances."""
 	doc = frappe.get_doc("Resident File", resident_file)
 	doc.update_financial_summaries()
 	doc.save(ignore_permissions=True)
 	return {
-		"security_deposit_received": doc.security_deposit_received,
 		"security_deposit_balance": doc.security_deposit_balance,
-		"medical_advance_received": doc.medical_advance_received,
 		"medical_advance_balance": doc.medical_advance_balance,
-		"personal_advance_received": doc.personal_advance_received,
 		"personal_advance_balance": doc.personal_advance_balance,
 		"outstanding_receivable": doc.outstanding_receivable
 	}
@@ -285,6 +292,23 @@ def get_emergency_card_data(resident_file):
 				"instructions": m.special_instructions or ""
 			})
 
+	# Medical devices summary
+	devices_list = []
+	for d in doc.get("medical_devices", []):
+		d_name = d.device_name_other if d.device_name == "Other" else d.device_name
+		if d_name:
+			devices_list.append(d_name)
+	assistive_devices_str = ", ".join(devices_list) if devices_list else doc.get("assistive_devices")
+
+	# Isolation / precautions summary
+	precautions_list = []
+	for p in doc.get("clinical_risk_precautions", []):
+		if p.status == "Active":
+			p_name = p.precaution_type_other if p.precaution_type == "Other" else p.precaution_type
+			if p_name:
+				precautions_list.append(p_name)
+	precautions_str = ", ".join(precautions_list) if precautions_list else doc.get("isolation_infection_precautions")
+
 	return {
 		"resident_id": doc.name,
 		"full_name": doc.full_name,
@@ -307,8 +331,8 @@ def get_emergency_card_data(resident_file):
 		"conditions": conditions,
 		"medications": medications,
 		"dietary_restrictions": doc.get("dietary_restrictions_medical"),
-		"assistive_devices": doc.get("assistive_devices"),
-		"isolation_precautions": doc.get("isolation_infection_precautions"),
+		"assistive_devices": assistive_devices_str,
+		"isolation_precautions": precautions_str,
 		"special_care_instructions": doc.get("special_care_instructions"),
 		"medical_notes": doc.get("medical_notes"),
 		"food_preferences": doc.get("food_preferences")

@@ -28,7 +28,13 @@
   "initial_personal_advance",
   "section_break_terms",
   "deposit_terms",
-  "contract_attachment"
+  "contract_attachment",
+  "section_break_notice",
+  "notice_period_days",
+  "termination_terms",
+  "column_break_notice",
+  "signed_by",
+  "signed_date"
  ],
  "fields": [
   {
@@ -177,6 +183,35 @@
    "fieldname": "contract_attachment",
    "fieldtype": "Attach",
    "label": "Signed Contract Attachment"
+  },
+  {
+   "fieldname": "section_break_notice",
+   "fieldtype": "Section Break",
+   "label": "Notice & Signatory"
+  },
+  {
+   "fieldname": "notice_period_days",
+   "fieldtype": "Int",
+   "label": "Notice Period (Days)"
+  },
+  {
+   "fieldname": "termination_terms",
+   "fieldtype": "Text",
+   "label": "Termination Terms"
+  },
+  {
+   "fieldname": "column_break_notice",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "signed_by",
+   "fieldtype": "Data",
+   "label": "Signed By (Resident / Guardian)"
+  },
+  {
+   "fieldname": "signed_date",
+   "fieldtype": "Date",
+   "label": "Signed Date"
   }
  ],
  "index_web_pages_for_search": 1,

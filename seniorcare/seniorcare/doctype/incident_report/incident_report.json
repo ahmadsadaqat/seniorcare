@@ -9,6 +9,7 @@
   "resident_file",
   "incident_datetime",
   "incident_type",
+  "severity_level",
   "location",
   "column_break_1",
   "status",
@@ -22,7 +23,10 @@
   "immediate_action",
   "section_break_followup",
   "follow_up_required",
-  "follow_up_date"
+  "follow_up_date",
+  "section_break_family",
+  "family_notified",
+  "family_notified_datetime"
  ],
  "fields": [
   {
@@ -58,6 +62,16 @@
    "in_standard_filter": 1,
    "label": "Incident Type",
    "options": "Fall\nMedication Error\nBehavioral\nMedical Emergency\nInjury\nProperty Damage\nOther",
+   "reqd": 1
+  },
+  {
+   "default": "Minor",
+   "fieldname": "severity_level",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Severity Level",
+   "options": "Minor\nModerate\nMajor\nCritical",
    "reqd": 1
   },
   {
@@ -138,6 +152,23 @@
    "fieldname": "follow_up_date",
    "fieldtype": "Date",
    "label": "Follow-up Date"
+  },
+  {
+   "fieldname": "section_break_family",
+   "fieldtype": "Section Break",
+   "label": "Family Notification"
+  },
+  {
+   "default": "0",
+   "fieldname": "family_notified",
+   "fieldtype": "Check",
+   "label": "Family Notified?"
+  },
+  {
+   "depends_on": "eval:doc.family_notified == 1",
+   "fieldname": "family_notified_datetime",
+   "fieldtype": "Datetime",
+   "label": "Family Notified Date/Time"
   }
  ],
  "index_web_pages_for_search": 1,

@@ -1,0 +1,385 @@
+{
+ "actions": [],
+ "autoname": "naming_series:",
+ "creation": "2026-09-01 12:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "naming_series",
+  "assessment_status",
+  "section_break_info",
+  "assessment_type",
+  "assessment_date",
+  "assessed_by",
+  "assessed_by_name",
+  "column_break_info",
+  "resident_file",
+  "resident_name",
+  "section_break_functional",
+  "functional_status_adl",
+  "cognitive_assessment_notes",
+  "column_break_functional",
+  "nutritional_assessment",
+  "social_emotional_assessment",
+  "section_break_care_plan",
+  "care_plan_goals",
+  "column_break_care_plan",
+  "care_plan_actions_interventions",
+  "next_review_date",
+  "section_break_continence",
+  "urinary_continence",
+  "bowel_continence",
+  "catheter",
+  "column_break_continence",
+  "continence_aids",
+  "continence_aids_other",
+  "toileting_assistance_level",
+  "section_break_cognitive",
+  "orientation",
+  "memory_impairment",
+  "decision_making_capacity",
+  "column_break_cognitive",
+  "wandering_elopement_risk",
+  "behavioral_symptoms",
+  "behavioral_triggers",
+  "section_break_nutrition",
+  "nutrition_risk_level",
+  "recent_weight_change",
+  "swallowing_difficulty",
+  "column_break_nutrition",
+  "diet_texture",
+  "liquid_consistency",
+  "feeding_assistance_required"
+ ],
+ "fields": [
+  {
+   "default": "RA-.YYYY.-.#####",
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Naming Series",
+   "options": "RA-.YYYY.-.#####",
+   "reqd": 1
+  },
+  {
+   "default": "Draft",
+   "fieldname": "assessment_status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Status",
+   "options": "Draft\nCompleted\nReviewed",
+   "reqd": 1
+  },
+  {
+   "fieldname": "section_break_info",
+   "fieldtype": "Section Break",
+   "label": "Assessment Info"
+  },
+  {
+   "default": "Ongoing",
+   "fieldname": "assessment_type",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Assessment Type",
+   "options": "Initial\nOngoing\nFinal",
+   "reqd": 1
+  },
+  {
+   "default": "Today",
+   "fieldname": "assessment_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Assessment Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "assessed_by",
+   "fieldtype": "Link",
+   "label": "Assessed By",
+   "options": "Employee",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "assessed_by.employee_name",
+   "fieldname": "assessed_by_name",
+   "fieldtype": "Data",
+   "label": "Assessor Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_info",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "resident_file",
+   "fieldtype": "Link",
+   "in_global_search": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Resident File",
+   "options": "Resident File",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "resident_file.full_name",
+   "fieldname": "resident_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Resident Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_functional",
+   "fieldtype": "Section Break",
+   "label": "Functional Status"
+  },
+  {
+   "fieldname": "functional_status_adl",
+   "fieldtype": "Select",
+   "label": "Functional Status / ADLs",
+   "options": "\nIndependent\nNeeds Assistance\nDependent"
+  },
+  {
+   "fieldname": "cognitive_assessment_notes",
+   "fieldtype": "Text",
+   "label": "Cognitive Assessment Notes"
+  },
+  {
+   "fieldname": "column_break_functional",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "nutritional_assessment",
+   "fieldtype": "Text",
+   "label": "Nutritional Assessment"
+  },
+  {
+   "fieldname": "social_emotional_assessment",
+   "fieldtype": "Text",
+   "label": "Social / Emotional Assessment"
+  },
+  {
+   "fieldname": "section_break_care_plan",
+   "fieldtype": "Section Break",
+   "label": "Care Plan"
+  },
+  {
+   "fieldname": "care_plan_goals",
+   "fieldtype": "Long Text",
+   "label": "Care Plan Goals"
+  },
+  {
+   "fieldname": "column_break_care_plan",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "care_plan_actions_interventions",
+   "fieldtype": "Long Text",
+   "label": "Care Plan Actions / Interventions"
+  },
+  {
+   "fieldname": "next_review_date",
+   "fieldtype": "Date",
+   "label": "Next Review Date"
+  },
+  {
+   "fieldname": "section_break_continence",
+   "fieldtype": "Section Break",
+   "label": "Continence"
+  },
+  {
+   "fieldname": "urinary_continence",
+   "fieldtype": "Select",
+   "label": "Urinary Continence",
+   "options": "\nContinent\nOccasional Incontinence\nIncontinent"
+  },
+  {
+   "fieldname": "bowel_continence",
+   "fieldtype": "Select",
+   "label": "Bowel Continence",
+   "options": "\nContinent\nOccasional Incontinence\nIncontinent"
+  },
+  {
+   "fieldname": "catheter",
+   "fieldtype": "Select",
+   "label": "Catheter",
+   "options": "\nIndwelling\nIntermittent\nNone"
+  },
+  {
+   "fieldname": "column_break_continence",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "continence_aids",
+   "fieldtype": "Select",
+   "label": "Continence Aids",
+   "options": "\nPads\nBriefs\nNone\nOther"
+  },
+  {
+   "depends_on": "eval:doc.continence_aids == 'Other'",
+   "fieldname": "continence_aids_other",
+   "fieldtype": "Data",
+   "label": "Explain Other Aids",
+   "mandatory_depends_on": "eval:doc.continence_aids == 'Other'"
+  },
+  {
+   "fieldname": "toileting_assistance_level",
+   "fieldtype": "Select",
+   "label": "Toileting Assistance Level",
+   "options": "\nIndependent\nSupervision\nFull Assistance"
+  },
+  {
+   "fieldname": "section_break_cognitive",
+   "fieldtype": "Section Break",
+   "label": "Cognitive & Behavioral"
+  },
+  {
+   "fieldname": "orientation",
+   "fieldtype": "Small Text",
+   "label": "Orientation (Person / Place / Time)"
+  },
+  {
+   "fieldname": "memory_impairment",
+   "fieldtype": "Select",
+   "label": "Memory Impairment",
+   "options": "\nNone\nMild\nModerate\nSevere"
+  },
+  {
+   "fieldname": "decision_making_capacity",
+   "fieldtype": "Select",
+   "label": "Decision-Making Capacity",
+   "options": "\nFull\nPartial\nNone"
+  },
+  {
+   "fieldname": "column_break_cognitive",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "fieldname": "wandering_elopement_risk",
+   "fieldtype": "Check",
+   "label": "Wandering / Elopement Risk"
+  },
+  {
+   "fieldname": "behavioral_symptoms",
+   "fieldtype": "Small Text",
+   "label": "Behavioral Symptoms (Agitation, Aggression, Anxiety, etc.)"
+  },
+  {
+   "fieldname": "behavioral_triggers",
+   "fieldtype": "Text",
+   "label": "Behavioral Triggers"
+  },
+  {
+   "fieldname": "section_break_nutrition",
+   "fieldtype": "Section Break",
+   "label": "Nutrition & Swallowing"
+  },
+  {
+   "fieldname": "nutrition_risk_level",
+   "fieldtype": "Select",
+   "label": "Nutrition Risk Level",
+   "options": "\nLow\nMedium\nHigh"
+  },
+  {
+   "fieldname": "recent_weight_change",
+   "fieldtype": "Data",
+   "label": "Recent Weight Change",
+   "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "swallowing_difficulty",
+   "fieldtype": "Check",
+   "label": "Swallowing Difficulty"
+  },
+  {
+   "fieldname": "column_break_nutrition",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "diet_texture",
+   "fieldtype": "Select",
+   "label": "Diet Texture (IDDSI)",
+   "options": "\nRegular\nSoft & Bite-Sized\nMinced & Moist\nPureed"
+  },
+  {
+   "fieldname": "liquid_consistency",
+   "fieldtype": "Select",
+   "label": "Liquid Consistency (IDDSI)",
+   "options": "\nThin\nSlightly Thick\nMildly Thick\nModerately Thick\nExtremely Thick"
+  },
+  {
+   "fieldname": "feeding_assistance_required",
+   "fieldtype": "Select",
+   "label": "Feeding Assistance Required",
+   "options": "\nIndependent\nSupervision\nFull Assistance"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2026-09-01 12:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Seniorcare",
+ "name": "Resident Assessment",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "cancel": 1,
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Senior Care Nurse",
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Senior Care Doctor",
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Senior Care Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  }
+ ],
+ "search_fields": "resident_file, assessment_type, assessment_date, assessment_status",
+ "sort_field": "assessment_date",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "resident_name"
+}

@@ -40,6 +40,8 @@
   "power_of_attorney",
   "section_break_family_table",
   "family_members",
+  "section_break_consent",
+  "consent_authorizations",
   "section_break_contract",
   "current_contract",
   "contract_start_date",
@@ -58,11 +60,20 @@
   "fall_risk_level",
   "dnr_directive",
   "dnr_document",
+  "section_break_adl_summary",
+  "latest_adl_score",
+  "latest_adl_date",
+  "column_break_adl_sum",
+  "latest_adl_assessed_by",
   "section_break_qbzd",
   "allergies",
   "medical_history",
   "medical_conditions",
   "current_medications",
+  "section_break_wounds",
+  "wound_records",
+  "section_break_lab_records",
+  "lab_records",
   "section_break_clinical_logs",
   "last_vaccinations",
   "last_vitals",
@@ -73,9 +84,9 @@
   "weight_baseline",
   "dietary_restrictions_medical",
   "column_break_clinical_baseline",
-  "isolation_infection_precautions",
+  "clinical_risk_precautions",
   "primary_admitting_diagnosis",
-  "assistive_devices",
+  "medical_devices",
   "section_break_insurance",
   "medical_insurance_provider",
   "medical_insurance_policy_no",
@@ -88,6 +99,8 @@
   "daily_schedule",
   "column_break_lifestyle",
   "special_care_instructions",
+  "section_break_care_plans",
+  "active_care_plans",
   "special_occasions",
   "section_break_sensory",
   "hearing_impairment",
@@ -106,6 +119,9 @@
   "assigned_attendant_name",
   "assigned_attendant",
   "case_manager",
+  "tab_documents",
+  "section_break_resident_docs",
+  "resident_documents",
   "tab_financial",
   "section_break_monthly",
   "auto_create_monthly_invoice",
@@ -185,7 +201,7 @@
    "in_list_view": 1,
    "in_standard_filter": 1,
    "label": "Resident Status",
-   "options": "Active\nInactive\nTrial\nTemporary Leave\nDischarged\nDeceased",
+   "options": "Active\nInactive\nTrial\nTemporary Leave\nHospital Admitted\nDischarged\nDeceased",
    "reqd": 1
   },
   {
@@ -528,19 +544,9 @@
    "fieldtype": "Column Break"
   },
   {
-   "fieldname": "isolation_infection_precautions",
-   "fieldtype": "Small Text",
-   "label": "Isolation / Infection Precautions"
-  },
-  {
    "fieldname": "primary_admitting_diagnosis",
    "fieldtype": "Data",
    "label": "Primary / Admitting Diagnosis"
-  },
-  {
-   "fieldname": "assistive_devices",
-   "fieldtype": "Small Text",
-   "label": "Assistive Devices (Hearing aid, glasses, dentures, wheelchair, walker etc.)"
   },
   {
    "fieldname": "section_break_insurance",
@@ -880,6 +886,108 @@
   {
    "fieldname": "section_break_qbzd",
    "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "section_break_consent",
+   "fieldtype": "Section Break",
+   "label": "Consent & Authorizations"
+  },
+  {
+   "fieldname": "consent_authorizations",
+   "fieldtype": "Table",
+   "label": "Consent Authorizations",
+   "options": "Resident Consent Item"
+  },
+  {
+   "fieldname": "section_break_adl_summary",
+   "fieldtype": "Section Break",
+   "label": "Latest ADL Assessment"
+  },
+  {
+   "fieldname": "latest_adl_score",
+   "fieldtype": "Int",
+   "label": "Latest ADL Score (0-6)",
+   "read_only": 1
+  },
+  {
+   "fieldname": "latest_adl_date",
+   "fieldtype": "Date",
+   "label": "Latest ADL Date",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_adl_sum",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "latest_adl_assessed_by",
+   "fieldtype": "Data",
+   "label": "ADL Assessed By",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_wounds",
+   "fieldtype": "Section Break",
+   "label": "Active Wound Records"
+  },
+  {
+   "fieldname": "wound_records",
+   "fieldtype": "Table",
+   "label": "Wound Records",
+   "options": "Resident Wound Item",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_lab_records",
+   "fieldtype": "Section Break",
+   "label": "Recent Lab Records"
+  },
+  {
+   "fieldname": "lab_records",
+   "fieldtype": "Table",
+   "label": "Lab Records",
+   "options": "Resident Lab Record Item",
+   "read_only": 1
+  },
+  {
+   "fieldname": "medical_devices",
+   "fieldtype": "Table",
+   "label": "Medical & Assistive Devices",
+   "options": "Resident Medical Device Item"
+  },
+  {
+   "fieldname": "clinical_risk_precautions",
+   "fieldtype": "Table",
+   "label": "Clinical Risks & Precautions",
+   "options": "Resident Clinical Risk Item"
+  },
+  {
+   "fieldname": "section_break_care_plans",
+   "fieldtype": "Section Break",
+   "label": "Active Care Plans"
+  },
+  {
+   "fieldname": "active_care_plans",
+   "fieldtype": "Table",
+   "label": "Active Care Plans",
+   "options": "Resident Care Plan Item",
+   "read_only": 1
+  },
+  {
+   "fieldname": "tab_documents",
+   "fieldtype": "Tab Break",
+   "label": "Documents"
+  },
+  {
+   "fieldname": "section_break_resident_docs",
+   "fieldtype": "Section Break",
+   "label": "Resident Documents & Attachments"
+  },
+  {
+   "fieldname": "resident_documents",
+   "fieldtype": "Table",
+   "label": "Resident Documents",
+   "options": "Senior Care Resident Document"
   }
  ],
  "image_field": "resident_photo",
@@ -915,6 +1023,30 @@
   },
   {
    "link_doctype": "Attendant Assignment Item",
+   "link_fieldname": "resident_file"
+  },
+  {
+   "link_doctype": "ADL Assessment",
+   "link_fieldname": "resident_file"
+  },
+  {
+   "link_doctype": "Hospital Transfer",
+   "link_fieldname": "resident_file"
+  },
+  {
+   "link_doctype": "Wound Assessment",
+   "link_fieldname": "resident_file"
+  },
+  {
+   "link_doctype": "Lab Record",
+   "link_fieldname": "resident_file"
+  },
+  {
+   "link_doctype": "Care Plan",
+   "link_fieldname": "resident_file"
+  },
+  {
+   "link_doctype": "Resident Assessment",
    "link_fieldname": "resident_file"
   }
  ],

@@ -1,0 +1,70 @@
+{
+ "actions": [],
+ "creation": "2026-09-01 12:00:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "device_name",
+  "device_name_other",
+  "column_break_1",
+  "date_acquired",
+  "maintenance_check_date",
+  "section_break_notes",
+  "notes"
+ ],
+ "fields": [
+  {
+   "fieldname": "device_name",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Device Name",
+   "options": "Wheelchair\nWalker\nHearing Aid\nGlasses\nDentures\nOxygen Concentrator\nCatheter\nOther",
+   "reqd": 1
+  },
+  {
+   "depends_on": "eval:doc.device_name == 'Other'",
+   "fieldname": "device_name_other",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Specify Other Device",
+   "mandatory_depends_on": "eval:doc.device_name == 'Other'"
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "date_acquired",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Date Acquired"
+  },
+  {
+   "fieldname": "maintenance_check_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Maintenance / Check Date"
+  },
+  {
+   "fieldname": "section_break_notes",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "notes",
+   "fieldtype": "Small Text",
+   "label": "Notes"
+  }
+ ],
+ "istable": 1,
+ "links": [],
+ "modified": "2026-09-01 12:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Seniorcare",
+ "name": "Resident Medical Device Item",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

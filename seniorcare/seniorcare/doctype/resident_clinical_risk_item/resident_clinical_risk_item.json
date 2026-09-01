@@ -1,0 +1,80 @@
+{
+ "actions": [],
+ "creation": "2026-09-01 12:00:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "precaution_type",
+  "precaution_type_other",
+  "status",
+  "column_break_1",
+  "start_date",
+  "end_date",
+  "section_break_desc",
+  "description"
+ ],
+ "fields": [
+  {
+   "fieldname": "precaution_type",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Precaution Type",
+   "options": "Infection Control\nIsolation\nSafeguarding Concern\nOther",
+   "reqd": 1
+  },
+  {
+   "depends_on": "eval:doc.precaution_type == 'Other'",
+   "fieldname": "precaution_type_other",
+   "fieldtype": "Data",
+   "label": "Specify Other Precaution",
+   "mandatory_depends_on": "eval:doc.precaution_type == 'Other'"
+  },
+  {
+   "default": "Active",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Status",
+   "options": "Active\nExpired",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "start_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Start Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "end_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "End Date"
+  },
+  {
+   "fieldname": "section_break_desc",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "description",
+   "fieldtype": "Long Text",
+   "label": "Description"
+  }
+ ],
+ "istable": 1,
+ "links": [],
+ "modified": "2026-09-01 12:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Seniorcare",
+ "name": "Resident Clinical Risk Item",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

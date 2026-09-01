@@ -1,0 +1,211 @@
+{
+ "actions": [],
+ "autoname": "naming_series:",
+ "creation": "2026-09-01 12:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "naming_series",
+  "resident_file",
+  "resident_name",
+  "pressure_injury_risk",
+  "column_break_1",
+  "wound_type",
+  "existing_wound_reference",
+  "wound_finding_date",
+  "wound_reviewed_date",
+  "section_break_wound",
+  "wound_description",
+  "wound_stage",
+  "wound_status",
+  "column_break_wound",
+  "wound_photo",
+  "repositioning_schedule",
+  "section_break_plan",
+  "dressing_plan"
+ ],
+ "fields": [
+  {
+   "default": "WND-.YYYY.-.#####",
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Naming Series",
+   "options": "WND-.YYYY.-.#####",
+   "reqd": 1
+  },
+  {
+   "fieldname": "resident_file",
+   "fieldtype": "Link",
+   "in_global_search": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Resident File",
+   "options": "Resident File",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "resident_file.full_name",
+   "fieldname": "resident_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Resident Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "pressure_injury_risk",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Pressure Injury Risk (Braden-based)",
+   "options": "\nVery High\nHigh\nModerate\nMild\nNo Risk"
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "New",
+   "fieldname": "wound_type",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Wound Type",
+   "options": "New\nExisting\nPre Admission",
+   "reqd": 1
+  },
+  {
+   "depends_on": "eval:doc.wound_type == 'Existing'",
+   "fieldname": "existing_wound_reference",
+   "fieldtype": "Link",
+   "label": "Existing Wound Reference",
+   "options": "Wound Assessment"
+  },
+  {
+   "depends_on": "eval:doc.wound_type == 'New' || doc.wound_type == 'Pre Admission'",
+   "fieldname": "wound_finding_date",
+   "fieldtype": "Date",
+   "label": "Wound Finding Date"
+  },
+  {
+   "depends_on": "eval:doc.wound_type == 'Existing' || doc.wound_type == 'Pre Admission'",
+   "fieldname": "wound_reviewed_date",
+   "fieldtype": "Date",
+   "label": "Wound Reviewed Date"
+  },
+  {
+   "fieldname": "section_break_wound",
+   "fieldtype": "Section Break",
+   "label": "Wound Details"
+  },
+  {
+   "fieldname": "wound_description",
+   "fieldtype": "Small Text",
+   "label": "Wound Description",
+   "reqd": 1
+  },
+  {
+   "fieldname": "wound_stage",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Wound Stage",
+   "options": "\nStage I\nStage II\nStage III\nStage IV\nUnstageable",
+   "reqd": 1
+  },
+  {
+   "default": "Open",
+   "fieldname": "wound_status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Wound Status",
+   "options": "Open\nHealing\nHealed\nInfected\nWorsening",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_wound",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "wound_photo",
+   "fieldtype": "Attach Image",
+   "label": "Wound Photo"
+  },
+  {
+   "fieldname": "repositioning_schedule",
+   "fieldtype": "Select",
+   "label": "Repositioning Schedule",
+   "options": "\nEvery 2 hrs\nEvery 4 hrs\nAs tolerated\nNot required"
+  },
+  {
+   "fieldname": "section_break_plan",
+   "fieldtype": "Section Break",
+   "label": "Treatment Plan"
+  },
+  {
+   "fieldname": "dressing_plan",
+   "fieldtype": "Long Text",
+   "label": "Dressing Plan"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2026-09-01 12:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Seniorcare",
+ "name": "Wound Assessment",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "cancel": 1,
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Senior Care Nurse",
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Senior Care Doctor",
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Senior Care Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  }
+ ],
+ "search_fields": "resident_file, wound_type, wound_stage, wound_status",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "resident_name"
+}

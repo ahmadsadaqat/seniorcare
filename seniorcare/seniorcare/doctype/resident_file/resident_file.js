@@ -84,6 +84,44 @@ frappe.ui.form.on("Resident File", {
 				});
 			}, __("Clinical Actions"));
 
+			frm.add_custom_button(__("ADL Assessment"), () => {
+				frappe.new_doc("ADL Assessment", {
+					resident_file: frm.doc.name
+				});
+			}, __("Clinical Actions"));
+
+			frm.add_custom_button(__("Resident Assessment"), () => {
+				frappe.new_doc("Resident Assessment", {
+					resident_file: frm.doc.name
+				});
+			}, __("Clinical Actions"));
+
+			frm.add_custom_button(__("Wound Assessment"), () => {
+				frappe.new_doc("Wound Assessment", {
+					resident_file: frm.doc.name
+				});
+			}, __("Clinical Actions"));
+
+			frm.add_custom_button(__("Create Lab Record"), () => {
+				frappe.new_doc("Lab Record", {
+					resident_file: frm.doc.name,
+					ordered_by: frm.doc.primary_doctor
+				});
+			}, __("Clinical Actions"));
+
+			frm.add_custom_button(__("Hospital Transfer"), () => {
+				frappe.new_doc("Hospital Transfer", {
+					resident_file: frm.doc.name,
+					hospital: frm.doc.preferred_hospital
+				});
+			}, __("Clinical Actions"));
+
+			frm.add_custom_button(__("Care Plan"), () => {
+				frappe.new_doc("Care Plan", {
+					resident_file: frm.doc.name
+				});
+			}, __("Clinical Actions"));
+
 			frm.add_custom_button(__("Assign Attendant"), () => {
 				const new_doc = frappe.model.get_new_doc("Attendant Assignment");
 				frappe.set_route("Form", "Attendant Assignment", new_doc.name).then(() => {
@@ -480,3 +518,28 @@ frappe.ui.form.on("Resident File", {
 		}
 	}
 });
+
+frappe.ui.form.on("Senior Care Family Member", {
+	is_poa(frm, cdt, cdn) {
+		const row = locals[cdt][cdn];
+		if (row.is_poa && row.family_member_name) {
+			const str = `${row.family_member_name} (${row.relationship || "Family"}) - Ph: ${row.phone || ""}`.trim();
+			frm.set_value("power_of_attorney", str);
+		}
+	},
+	can_receive_updates(frm, cdt, cdn) {
+		const row = locals[cdt][cdn];
+		if (row.can_receive_updates && row.family_member_name) {
+			const str = `${row.family_member_name} (${row.relationship || "Family"}) - Ph: ${row.phone || ""}`.trim();
+			frm.set_value("primary_family_contact", str);
+		}
+	},
+	can_approve_expenses(frm, cdt, cdn) {
+		const row = locals[cdt][cdn];
+		if (row.can_approve_expenses && row.family_member_name) {
+			const str = `${row.family_member_name} (${row.relationship || "Family"}) - Ph: ${row.phone || ""}`.trim();
+			frm.set_value("payer_billing_contact", str);
+		}
+	}
+});
+

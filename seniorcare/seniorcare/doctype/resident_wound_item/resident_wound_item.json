@@ -1,0 +1,78 @@
+{
+ "actions": [],
+ "creation": "2026-09-01 12:00:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "wound_assessment",
+  "wound_type",
+  "wound_description",
+  "column_break_1",
+  "wound_stage",
+  "wound_status",
+  "wound_finding_date"
+ ],
+ "fields": [
+  {
+   "fieldname": "wound_assessment",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Wound Assessment",
+   "options": "Wound Assessment",
+   "read_only": 1
+  },
+  {
+   "fieldname": "wound_type",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Wound Type",
+   "options": "New\nExisting\nPre Admission",
+   "read_only": 1
+  },
+  {
+   "fieldname": "wound_description",
+   "fieldtype": "Small Text",
+   "in_list_view": 1,
+   "label": "Wound Description",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_1",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "wound_stage",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Wound Stage",
+   "options": "\nStage I\nStage II\nStage III\nStage IV\nUnstageable",
+   "read_only": 1
+  },
+  {
+   "fieldname": "wound_status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Wound Status",
+   "options": "\nOpen\nHealing\nHealed\nInfected\nWorsening",
+   "read_only": 1
+  },
+  {
+   "fieldname": "wound_finding_date",
+   "fieldtype": "Date",
+   "label": "Wound Finding Date",
+   "read_only": 1
+  }
+ ],
+ "istable": 1,
+ "links": [],
+ "modified": "2026-09-01 12:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Seniorcare",
+ "name": "Resident Wound Item",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

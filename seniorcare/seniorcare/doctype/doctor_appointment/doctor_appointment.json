@@ -12,6 +12,8 @@
   "appointment_time",
   "column_break_1",
   "appointment_type",
+  "appointment_mode",
+  "referred_by",
   "status",
   "completed_on",
   "doctor_confirmation",
@@ -90,6 +92,18 @@
    "label": "Appointment Type",
    "options": "Routine Checkup\nSpecialist Consultation\nEmergency\nFollow-up\nLab Test",
    "reqd": 1
+  },
+  {
+   "fieldname": "appointment_mode",
+   "fieldtype": "Select",
+   "label": "Appointment Mode",
+   "options": "In-Person\nVideo Call\nPhone"
+  },
+  {
+   "fieldname": "referred_by",
+   "fieldtype": "Select",
+   "label": "Referred By",
+   "options": "\nSelf\nFamily\nStaff\nDoctor Referral"
   },
   {
    "default": "Scheduled",
