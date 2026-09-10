@@ -1,0 +1,113 @@
+{
+ "actions": [],
+ "autoname": "naming_series:",
+ "creation": "2026-09-10 15:50:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "naming_series",
+  "employee",
+  "employee_name",
+  "worker_type",
+  "column_break_edc_meta",
+  "template",
+  "compliance_status",
+  "section_break_checklist",
+  "checklist_items"
+ ],
+ "fields": [
+  {
+   "default": "EDC-.YYYY.-.####",
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Naming Series",
+   "options": "EDC-.YYYY.-.####",
+   "reqd": 1
+  },
+  {
+   "fieldname": "employee",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Employee",
+   "options": "Employee",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "employee.employee_name",
+   "fieldname": "employee_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Employee Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "worker_type",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Worker Category",
+   "options": "Clinical\nAdministrative\nSecurity\nHousekeeping\nOther"
+  },
+  {
+   "fieldname": "column_break_edc_meta",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "template",
+   "fieldtype": "Link",
+   "label": "Populate from Template",
+   "options": "Document Checklist Template"
+  },
+  {
+   "default": "Pending",
+   "fieldname": "compliance_status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Compliance Status",
+   "options": "Pending\nCompliant\nNon-Compliant",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_checklist",
+   "fieldtype": "Section Break",
+   "label": "Checklist Documents"
+  },
+  {
+   "fieldname": "checklist_items",
+   "fieldtype": "Table",
+   "label": "Checklist Items",
+   "options": "Employee Document Checklist Item"
+  }
+ ],
+ "modified": "2026-09-10 15:50:00.000000",
+ "modified_by": "Administrator",
+ "module": "Seniorcare",
+ "name": "Employee Document Checklist",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "read": 1,
+   "role": "Senior Care HR",
+   "write": 1
+  }
+ ],
+ "search_fields": "employee, employee_name, compliance_status",
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "employee_name"
+}

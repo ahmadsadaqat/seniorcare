@@ -18,7 +18,7 @@ def create_monthly_invoices():
 	residents = frappe.get_all(
 		"Resident File",
 		filters={
-			"resident_status": "Active",
+			"resident_status": ["in", ["Active", "Hospital Admitted"]],
 			"auto_create_monthly_invoice": 1
 		},
 		fields=["name", "customer", "current_contract", "occupancy_fee", "attendant_fee", "other_fixed_charges"]

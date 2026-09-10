@@ -11,7 +11,8 @@ ROLES = [
 	"Senior Care Operations",
 	"Senior Care Finance",
 	"Senior Care HR",
-	"Senior Care Receptionist"
+	"Senior Care Receptionist",
+	"Senior Care Approver",
 ]
 
 CUSTOM_FIELDS = {
@@ -96,6 +97,12 @@ CUSTOM_FIELDS = {
 		}
 	],
 	"Employee": [
+		{
+			"fieldname": "cnic_national_id",
+			"fieldtype": "Data",
+			"label": "CNIC / National ID",
+			"insert_after": "employee_name"
+		},
 		{
 			"fieldname": "outsourced_employment_section",
 			"fieldtype": "Section Break",
@@ -421,6 +428,7 @@ def setup_senior_care():
 
 	create_custom_fields(CUSTOM_FIELDS, ignore_validate=True)
 	setup_default_accounts()
+	setup_statutory_salary_components()
 
 
 def setup_default_accounts():
@@ -435,6 +443,7 @@ def setup_default_accounts():
 		get_medical_expense_account(company)
 		get_personal_expense_account(company)
 		get_resident_income_account(company)
+		setup_credit_card_defaults(company)
 		setup_senior_care_settings(company)
 
 
@@ -619,4 +628,96 @@ def setup_senior_care_settings(company):
 	if not settings.resident_income_account:
 		settings.resident_income_account = get_resident_income_account(company)
 	settings.save(ignore_permissions=True)
+
+
+def setup_credit_card_defaults(company):
+	"""Ensures Mode of Payment Credit Card and Bank/Liability account exist."""
+	if not frappe.db.exists("Mode of Payment", "Credit Card"):
+		try:
+			frappe.get_doc({
+				"doctype": "Mode of Payment",
+				"mode_of_payment": "Credit Card",
+				"type": "Bank"
+			}).insert(ignore_permissions=True)
+		except Exception:
+			pass
+
+	cc_acc = frappe.db.get_value("Account", {"account_name": "Credit Card - Corporate", "company": company})
+	if not cc_acc:
+		parent = frappe.db.get_value("Account", {"root_type": "Liability", "company": company, "is_group": 1})
+		if parent:
+			try:
+				doc = frappe.get_doc({
+					"doctype": "Account",
+					"account_name": "Credit Card - Corporate",
+					"company": company,
+					"parent_account": parent,
+					"account_type": "Bank",
+					"root_type": "Liability"
+				})
+				doc.insert(ignore_permissions=True)
+				cc_acc = doc.name
+			except Exception:
+				pass
+	return cc_acc
+
+
+def setup_statutory_salary_components():
+	"""Auto-creates Pakistan statutory salary components if Frappe HR / ERPNext Salary Component exists."""
+	if not frappe.db.exists("DocType", "Salary Component"):
+		return
+
+	components = [
+		{
+			"salary_component": "EOBI - Employer",
+			"type": "Earning",
+			"is_tax_applicable": 0,
+			"description": "EOBI Employer Contribution (5% of declared minimum wage)"
+		},
+		{
+			"salary_component": "EOBI - Employee",
+			"type": "Deduction",
+			"is_tax_applicable": 0,
+			"description": "EOBI Employee Contribution (1% of declared minimum wage)"
+		},
+		{
+			"salary_component": "PESSI - Employer",
+			"type": "Earning",
+			"is_tax_applicable": 0,
+			"description": "Punjab Employees Social Security Employer Contribution (6%)"
+		},
+		{
+			"salary_component": "PESSI - Employee",
+			"type": "Deduction",
+			"is_tax_applicable": 0,
+			"description": "Punjab Employees Social Security Employee Contribution (1%)"
+		},
+		{
+			"salary_component": "Income Tax Withholding",
+			"type": "Deduction",
+			"is_tax_applicable": 0,
+			"description": "Salary Income Tax Withholding as per FBR annual tax slabs"
+		},
+		{
+			"salary_component": "Workers Welfare Fund",
+			"type": "Deduction",
+			"is_tax_applicable": 0,
+			"description": "WWF Deduction"
+		},
+	]
+
+	for comp in components:
+		if not frappe.db.exists("Salary Component", comp["salary_component"]):
+			try:
+				doc = frappe.get_doc({
+					"doctype": "Salary Component",
+					"salary_component": comp["salary_component"],
+					"salary_component_abbr": "".join(w[0] for w in comp["salary_component"].split()),
+					"type": comp["type"],
+					"is_tax_applicable": comp.get("is_tax_applicable", 0),
+					"description": comp["description"]
+				})
+				doc.insert(ignore_permissions=True)
+			except Exception:
+				pass
 

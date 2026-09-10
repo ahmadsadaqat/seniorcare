@@ -52,7 +52,8 @@ doctype_js = {
 scheduler_events = {
 	"daily": [
 		"seniorcare.billing.create_monthly_invoices",
-		"seniorcare.alerts.check_daily_alerts"
+		"seniorcare.alerts.check_daily_alerts",
+		"seniorcare.seniorcare.doctype.fee_change_request.fee_change_request.apply_pending_fee_changes",
 	]
 }
 

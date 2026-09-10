@@ -1,0 +1,112 @@
+{
+ "actions": [],
+ "autoname": "field:package_name",
+ "creation": "2026-09-10 15:40:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "package_name",
+  "therapy_type",
+  "total_sessions",
+  "column_break_pricing",
+  "package_rate",
+  "validity_days",
+  "billing_mode",
+  "section_break_notes",
+  "description"
+ ],
+ "fields": [
+  {
+   "fieldname": "package_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Package Name",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "fieldname": "therapy_type",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Therapy Type",
+   "options": "Therapy Type",
+   "reqd": 1
+  },
+  {
+   "fieldname": "total_sessions",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "Total Sessions",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_pricing",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "package_rate",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Package Rate",
+   "reqd": 1
+  },
+  {
+   "default": "30",
+   "fieldname": "validity_days",
+   "fieldtype": "Int",
+   "label": "Validity (Days)"
+  },
+  {
+   "default": "Per Session",
+   "fieldname": "billing_mode",
+   "fieldtype": "Select",
+   "label": "Billing Mode",
+   "options": "Per Session\nMonthly Package"
+  },
+  {
+   "fieldname": "section_break_notes",
+   "fieldtype": "Section Break",
+   "label": "Description"
+  },
+  {
+   "fieldname": "description",
+   "fieldtype": "Small Text",
+   "label": "Package Description"
+  }
+ ],
+ "modified": "2026-09-10 15:40:00.000000",
+ "modified_by": "Administrator",
+ "module": "Seniorcare",
+ "name": "Therapy Package",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "read": 1,
+   "role": "Senior Care Manager",
+   "write": 1
+  },
+  {
+   "read": 1,
+   "role": "Senior Care Finance"
+  }
+ ],
+ "search_fields": "package_name, therapy_type",
+ "sort_field": "package_name",
+ "sort_order": "ASC",
+ "states": []
+}

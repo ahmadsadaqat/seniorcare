@@ -18,12 +18,21 @@
   "column_break_transfer",
   "admitted_via",
   "admitted_via_other",
+  "attendant_during_hospitalization",
+  "section_break_family_hospital",
+  "family_notified",
+  "family_notified_date",
+  "column_break_hospital_deposit",
+  "deposit_usage",
+  "deposit_usage_reference",
   "section_break_discharge",
   "discharge_datetime",
+  "return_date",
   "diagnosis_on_discharge",
   "discharge_documents",
   "column_break_discharge",
   "hospital_stay_charges",
+  "hospitalization_notes",
   "section_break_followup",
   "follow_up_required",
   "follow_up_datetime"
@@ -167,12 +176,61 @@
    "fieldtype": "Datetime",
    "label": "Follow-up Date/Time",
    "mandatory_depends_on": "eval:doc.follow_up_required == 1"
+  },
+  {
+   "fieldname": "attendant_during_hospitalization",
+   "fieldtype": "Link",
+   "label": "Attendant Deployed to Hospital",
+   "options": "Employee"
+  },
+  {
+   "fieldname": "section_break_family_hospital",
+   "fieldtype": "Section Break",
+   "label": "Family Notification & Deposit Usage"
+  },
+  {
+   "default": "0",
+   "fieldname": "family_notified",
+   "fieldtype": "Check",
+   "label": "Family Notified?"
+  },
+  {
+   "depends_on": "eval:doc.family_notified == 1",
+   "fieldname": "family_notified_date",
+   "fieldtype": "Date",
+   "label": "Family Notified Date"
+  },
+  {
+   "fieldname": "column_break_hospital_deposit",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "deposit_usage",
+   "fieldtype": "Currency",
+   "label": "Medical Deposit Utilized for Hospital Bill"
+  },
+  {
+   "depends_on": "eval:doc.deposit_usage > 0",
+   "fieldname": "deposit_usage_reference",
+   "fieldtype": "Link",
+   "label": "Deposit Payment Entry Reference",
+   "options": "Payment Entry"
+  },
+  {
+   "fieldname": "return_date",
+   "fieldtype": "Date",
+   "label": "Return to Facility Date"
+  },
+  {
+   "fieldname": "hospitalization_notes",
+   "fieldtype": "Text",
+   "label": "Hospital Stay Notes / Observations"
   }
  ],
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2026-09-01 12:00:00.000000",
+ "modified": "2026-09-10 15:40:00.000000",
  "modified_by": "Administrator",
  "module": "Seniorcare",
  "name": "Hospital Transfer",

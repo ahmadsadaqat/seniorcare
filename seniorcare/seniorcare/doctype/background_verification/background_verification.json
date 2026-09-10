@@ -1,0 +1,164 @@
+{
+ "actions": [],
+ "autoname": "naming_series:",
+ "creation": "2026-09-10 15:50:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "naming_series",
+  "employee",
+  "employee_name",
+  "verification_type",
+  "column_break_bgv_meta",
+  "priority",
+  "requested_date",
+  "status",
+  "section_break_authority",
+  "verifying_authority",
+  "reference_number",
+  "column_break_validity",
+  "expiry_date",
+  "renewal_required",
+  "section_break_result",
+  "result_notes",
+  "document_attachment"
+ ],
+ "fields": [
+  {
+   "default": "BGV-.YYYY.-.####",
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Naming Series",
+   "options": "BGV-.YYYY.-.####",
+   "reqd": 1
+  },
+  {
+   "fieldname": "employee",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Employee",
+   "options": "Employee",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "employee.employee_name",
+   "fieldname": "employee_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Employee Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "verification_type",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Verification Type",
+   "options": "Police Verification\nBackground Check\nReference Check\nAcademic Check",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_bgv_meta",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "Medium",
+   "fieldname": "priority",
+   "fieldtype": "Select",
+   "label": "Priority",
+   "options": "High\nMedium\nLow"
+  },
+  {
+   "default": "Today",
+   "fieldname": "requested_date",
+   "fieldtype": "Date",
+   "label": "Requested Date"
+  },
+  {
+   "default": "Requested",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Status",
+   "options": "Requested\nIn Progress\nCleared\nFailed\nExpired"
+  },
+  {
+   "fieldname": "section_break_authority",
+   "fieldtype": "Section Break",
+   "label": "Authority & Tracking"
+  },
+  {
+   "fieldname": "verifying_authority",
+   "fieldtype": "Data",
+   "label": "Verifying Agency / Authority"
+  },
+  {
+   "fieldname": "reference_number",
+   "fieldtype": "Data",
+   "label": "Agency Reference / Tracking Number"
+  },
+  {
+   "fieldname": "column_break_validity",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "expiry_date",
+   "fieldtype": "Date",
+   "label": "Expiry Date"
+  },
+  {
+   "default": "0",
+   "fieldname": "renewal_required",
+   "fieldtype": "Check",
+   "label": "Renewal Required?"
+  },
+  {
+   "fieldname": "section_break_result",
+   "fieldtype": "Section Break",
+   "label": "Outcome & Attachment"
+  },
+  {
+   "fieldname": "result_notes",
+   "fieldtype": "Text",
+   "label": "Outcome / Observations"
+  },
+  {
+   "fieldname": "document_attachment",
+   "fieldtype": "Attach",
+   "label": "Clearance Certificate / Report"
+  }
+ ],
+ "modified": "2026-09-10 15:50:00.000000",
+ "modified_by": "Administrator",
+ "module": "Seniorcare",
+ "name": "Background Verification",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "read": 1,
+   "role": "Senior Care HR",
+   "write": 1
+  }
+ ],
+ "search_fields": "employee, employee_name, verification_type, status",
+ "sort_field": "requested_date",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "employee_name"
+}

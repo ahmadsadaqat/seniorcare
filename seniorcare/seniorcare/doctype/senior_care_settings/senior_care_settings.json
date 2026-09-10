@@ -19,8 +19,22 @@
   "auto_create_monthly_invoice",
   "default_billing_day",
   "column_break_billing",
+  "section_break_approval",
+  "fee_change_approver_role",
   "section_alerts",
-  "vaccination_alert_days"
+  "vaccination_alert_days",
+  "section_statutory_payroll",
+  "eobi_employer_rate",
+  "eobi_employee_rate",
+  "eobi_minimum_wage",
+  "column_break_pessi",
+  "pessi_employer_rate",
+  "pessi_employee_rate",
+  "province",
+  "column_break_tax",
+  "income_tax_free_threshold",
+  "wwf_rate",
+  "exclude_outsourced_from_statutory"
  ],
  "fields": [
   {
@@ -102,6 +116,18 @@
    "fieldtype": "Column Break"
   },
   {
+   "fieldname": "section_break_approval",
+   "fieldtype": "Section Break",
+   "label": "Approval Settings"
+  },
+  {
+   "fieldname": "fee_change_approver_role",
+   "fieldtype": "Link",
+   "label": "Fee Change Approver Role",
+   "options": "Role",
+   "default": "Senior Care Approver"
+  },
+  {
    "fieldname": "section_alerts",
    "fieldtype": "Section Break",
    "label": "Alerts & Notifications"
@@ -111,10 +137,77 @@
    "fieldname": "vaccination_alert_days",
    "fieldtype": "Data",
    "label": "Vaccination Due Alert Days (Comma separated, e.g. 15,7,3)"
+  },
+  {
+   "fieldname": "section_statutory_payroll",
+   "fieldtype": "Section Break",
+   "label": "Pakistan Statutory Payroll Configuration"
+  },
+  {
+   "default": "5",
+   "fieldname": "eobi_employer_rate",
+   "fieldtype": "Percent",
+   "label": "EOBI Employer Rate (%)"
+  },
+  {
+   "default": "1",
+   "fieldname": "eobi_employee_rate",
+   "fieldtype": "Percent",
+   "label": "EOBI Employee Rate (%)"
+  },
+  {
+   "default": "37000",
+   "fieldname": "eobi_minimum_wage",
+   "fieldtype": "Currency",
+   "label": "Declared Minimum Wage for EOBI (PKR)"
+  },
+  {
+   "fieldname": "column_break_pessi",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "6",
+   "fieldname": "pessi_employer_rate",
+   "fieldtype": "Percent",
+   "label": "PESSI / SESSI Employer Rate (%)"
+  },
+  {
+   "default": "1",
+   "fieldname": "pessi_employee_rate",
+   "fieldtype": "Percent",
+   "label": "PESSI / SESSI Employee Rate (%)"
+  },
+  {
+   "default": "Punjab",
+   "fieldname": "province",
+   "fieldtype": "Select",
+   "label": "Statutory Province",
+   "options": "Punjab\nSindh\nKPK\nIslamabad / Federal"
+  },
+  {
+   "fieldname": "column_break_tax",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "600000",
+   "fieldname": "income_tax_free_threshold",
+   "fieldtype": "Currency",
+   "label": "Annual Income Tax-Free Threshold (PKR)"
+  },
+  {
+   "default": "2",
+   "fieldname": "wwf_rate",
+   "fieldtype": "Percent",
+   "label": "Workers Welfare Fund Rate (%)"
+  },
+  {
+   "default": "1",
+   "fieldname": "exclude_outsourced_from_statutory",
+   "fieldtype": "Check",
+   "label": "Automatically Exclude Outsourced Employees from Statutory Deductions"
   }
  ],
- "issingle": 1,
- "modified": "2026-08-25 03:30:00.000000",
+ "modified": "2026-09-10 16:00:00.000000",
  "modified_by": "Administrator",
  "module": "Seniorcare",
  "name": "Senior Care Settings",

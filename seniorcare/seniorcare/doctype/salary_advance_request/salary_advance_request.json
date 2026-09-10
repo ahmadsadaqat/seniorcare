@@ -1,0 +1,186 @@
+{
+ "actions": [],
+ "autoname": "naming_series:",
+ "creation": "2026-09-10 15:50:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "naming_series",
+  "employee",
+  "employee_name",
+  "requested_amount",
+  "request_date",
+  "status",
+  "column_break_advance_meta",
+  "salary_accrued_to_date",
+  "last_advance_date",
+  "days_since_last_advance",
+  "section_break_approval",
+  "approved_by",
+  "approval_date",
+  "disbursement_entry",
+  "column_break_notes",
+  "reason_for_advance",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "default": "SAR-.YYYY.-.####",
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Naming Series",
+   "options": "SAR-.YYYY.-.####",
+   "reqd": 1
+  },
+  {
+   "fieldname": "employee",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Employee",
+   "options": "Employee",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "employee.employee_name",
+   "fieldname": "employee_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Employee Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "requested_amount",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Requested Advance Amount",
+   "reqd": 1
+  },
+  {
+   "default": "Today",
+   "fieldname": "request_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Request Date",
+   "reqd": 1
+  },
+  {
+   "default": "Draft",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Status",
+   "options": "Draft\nPending Approval\nApproved\nRejected\nDisbursed",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_advance_meta",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "salary_accrued_to_date",
+   "fieldtype": "Currency",
+   "label": "Estimated Salary Accrued to Date",
+   "read_only": 1
+  },
+  {
+   "fieldname": "last_advance_date",
+   "fieldtype": "Date",
+   "label": "Date of Last Advance",
+   "read_only": 1
+  },
+  {
+   "fieldname": "days_since_last_advance",
+   "fieldtype": "Int",
+   "label": "Days Since Last Advance",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_approval",
+   "fieldtype": "Section Break",
+   "label": "Approval & Disbursement"
+  },
+  {
+   "fieldname": "approved_by",
+   "fieldtype": "Link",
+   "label": "Approved By",
+   "options": "User",
+   "read_only": 1
+  },
+  {
+   "fieldname": "approval_date",
+   "fieldtype": "Datetime",
+   "label": "Approval Date",
+   "read_only": 1
+  },
+  {
+   "fieldname": "disbursement_entry",
+   "fieldtype": "Link",
+   "label": "Disbursement Payment Entry",
+   "options": "Payment Entry"
+  },
+  {
+   "fieldname": "column_break_notes",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "reason_for_advance",
+   "fieldtype": "Small Text",
+   "label": "Reason for Advance"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Salary Advance Request",
+   "print_hide": 1,
+   "read_only": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2026-09-10 15:50:00.000000",
+ "modified_by": "Administrator",
+ "module": "Seniorcare",
+ "name": "Salary Advance Request",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "cancel": 1,
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "cancel": 1,
+   "create": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Senior Care HR",
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "read": 1,
+   "role": "Senior Care Approver",
+   "write": 1
+  }
+ ],
+ "search_fields": "employee, employee_name, status",
+ "sort_field": "request_date",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "employee_name"
+}

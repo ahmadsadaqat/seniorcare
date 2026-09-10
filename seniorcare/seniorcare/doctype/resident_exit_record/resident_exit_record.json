@@ -1,0 +1,303 @@
+{
+ "actions": [],
+ "autoname": "naming_series:",
+ "creation": "2026-09-10 15:30:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "naming_series",
+  "resident_file",
+  "resident_name",
+  "status",
+  "column_break_exit_meta",
+  "notice_date",
+  "notice_period_days",
+  "billing_stop_date",
+  "exit_date",
+  "exit_reason",
+  "section_break_dues",
+  "outstanding_invoices",
+  "pending_charges",
+  "column_break_dues_2",
+  "damages",
+  "notice_period_penalty",
+  "total_dues",
+  "section_break_deposits",
+  "security_deposit_held",
+  "medical_advance_balance",
+  "personal_advance_balance",
+  "column_break_deposits_2",
+  "total_deductions",
+  "net_refund_amount",
+  "section_break_communication",
+  "family_communication_log",
+  "section_break_approval",
+  "prepared_by",
+  "approved_by",
+  "column_break_approval_2",
+  "approval_date",
+  "settlement_remarks",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "default": "EXIT-.YYYY.-.####",
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Naming Series",
+   "options": "EXIT-.YYYY.-.####",
+   "reqd": 1
+  },
+  {
+   "fieldname": "resident_file",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Resident File",
+   "options": "Resident File",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "resident_file.full_name",
+   "fieldname": "resident_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Resident Name",
+   "read_only": 1
+  },
+  {
+   "default": "Draft",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Status",
+   "options": "Draft\nPending Settlement\nApproved\nSettled\nCancelled",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_exit_meta",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "notice_date",
+   "fieldtype": "Date",
+   "label": "Notice Date"
+  },
+  {
+   "fieldname": "notice_period_days",
+   "fieldtype": "Int",
+   "label": "Notice Period (Days)"
+  },
+  {
+   "fieldname": "billing_stop_date",
+   "fieldtype": "Date",
+   "label": "Billing Stop Date"
+  },
+  {
+   "fieldname": "exit_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Exit Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "exit_reason",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Exit Reason",
+   "options": "Voluntary\nMedical\nFamily Decision\nDeceased\nFacility Decision",
+   "reqd": 1
+  },
+  {
+   "fieldname": "section_break_dues",
+   "fieldtype": "Section Break",
+   "label": "Itemized Dues & Charges"
+  },
+  {
+   "fieldname": "outstanding_invoices",
+   "fieldtype": "Currency",
+   "label": "Outstanding Invoices Total"
+  },
+  {
+   "fieldname": "pending_charges",
+   "fieldtype": "Currency",
+   "label": "Pending Uninvoiced Charges"
+  },
+  {
+   "fieldname": "column_break_dues_2",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "damages",
+   "fieldtype": "Currency",
+   "label": "Damages / Facility Repair Charges"
+  },
+  {
+   "fieldname": "notice_period_penalty",
+   "fieldtype": "Currency",
+   "label": "Notice Period Penalty"
+  },
+  {
+   "fieldname": "total_dues",
+   "fieldtype": "Currency",
+   "label": "Total Dues",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_deposits",
+   "fieldtype": "Section Break",
+   "label": "Deposits & Refund Calculation"
+  },
+  {
+   "fieldname": "security_deposit_held",
+   "fieldtype": "Currency",
+   "label": "Security Deposit Held"
+  },
+  {
+   "fieldname": "medical_advance_balance",
+   "fieldtype": "Currency",
+   "label": "Medical Advance Balance"
+  },
+  {
+   "fieldname": "personal_advance_balance",
+   "fieldtype": "Currency",
+   "label": "Personal Advance Balance"
+  },
+  {
+   "fieldname": "column_break_deposits_2",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "total_deductions",
+   "fieldtype": "Currency",
+   "label": "Total Deductions"
+  },
+  {
+   "fieldname": "net_refund_amount",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Net Refund Amount (Deposits - Deductions)",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_communication",
+   "fieldtype": "Section Break",
+   "label": "Family Communication"
+  },
+  {
+   "fieldname": "family_communication_log",
+   "fieldtype": "Text",
+   "label": "Family Communication Log"
+  },
+  {
+   "fieldname": "section_break_approval",
+   "fieldtype": "Section Break",
+   "label": "Approval & Settlement"
+  },
+  {
+   "fieldname": "prepared_by",
+   "fieldtype": "Link",
+   "label": "Prepared By",
+   "options": "User"
+  },
+  {
+   "fieldname": "approved_by",
+   "fieldtype": "Link",
+   "label": "Approved By",
+   "options": "User",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_approval_2",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "approval_date",
+   "fieldtype": "Datetime",
+   "label": "Approval Date",
+   "read_only": 1
+  },
+  {
+   "fieldname": "settlement_remarks",
+   "fieldtype": "Small Text",
+   "label": "Settlement Remarks"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Resident Exit Record",
+   "print_hide": 1,
+   "read_only": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2026-09-10 15:30:00.000000",
+ "modified_by": "Administrator",
+ "module": "Seniorcare",
+ "name": "Resident Exit Record",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "cancel": 1,
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "cancel": 1,
+   "create": 1,
+   "delete": 0,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Senior Care Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Senior Care Finance",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Senior Care Approver",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  }
+ ],
+ "search_fields": "resident_file, resident_name, status, exit_reason",
+ "sort_field": "exit_date",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "resident_name"
+}

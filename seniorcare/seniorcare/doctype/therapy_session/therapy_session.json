@@ -1,0 +1,226 @@
+{
+ "actions": [],
+ "autoname": "naming_series:",
+ "creation": "2026-09-10 15:40:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "naming_series",
+  "resident_file",
+  "resident_name",
+  "customer",
+  "therapy_type",
+  "column_break_session_meta",
+  "therapist",
+  "therapist_name",
+  "appointment_datetime",
+  "duration_minutes",
+  "attendance_status",
+  "section_break_package",
+  "therapy_package",
+  "session_number",
+  "column_break_package_billing",
+  "rate",
+  "billing_status",
+  "sales_invoice",
+  "section_break_clinical_notes",
+  "clinical_notes",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "default": "TS-.YYYY.-.####",
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Naming Series",
+   "options": "TS-.YYYY.-.####",
+   "reqd": 1
+  },
+  {
+   "fieldname": "resident_file",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Resident / Client",
+   "options": "Resident File",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "resident_file.full_name",
+   "fieldname": "resident_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Resident Name",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "resident_file.customer",
+   "fieldname": "customer",
+   "fieldtype": "Link",
+   "label": "Customer",
+   "options": "Customer",
+   "read_only": 1
+  },
+  {
+   "fieldname": "therapy_type",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Therapy Type",
+   "options": "Therapy Type",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_session_meta",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "therapist",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Therapist",
+   "options": "Employee"
+  },
+  {
+   "fetch_from": "therapist.employee_name",
+   "fieldname": "therapist_name",
+   "fieldtype": "Data",
+   "label": "Therapist Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "appointment_datetime",
+   "fieldtype": "Datetime",
+   "in_list_view": 1,
+   "label": "Appointment Date & Time",
+   "reqd": 1
+  },
+  {
+   "default": "45",
+   "fieldname": "duration_minutes",
+   "fieldtype": "Int",
+   "label": "Duration (Minutes)"
+  },
+  {
+   "default": "Scheduled",
+   "fieldname": "attendance_status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Attendance Status",
+   "options": "Scheduled\nCompleted\nCancelled\nNo Show"
+  },
+  {
+   "fieldname": "section_break_package",
+   "fieldtype": "Section Break",
+   "label": "Package & Billing Details"
+  },
+  {
+   "fieldname": "therapy_package",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Therapy Package (Optional)",
+   "options": "Therapy Package"
+  },
+  {
+   "fieldname": "session_number",
+   "fieldtype": "Int",
+   "label": "Session Number in Package"
+  },
+  {
+   "fieldname": "column_break_package_billing",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "rate",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Session Rate"
+  },
+  {
+   "default": "Unbilled",
+   "fieldname": "billing_status",
+   "fieldtype": "Select",
+   "label": "Billing Status",
+   "options": "Unbilled\nInvoiced\nPaid",
+   "read_only": 1
+  },
+  {
+   "fieldname": "sales_invoice",
+   "fieldtype": "Link",
+   "label": "Sales Invoice",
+   "options": "Sales Invoice",
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_clinical_notes",
+   "fieldtype": "Section Break",
+   "label": "Clinical Notes & Progress"
+  },
+  {
+   "fieldname": "clinical_notes",
+   "fieldtype": "Text",
+   "label": "Clinical / Session Notes"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Therapy Session",
+   "print_hide": 1,
+   "read_only": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2026-09-10 15:40:00.000000",
+ "modified_by": "Administrator",
+ "module": "Seniorcare",
+ "name": "Therapy Session",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "cancel": 1,
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "cancel": 1,
+   "create": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Senior Care Manager",
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "read": 1,
+   "role": "Senior Care Doctor",
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "read": 1,
+   "role": "Senior Care Finance",
+   "write": 1
+  }
+ ],
+ "search_fields": "resident_file, resident_name, therapy_type, attendance_status",
+ "sort_field": "appointment_datetime",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "resident_name"
+}

@@ -1,0 +1,208 @@
+{
+ "actions": [],
+ "autoname": "naming_series:",
+ "creation": "2026-09-10 15:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "naming_series",
+  "resident_file",
+  "resident_name",
+  "fee_component",
+  "column_break_main",
+  "current_value",
+  "new_value",
+  "effective_from",
+  "reason",
+  "section_break_approval",
+  "status",
+  "approver_role",
+  "column_break_approval",
+  "approver",
+  "approval_date",
+  "approval_remarks"
+ ],
+ "fields": [
+  {
+   "default": "FCR-.YYYY.-.####",
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Naming Series",
+   "options": "FCR-.YYYY.-.####",
+   "reqd": 1
+  },
+  {
+   "fieldname": "resident_file",
+   "fieldtype": "Link",
+   "in_global_search": 1,
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Resident File",
+   "options": "Resident File",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "resident_file.full_name",
+   "fieldname": "resident_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Resident Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "fee_component",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Fee Component",
+   "options": "Occupancy Fee\nAttendant Fee\nOther Fixed Charges",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_main",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "current_value",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Current Rate",
+   "read_only": 1
+  },
+  {
+   "fieldname": "new_value",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Proposed New Rate",
+   "reqd": 1
+  },
+  {
+   "fieldname": "effective_from",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Effective From",
+   "reqd": 1
+  },
+  {
+   "fieldname": "reason",
+   "fieldtype": "Small Text",
+   "label": "Reason for Change",
+   "reqd": 1
+  },
+  {
+   "fieldname": "section_break_approval",
+   "fieldtype": "Section Break",
+   "label": "Approval"
+  },
+  {
+   "default": "Draft",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Status",
+   "options": "Draft\nPending Approval\nApproved\nRejected\nEffective",
+   "read_only": 1,
+   "reqd": 1
+  },
+  {
+   "fieldname": "approver_role",
+   "fieldtype": "Data",
+   "label": "Approver Role",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_approval",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "approver",
+   "fieldtype": "Link",
+   "label": "Approved / Rejected By",
+   "options": "User",
+   "read_only": 1
+  },
+  {
+   "fieldname": "approval_date",
+   "fieldtype": "Datetime",
+   "label": "Approval Date",
+   "read_only": 1
+  },
+  {
+   "fieldname": "approval_remarks",
+   "fieldtype": "Small Text",
+   "label": "Approval Remarks"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2026-09-10 15:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Seniorcare",
+ "name": "Fee Change Request",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "cancel": 1,
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "cancel": 1,
+   "create": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Senior Care Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "cancel": 1,
+   "create": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Senior Care Finance",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "amend": 0,
+   "cancel": 0,
+   "create": 0,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Senior Care Approver",
+   "share": 0,
+   "submit": 0,
+   "write": 1
+  }
+ ],
+ "search_fields": "resident_file, fee_component, status",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "resident_name",
+ "track_changes": 1
+}

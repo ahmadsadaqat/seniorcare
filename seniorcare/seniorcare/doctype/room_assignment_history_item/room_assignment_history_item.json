@@ -1,0 +1,104 @@
+{
+ "actions": [],
+ "creation": "2026-09-10 15:30:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "previous_room",
+  "new_room",
+  "room_category",
+  "column_break_dates",
+  "effective_date",
+  "old_fee",
+  "new_fee",
+  "deposit_change",
+  "section_break_details",
+  "contract_amendment_ref",
+  "approved_by",
+  "column_break_reason",
+  "reason"
+ ],
+ "fields": [
+  {
+   "fieldname": "previous_room",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Previous Room",
+   "options": "Room"
+  },
+  {
+   "fieldname": "new_room",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "New Room",
+   "options": "Room"
+  },
+  {
+   "fieldname": "room_category",
+   "fieldtype": "Data",
+   "label": "Room Category"
+  },
+  {
+   "fieldname": "column_break_dates",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "effective_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Effective Date"
+  },
+  {
+   "fieldname": "old_fee",
+   "fieldtype": "Currency",
+   "label": "Old Fee"
+  },
+  {
+   "fieldname": "new_fee",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "New Fee"
+  },
+  {
+   "fieldname": "deposit_change",
+   "fieldtype": "Currency",
+   "label": "Deposit Difference"
+  },
+  {
+   "fieldname": "section_break_details",
+   "fieldtype": "Section Break",
+   "label": "Amendment & Reason"
+  },
+  {
+   "fieldname": "contract_amendment_ref",
+   "fieldtype": "Link",
+   "label": "Fee Change Request Ref",
+   "options": "Fee Change Request"
+  },
+  {
+   "fieldname": "approved_by",
+   "fieldtype": "Link",
+   "label": "Approved By",
+   "options": "User"
+  },
+  {
+   "fieldname": "column_break_reason",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "reason",
+   "fieldtype": "Small Text",
+   "label": "Reason for Transfer"
+  }
+ ],
+ "istable": 1,
+ "modified": "2026-09-10 15:30:00.000000",
+ "modified_by": "Administrator",
+ "module": "Seniorcare",
+ "name": "Room Assignment History Item",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

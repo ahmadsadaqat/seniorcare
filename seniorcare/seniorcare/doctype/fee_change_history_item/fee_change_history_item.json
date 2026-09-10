@@ -1,0 +1,97 @@
+{
+ "actions": [],
+ "creation": "2026-09-10 15:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "fee_component",
+  "previous_value",
+  "new_value",
+  "column_break_values",
+  "effective_from",
+  "change_date",
+  "section_break_details",
+  "reason",
+  "column_break_ref",
+  "changed_via",
+  "approved_by"
+ ],
+ "fields": [
+  {
+   "fieldname": "fee_component",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Fee Component",
+   "options": "Occupancy Fee\nAttendant Fee\nOther Fixed Charges",
+   "reqd": 1
+  },
+  {
+   "fieldname": "previous_value",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Previous Rate"
+  },
+  {
+   "fieldname": "new_value",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "New Rate"
+  },
+  {
+   "fieldname": "column_break_values",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "effective_from",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Effective From"
+  },
+  {
+   "fieldname": "change_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Change Approved On"
+  },
+  {
+   "fieldname": "section_break_details",
+   "fieldtype": "Section Break",
+   "label": "Details"
+  },
+  {
+   "fieldname": "reason",
+   "fieldtype": "Small Text",
+   "label": "Reason for Change"
+  },
+  {
+   "fieldname": "column_break_ref",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "changed_via",
+   "fieldtype": "Link",
+   "label": "Fee Change Request",
+   "options": "Fee Change Request",
+   "read_only": 1
+  },
+  {
+   "fieldname": "approved_by",
+   "fieldtype": "Link",
+   "label": "Approved By",
+   "options": "User",
+   "read_only": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "istable": 1,
+ "links": [],
+ "modified": "2026-09-10 15:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "Seniorcare",
+ "name": "Fee Change History Item",
+ "owner": "Administrator",
+ "permissions": [],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

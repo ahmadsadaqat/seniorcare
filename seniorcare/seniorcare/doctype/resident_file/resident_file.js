@@ -168,6 +168,18 @@ frappe.ui.form.on("Resident File", {
 					}
 				});
 			}, __("Financial Actions"));
+
+			frm.add_custom_button(__("Request Fee Change"), () => {
+				frappe.new_doc("Fee Change Request", {
+					resident_file: frm.doc.name
+				});
+			}, __("Financial Actions"));
+
+			frm.add_custom_button(__("Initiate Exit Settlement"), () => {
+				frappe.new_doc("Resident Exit Record", {
+					resident_file: frm.doc.name
+				});
+			}, __("Financial Actions"));
 		}
 	},
 

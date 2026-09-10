@@ -7,6 +7,7 @@
  "field_order": [
   "tab_resident_info",
   "naming_series",
+  "service_types",
   "first_name",
   "last_name",
   "full_name",
@@ -31,6 +32,8 @@
   "column_break_accommodation",
   "exit_date",
   "exit_reason",
+  "section_break_room_history",
+  "room_assignment_history",
   "section_break_family",
   "primary_family_contact",
   "emergency_contact",
@@ -42,6 +45,21 @@
   "family_members",
   "section_break_consent",
   "consent_authorizations",
+  "section_break_admission_eligibility",
+  "not_terminally_ill_at_entry",
+  "not_aggressive_violent",
+  "payment_capability_confirmed",
+  "admission_eligibility_notes",
+  "column_break_admission_decision",
+  "admission_decided_by",
+  "admission_decision_date",
+  "admission_decision_notes",
+  "section_break_onboarding",
+  "room_preparation_status",
+  "family_contacts_captured",
+  "column_break_onboarding",
+  "required_documents_received",
+  "onboarding_notes",
   "section_break_contract",
   "current_contract",
   "contract_start_date",
@@ -119,6 +137,14 @@
   "assigned_attendant_name",
   "assigned_attendant",
   "case_manager",
+  "tab_therapy",
+  "therapy_active_package",
+  "column_break_therapy",
+  "therapy_sessions_completed",
+  "tab_daycare",
+  "daycare_enrollment_status",
+  "column_break_daycare",
+  "daycare_plan",
   "tab_documents",
   "section_break_resident_docs",
   "resident_documents",
@@ -150,7 +176,9 @@
   "personal_advance_used",
   "column_break_pers_adv",
   "personal_advance_refunded",
-  "personal_advance_balance"
+  "personal_advance_balance",
+  "section_break_fee_history",
+  "fee_change_history"
  ],
  "fields": [
   {
@@ -165,6 +193,14 @@
    "label": "Naming Series",
    "options": "RES-.YYYY.-.####",
    "reqd": 1
+  },
+  {
+   "fieldname": "service_types",
+   "fieldtype": "Select",
+   "label": "Service Type",
+   "options": "Residential\nTherapy\nDaycare\nResidential & Therapy\nResidential & Daycare\nTherapy & Daycare\nAll Services",
+   "default": "Residential",
+   "in_standard_filter": 1
   },
   {
    "fieldname": "first_name",
@@ -310,6 +346,20 @@
    "fieldname": "exit_reason",
    "fieldtype": "Small Text",
    "label": "Reason for Exit"
+  },
+  {
+   "fieldname": "section_break_room_history",
+   "fieldtype": "Section Break",
+   "label": "Room Assignment History",
+   "collapsible": 1,
+   "depends_on": "eval: doc.service_types && doc.service_types.includes('Residential')"
+  },
+  {
+   "fieldname": "room_assignment_history",
+   "fieldtype": "Table",
+   "label": "Room Assignment History",
+   "options": "Room Assignment History Item",
+   "read_only": 1
   },
   {
    "fieldname": "section_break_family",
@@ -899,6 +949,87 @@
    "options": "Resident Consent Item"
   },
   {
+   "fieldname": "section_break_admission_eligibility",
+   "fieldtype": "Section Break",
+   "label": "Admission Eligibility & Decision"
+  },
+  {
+   "fieldname": "not_terminally_ill_at_entry",
+   "fieldtype": "Check",
+   "label": "Confirmed: Not Terminally Ill at Entry",
+   "default": "0"
+  },
+  {
+   "fieldname": "not_aggressive_violent",
+   "fieldtype": "Check",
+   "label": "Confirmed: Not Assessed as Aggressive/Violent",
+   "default": "0"
+  },
+  {
+   "fieldname": "payment_capability_confirmed",
+   "fieldtype": "Check",
+   "label": "Confirmed: Payment Capability Verified",
+   "default": "0"
+  },
+  {
+   "fieldname": "admission_eligibility_notes",
+   "fieldtype": "Small Text",
+   "label": "Eligibility Notes"
+  },
+  {
+   "fieldname": "column_break_admission_decision",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "admission_decided_by",
+   "fieldtype": "Link",
+   "label": "Admission Decided By",
+   "options": "User"
+  },
+  {
+   "fieldname": "admission_decision_date",
+   "fieldtype": "Date",
+   "label": "Admission Decision Date"
+  },
+  {
+   "fieldname": "admission_decision_notes",
+   "fieldtype": "Small Text",
+   "label": "Admission Decision Notes"
+  },
+  {
+   "fieldname": "section_break_onboarding",
+   "fieldtype": "Section Break",
+   "label": "Pre-Move-In Onboarding Checklist"
+  },
+  {
+   "fieldname": "room_preparation_status",
+   "fieldtype": "Select",
+   "label": "Room Preparation",
+   "options": "Not Started\nRequested\nDone",
+   "default": "Not Started"
+  },
+  {
+   "fieldname": "family_contacts_captured",
+   "fieldtype": "Check",
+   "label": "Family Contacts Captured",
+   "default": "0"
+  },
+  {
+   "fieldname": "column_break_onboarding",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "required_documents_received",
+   "fieldtype": "Check",
+   "label": "Required Documents Received",
+   "default": "0"
+  },
+  {
+   "fieldname": "onboarding_notes",
+   "fieldtype": "Small Text",
+   "label": "Onboarding Notes"
+  },
+  {
    "fieldname": "section_break_adl_summary",
    "fieldtype": "Section Break",
    "label": "Latest ADL Assessment"
@@ -988,6 +1119,64 @@
    "fieldtype": "Table",
    "label": "Resident Documents",
    "options": "Senior Care Resident Document"
+  },
+  {
+   "fieldname": "section_break_fee_history",
+   "fieldtype": "Section Break",
+   "label": "Fee Change History",
+   "collapsible": 1
+  },
+  {
+   "fieldname": "fee_change_history",
+   "fieldtype": "Table",
+   "label": "Fee Change History",
+   "options": "Fee Change History Item",
+   "read_only": 1
+  },
+  {
+   "depends_on": "eval: doc.service_types && doc.service_types.includes(\"Therapy\")",
+   "fieldname": "tab_therapy",
+   "fieldtype": "Tab Break",
+   "label": "Therapy Services"
+  },
+  {
+   "fieldname": "therapy_active_package",
+   "fieldtype": "Link",
+   "label": "Active Therapy Package",
+   "options": "Therapy Package",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_therapy",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "therapy_sessions_completed",
+   "fieldtype": "Int",
+   "label": "Total Therapy Sessions Completed",
+   "read_only": 1
+  },
+  {
+   "depends_on": "eval: doc.service_types && doc.service_types.includes(\"Daycare\")",
+   "fieldname": "tab_daycare",
+   "fieldtype": "Tab Break",
+   "label": "Daycare Services"
+  },
+  {
+   "fieldname": "daycare_enrollment_status",
+   "fieldtype": "Data",
+   "label": "Daycare Enrollment Status",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_daycare",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "daycare_plan",
+   "fieldtype": "Data",
+   "label": "Daycare Plan Type",
+   "read_only": 1
   }
  ],
  "image_field": "resident_photo",
@@ -1048,9 +1237,32 @@
   {
    "link_doctype": "Resident Assessment",
    "link_fieldname": "resident_file"
+  },
+  {
+   "link_doctype": "Fee Change Request",
+   "link_fieldname": "resident_file"
+  },
+  {
+   "link_doctype": "Resident Exit Record",
+   "link_fieldname": "resident_file"
+  },
+  {
+   "group": "Services",
+   "link_doctype": "Therapy Session",
+   "link_fieldname": "resident_file"
+  },
+  {
+   "group": "Services",
+   "link_doctype": "Daycare Enrollment",
+   "link_fieldname": "resident_file"
+  },
+  {
+   "group": "Services",
+   "link_doctype": "Daycare Attendance",
+   "link_fieldname": "resident_file"
   }
  ],
- "modified": "2026-08-25 04:13:31.605408",
+ "modified": "2026-09-10 15:50:00.000000",
  "modified_by": "Administrator",
  "module": "Seniorcare",
  "name": "Resident File",

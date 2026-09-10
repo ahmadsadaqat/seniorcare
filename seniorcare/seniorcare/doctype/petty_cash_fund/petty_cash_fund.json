@@ -1,0 +1,169 @@
+{
+ "actions": [],
+ "autoname": "naming_series:",
+ "creation": "2026-09-10 15:45:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "naming_series",
+  "custodian",
+  "custodian_name",
+  "requested_amount",
+  "status",
+  "column_break_fund_meta",
+  "funding_date",
+  "bank_transaction_ref",
+  "payment_entry",
+  "section_break_purpose",
+  "purpose",
+  "section_break_approval",
+  "approved_by",
+  "approval_date",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "default": "PCF-.YYYY.-.####",
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Naming Series",
+   "options": "PCF-.YYYY.-.####",
+   "reqd": 1
+  },
+  {
+   "fieldname": "custodian",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Fund Custodian",
+   "options": "Employee",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "custodian.employee_name",
+   "fieldname": "custodian_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Custodian Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "requested_amount",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Requested Funding Amount",
+   "reqd": 1
+  },
+  {
+   "default": "Draft",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Status",
+   "options": "Draft\nPending Approval\nApproved\nFunded\nRejected",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_fund_meta",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "funding_date",
+   "fieldtype": "Date",
+   "label": "Funding Date"
+  },
+  {
+   "fieldname": "bank_transaction_ref",
+   "fieldtype": "Data",
+   "label": "Bank Transaction Reference"
+  },
+  {
+   "fieldname": "payment_entry",
+   "fieldtype": "Link",
+   "label": "Payment Entry Reference",
+   "options": "Payment Entry"
+  },
+  {
+   "fieldname": "section_break_purpose",
+   "fieldtype": "Section Break",
+   "label": "Purpose & Justification"
+  },
+  {
+   "fieldname": "purpose",
+   "fieldtype": "Small Text",
+   "label": "Purpose"
+  },
+  {
+   "fieldname": "section_break_approval",
+   "fieldtype": "Section Break",
+   "label": "Approval"
+  },
+  {
+   "fieldname": "approved_by",
+   "fieldtype": "Link",
+   "label": "Approved By",
+   "options": "User",
+   "read_only": 1
+  },
+  {
+   "fieldname": "approval_date",
+   "fieldtype": "Datetime",
+   "label": "Approval Date",
+   "read_only": 1
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Petty Cash Fund",
+   "print_hide": 1,
+   "read_only": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "is_submittable": 1,
+ "links": [],
+ "modified": "2026-09-10 15:45:00.000000",
+ "modified_by": "Administrator",
+ "module": "Seniorcare",
+ "name": "Petty Cash Fund",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "cancel": 1,
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "cancel": 1,
+   "create": 1,
+   "read": 1,
+   "report": 1,
+   "role": "Senior Care Finance",
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "read": 1,
+   "role": "Senior Care Approver",
+   "write": 1
+  }
+ ],
+ "search_fields": "custodian, custodian_name, status",
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "custodian_name"
+}

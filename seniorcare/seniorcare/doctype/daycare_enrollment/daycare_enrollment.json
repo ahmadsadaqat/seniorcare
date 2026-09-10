@@ -1,0 +1,167 @@
+{
+ "actions": [],
+ "autoname": "naming_series:",
+ "creation": "2026-09-10 15:40:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "naming_series",
+  "resident_file",
+  "resident_name",
+  "customer",
+  "column_break_enroll_meta",
+  "enrollment_status",
+  "plan",
+  "section_break_schedule",
+  "start_date",
+  "end_date",
+  "column_break_pricing",
+  "monthly_rate",
+  "billing_status",
+  "section_break_contacts",
+  "emergency_contact",
+  "notes"
+ ],
+ "fields": [
+  {
+   "default": "DC-.YYYY.-.####",
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Naming Series",
+   "options": "DC-.YYYY.-.####",
+   "reqd": 1
+  },
+  {
+   "fieldname": "resident_file",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Resident / Client",
+   "options": "Resident File",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "resident_file.full_name",
+   "fieldname": "resident_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Resident Name",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "resident_file.customer",
+   "fieldname": "customer",
+   "fieldtype": "Link",
+   "label": "Customer",
+   "options": "Customer",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_enroll_meta",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "Active",
+   "fieldname": "enrollment_status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Enrollment Status",
+   "options": "Active\nSuspended\nCompleted"
+  },
+  {
+   "default": "Full-Time",
+   "fieldname": "plan",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Plan Type",
+   "options": "Full-Time\nPart-Time\nDrop-In"
+  },
+  {
+   "fieldname": "section_break_schedule",
+   "fieldtype": "Section Break",
+   "label": "Duration & Rates"
+  },
+  {
+   "fieldname": "start_date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Enrollment Start Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "end_date",
+   "fieldtype": "Date",
+   "label": "Enrollment End Date"
+  },
+  {
+   "fieldname": "column_break_pricing",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "monthly_rate",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Monthly Rate",
+   "reqd": 1
+  },
+  {
+   "default": "Active",
+   "fieldname": "billing_status",
+   "fieldtype": "Select",
+   "label": "Billing Status",
+   "options": "Active\nPaused"
+  },
+  {
+   "fieldname": "section_break_contacts",
+   "fieldtype": "Section Break",
+   "label": "Emergency Contact & Notes"
+  },
+  {
+   "fieldname": "emergency_contact",
+   "fieldtype": "Data",
+   "label": "Emergency Contact Details"
+  },
+  {
+   "fieldname": "notes",
+   "fieldtype": "Small Text",
+   "label": "Special Instructions / Notes"
+  }
+ ],
+ "modified": "2026-09-10 15:40:00.000000",
+ "modified_by": "Administrator",
+ "module": "Seniorcare",
+ "name": "Daycare Enrollment",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "read": 1,
+   "role": "Senior Care Manager",
+   "write": 1
+  },
+  {
+   "read": 1,
+   "role": "Senior Care Finance",
+   "write": 1
+  }
+ ],
+ "search_fields": "resident_file, resident_name, plan, enrollment_status",
+ "sort_field": "start_date",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "resident_name"
+}

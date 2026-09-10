@@ -107,7 +107,7 @@ class ResidentFile(Document):
 			self.emergency_contact = f"{first.family_member_name} ({first.relationship or 'Family'}) Ph: {first.phone or ''}".strip()
 
 	def handle_room_assignment(self):
-		"""Syncs room occupancy status when room is assigned, changed, or discharged."""
+		"""Syncs room occupancy status when room is assigned, changed, or discharged, and logs room history."""
 		if not self.is_new():
 			old_room = frappe.db.get_value("Resident File", self.name, "room_unit")
 			if old_room and old_room != self.room_unit:
@@ -116,6 +116,19 @@ class ResidentFile(Document):
 						"occupancy_status": "Available",
 						"current_resident": None
 					})
+
+				# Log to room assignment history
+				room_cat = frappe.db.get_value("Room", self.room_unit, "room_category") if self.room_unit else None
+				self.append("room_assignment_history", {
+					"previous_room": old_room,
+					"new_room": self.room_unit,
+					"room_category": room_cat or "",
+					"effective_date": today(),
+					"old_fee": flt(self.occupancy_fee),
+					"new_fee": flt(self.occupancy_fee),
+					"reason": "Room reassignment",
+					"approved_by": frappe.session.user,
+				})
 
 		if self.room_unit and frappe.db.exists("Room", self.room_unit):
 			if self.resident_status in ["Discharged", "Deceased"]:

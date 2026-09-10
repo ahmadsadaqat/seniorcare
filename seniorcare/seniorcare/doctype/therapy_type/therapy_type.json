@@ -1,0 +1,84 @@
+{
+ "actions": [],
+ "autoname": "field:therapy_name",
+ "creation": "2026-09-10 15:40:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "therapy_name",
+  "default_duration_minutes",
+  "default_rate",
+  "column_break_desc",
+  "description"
+ ],
+ "fields": [
+  {
+   "fieldname": "therapy_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Therapy Name",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "default": "45",
+   "fieldname": "default_duration_minutes",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "Default Duration (Minutes)"
+  },
+  {
+   "fieldname": "default_rate",
+   "fieldtype": "Currency",
+   "in_list_view": 1,
+   "label": "Default Rate per Session"
+  },
+  {
+   "fieldname": "column_break_desc",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "description",
+   "fieldtype": "Small Text",
+   "label": "Description / Modality"
+  }
+ ],
+ "modified": "2026-09-10 15:40:00.000000",
+ "modified_by": "Administrator",
+ "module": "Seniorcare",
+ "name": "Therapy Type",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "read": 1,
+   "role": "Senior Care Doctor",
+   "write": 1
+  },
+  {
+   "read": 1,
+   "role": "Senior Care Manager"
+  },
+  {
+   "read": 1,
+   "role": "Senior Care Finance"
+  }
+ ],
+ "search_fields": "therapy_name",
+ "sort_field": "therapy_name",
+ "sort_order": "ASC",
+ "states": []
+}

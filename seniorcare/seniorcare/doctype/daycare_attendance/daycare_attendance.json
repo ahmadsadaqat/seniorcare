@@ -1,0 +1,126 @@
+{
+ "actions": [],
+ "autoname": "naming_series:",
+ "creation": "2026-09-10 15:40:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "naming_series",
+  "enrollment",
+  "resident_file",
+  "resident_name",
+  "column_break_attendance",
+  "date",
+  "check_in",
+  "check_out",
+  "section_break_notes",
+  "notes"
+ ],
+ "fields": [
+  {
+   "default": "DCA-.YYYY.-.#####",
+   "fieldname": "naming_series",
+   "fieldtype": "Select",
+   "label": "Naming Series",
+   "options": "DCA-.YYYY.-.#####",
+   "reqd": 1
+  },
+  {
+   "fieldname": "enrollment",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Daycare Enrollment",
+   "options": "Daycare Enrollment",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "enrollment.resident_file",
+   "fieldname": "resident_file",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Resident / Client",
+   "options": "Resident File",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "resident_file.full_name",
+   "fieldname": "resident_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Resident Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_attendance",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "date",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Date",
+   "reqd": 1
+  },
+  {
+   "fieldname": "check_in",
+   "fieldtype": "Time",
+   "in_list_view": 1,
+   "label": "Check In Time"
+  },
+  {
+   "fieldname": "check_out",
+   "fieldtype": "Time",
+   "in_list_view": 1,
+   "label": "Check Out Time"
+  },
+  {
+   "fieldname": "section_break_notes",
+   "fieldtype": "Section Break",
+   "label": "Notes"
+  },
+  {
+   "fieldname": "notes",
+   "fieldtype": "Small Text",
+   "label": "Attendance Notes"
+  }
+ ],
+ "modified": "2026-09-10 15:40:00.000000",
+ "modified_by": "Administrator",
+ "module": "Seniorcare",
+ "name": "Daycare Attendance",
+ "naming_rule": "By \"Naming Series\" field",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "read": 1,
+   "role": "Senior Care Manager",
+   "write": 1
+  },
+  {
+   "create": 1,
+   "read": 1,
+   "role": "Senior Care Receptionist",
+   "write": 1
+  }
+ ],
+ "search_fields": "enrollment, resident_file, resident_name, date",
+ "sort_field": "date",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "resident_name"
+}
